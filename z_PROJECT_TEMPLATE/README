@@ -26,8 +26,7 @@ DESCRIPTION:
 -> Tested on MacBook Pro running High Sierra OS(10.13.1); 3.1GHz Intel Core i7;
    16 GB 1867 MHz DDR3
 
-	-using g++ processor (unable with minor probing to find which version was
-  run with this iteration)
+	-using gcc/g++ 7.2.0 processor 
 	-Linted using both Clang and gcc 7.4.2
 
 -> Tested on csegrid.ucdenver.pvt
