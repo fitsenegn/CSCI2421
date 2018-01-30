@@ -1,5 +1,6 @@
 #include <vector>
 #include <cstdlib>
+#include <string>
 
 
 /**Guess contains all the neccesary methods to play a game of guessing a
