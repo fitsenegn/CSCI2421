@@ -13,10 +13,12 @@ void swapnum(int &xptr, int &yptr){
 
 
 
+/**Launched all the implementations of the actual game. Runs from front to back.
+  *\@return (-1 || 0) -1 signifies play again, 0 signifies quit.*/
 int Guess::startGuess(){
     this->createRandomNumbers();
   bool menu_exit = false;
-    while(menu_exit == false){
+    while(menu_exit == false){ //User decides whether sorted or unsorted to play
       char select;
       std::cout << "Would you like to play against\n"
                 << "1) Sorted numbers\n"
@@ -43,37 +45,49 @@ int Guess::startGuess(){
       }
     }
 
-    //_________________________________________
+    //___________________GAMEPLAY______________________
 while(true){
-    int guess_array[3];
-    std::cout << this->printNumbers();
+    int guess_array[4];
+
+
+    // // ****************************************
+    // // ** Un-comment below to have the       **
+    // // ** computer show its selected number  **
+    // // ****************************************
+    // std::cout << this->printNumbers();
+
+
+
     std::cout << "Enter your guesses for the 4 integers int the range from "
               << "1 to 10 that have been selected [seperated by spaces]: "
               << std::endl;
 
     //input guess into seperated array
-    std::cin >> guess_array[0] >> guess_array[1] >> guess_array[2] >> guess_array[3];
+    std::cin >> guess_array[0] >> guess_array[1]
+             >> guess_array[2] >> guess_array[3];
 
     if(this->compareGuess(guess_array) < 4){ //if guess is failed
       std::cout << "\n\n      " << this->compareGuess(guess_array)
                 << " of your guesses are correct. Guess again.\n\n";
-    } else{ //else exit
+
+    } else{ //else play again?
+
       bool sub_exit = false;
         while(sub_exit == false){
         char restart;
-        std::cout << "\n\n      " << "Your are correct! Guess again? [y/n]\n";
+        std::cout << "\n\n      " << "You're are correct! Guess again? [y/n]\n";
         std::cin >> restart;
           if(tolower(restart) == 'y'){
-            return -1;
+            return -1; //not finished signal
           }else if(tolower(restart) == 'n'){
-            return 0;
+            return 0; //finished signal
           }else{
             std::cout << "**invalid input**" << std::endl;
           }
         }
     }
 }
-  return 0;
+  return 0; //last stitch call, clear " control reaches end"
 }
 
 
@@ -131,6 +145,9 @@ std::string Guess::printNumbers(){
 }
 
 
+/** Function recieves user guess and compares each element to the respective
+  * element in the random number.
+  \@return count is the amount of matches.*/
 int Guess::compareGuess(int guess_array[]){
   int count = 0;
 
@@ -142,6 +159,8 @@ int Guess::compareGuess(int guess_array[]){
   return count;
 }
 
+/** Housekeeping function to make sure that before generating random numbers
+  * vector is clear with 0 elements. Public Access. */
 void Guess::reset(){
   this->randomVector.clear();
 }

@@ -2,7 +2,7 @@ CC=g++
 LD=g++
 CC_FLAGS=-g -std=c++11
 OBJECTS= main.o Guess.o 
-TEST= test.o implementation.o
+TEST= test.o Guess.o
 OB= kaest_CSCI2421_HW01
 BINARY=HW01_kaest
 

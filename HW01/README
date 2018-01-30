@@ -4,19 +4,57 @@ ID 108652414 (kaest)
 
 CSCI 2421-E01
 
-Assignment
+Assignment : kaest_CSCI2421_HW01
 
 ****************************************
 ** TO COMPILE ----- 'make all'	      **
-** TO RUN --------- './name' #binary  **
+** TO RUN --------- './HW01_kaest'    **
 ****************************************
 
 DESCRIPTION:
+Design an ADT for a one-person guessing game that chooses n random integers in
+the range from 1 to m and asks the user to guess them. The same integer might be
+chosen more than once. For every example, the game might choose the following
+four integers that range from 1 to 10: 4,6,1,6.
+  The following interactions could occur between the user and the game, after
+the user has specified integers m and n:
 
-
+"Enter your guesses for the 4 integers int the range from 1 to 10 that have
+been selected: "
+1 2 3 4
+"2 of your guesses are correct. Guess again."
+"Enter your guesses for the 4 integers int the range from 1 to 10 that have
+been selected: "
+2 4 6 8
+"2 of your guesses are correct. Guess again."
+1 4 6 6
+"You are correct! Play again?" No
+Good-bye!
 
 ************Structure***********
+Program is stored in 3 files, main.cpp, Guess.h, and Guess.cpp.
+All implementations are stored in the Guess.cpp and main.cpp is used as a very
+basic driver file that handles only the overarching loop.
 
+At the start to program the user is asked whether they desire to play against
+ordered or unordered numbers. If unordered, the numbers are left in their
+initial state of random generation. If ordered, the numbers are sorted using
+bubble sort.
+
+The rest of the gameplay is as outlined in the DESCRIPTION.
+
+
+
+If the user desires to see the computers number displayed, look for the
+tagged line(lines 53-57) labeled as:
+
+// // ****************************************
+// // ** Un-comment below to have the       **
+// // ** computer show its selected number  **
+// // ****************************************
+// std::cout << this->printNumbers();
+
+in "int Guess::startGuess()" function in "Guess.cpp".
 
 
 
@@ -26,7 +64,7 @@ DESCRIPTION:
 -> Tested on MacBook Pro running High Sierra OS(10.13.1); 3.1GHz Intel Core i7;
    16 GB 1867 MHz DDR3
 
-	-using gcc/g++ 7.2.0 processor 
+	-using gcc/g++ 7.2.0 processor
 	-Linted using both Clang and gcc 7.4.2
 
 -> Tested on csegrid.ucdenver.pvt
@@ -37,7 +75,8 @@ DESCRIPTION:
 **********************
 
 
-XXX: Future implementations will. . .
+XXX: Future implementations will implement richer guessing customization options.
+
 
 
 

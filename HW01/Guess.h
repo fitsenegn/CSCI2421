@@ -1,14 +1,18 @@
 #include <vector>
 #include <cstdlib>
 
+
+/**Guess contains all the neccesary methods to play a game of guessing a
+  *Random number.
+  *To play, create object of guess and call the .startGuess method.*/
 class Guess{
 
 
 public:
 
-int startGuess(); //startGuess member function
+int startGuess();
 
-int createRandomNumbers(); //member function
+int createRandomNumbers();
 
 void sortNumbers();
 

@@ -13,7 +13,7 @@ int main(){
 
   Guess test;
 
-  test.startGuess();
+  while(test.startGuess() ==  -1); //do while user selects "play again"
 
   std::cout << "Good-Bye!" << std::endl;
 
