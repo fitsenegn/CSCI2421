@@ -19,7 +19,7 @@ void sortNumbers();
 
 int compareGuess(int *n);
 
-int* convertGuess(std::string);
+int* convertGuess(std::string s);
 
 std::string printNumbers();
 
