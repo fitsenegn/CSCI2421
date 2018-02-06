@@ -129,7 +129,7 @@ std::vector<ItemType> ArrayBag::operator=(std::vector<ItemType> contents){
 	return contents;
 }
 
-
+#include <iostream>
 /* Create Union set of numbers and return left
 *\@param other is the right-most bag */
 std::vector<ItemType> ArrayBag::operator+(ArrayBag& other){
@@ -158,6 +158,7 @@ std::vector<ItemType> ArrayBag::operator+(ArrayBag& other){
 
 	std::sort(unionContents.begin(), unionContents.end());
 
+
 	return unionContents;
 }
 
@@ -167,19 +168,19 @@ std::vector<ItemType> ArrayBag::operator-(ArrayBag& other){
 	std::vector<ItemType> bagB = other.toVector();
 	std::vector<ItemType> temp = this->toVector();
  	ArrayBag subtractionBag;
-
+	
 
 	std::sort(temp.begin(), temp.end());
     std::sort(bagB.begin(), bagB.end());
-    
+
     for(int i = 0; i < temp.size()-1; i++){
         if(temp[i] == temp[1+i]){
             temp.erase(temp.begin()+i);
             i--;
         }
-        
+
     }
-    
+
 	for(int i = 0; i < temp.size(); i++){ //instantiate temporary bag
     subtractionBag.add(temp[i]);
   }

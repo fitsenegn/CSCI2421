@@ -4,20 +4,76 @@ ID 108652414 (kaest)
 
 CSCI 2421-E01
 
-Assignment
+Assignment 2
 
 ****************************************
 ** TO COMPILE ----- 'make all'	      **
-** TO RUN --------- './name' #binary  **
+** TO RUN --------- './Bag_tests'     **
 ****************************************
 
 DESCRIPTION:
+Use the files: ArrayBag.h and ArrayBag.cpp  to implement the functionality of a
+set for integers as described in Chapter 1, Exercises 6 and 8 at page 28.
+ArrayBag, makes an array ADT with many of the functions of a STL vector.
+Please use this, NOT a vector.  To verify your set class, write a main function
+that takes two sets of integers from an input file input.dat, and store them
+into separate sets, and apply following two operations.
 
+First, combine the two into one set by using + (union) operator, and print out
+the union set. The + operator must remove all duplicates and store one copy of
+any item. (Note that this is correct mathematical definition of union. The
+description in the textbook exercise is not correct) You also need to implement
+a subtraction operator (A-B means removing all elements of B from A) and print
+out the result. So the main function takes two sets of integers and print the
+result of + and - operation.
 
 
 ************Structure***********
+The brunt of the work is done through operator overloads within the modified
+ArrayBag class. SetFunctions.* contain the read in functions neccesary.
+ArrayBag.* contain the code for union, subtraction, etc.
+Main.cpp calls each respective function.
+
+Each operation is done with its respective overload and the returned vector is
+pushed right by the operation. The assignment operator has been overloaded such
+That a simple phrase,"BagC = BagB + BagA;" will propogate BagC with the union
+of BagB and BagA. This makes for very readible code.
+Call to run the main will:
+  1) read in,
+  2) check for errors,
+  3) make neccesary calculations,
+  4) print out BagA, BagB, UnionBag, and subtraction Bag using "<<" overload.
 
 
+
+The organization of this program is atrocious. I did not fully conceptualize
+the best way to implement this program until too late. Read the
+Future implementations notes to the left of "XXX:" below for more details.
+
+Asymptotic Analysis
+
+In ArrayBag:
+Contains() uses the function getIndexOf(const ItemType& target)
+This function is a Sequential search function which
+which has the efficiency in Big-o notation of is O(n).
+
+My Union function iterates through each bag, adds them together, and removes
+duplicates. There were 34 elements to process and the function manipulated Each
+objects 53 times. I believe this means that in big-O notation this function's
+efficiency can be estimated to be 1/2*(n*log(n)).
+
+In my Subtraction function it searches for the copies the contents of the bagA
+to a new set. This set is then checked for each element in the next using the
+sequential sort. If one of the second bags variables in in the first, it is removed.
+There were 34 elements to process and the function manipulated Each
+objects 25 times not including the call to sequential search which is listed
+above. I belive that this efficiency can be estimated to be O(n) not including
+sort and search. std::sort is O(N·log(N)). This means that overall the subtraction
+function would be (O(N·log(N)))U(O(n^2)).
+
+I am not sure that I fully understand how to do a "run-time asymptotic analysis
+of main member functions" even after consuming all the relevant information
+for this module. I will need to visit office hours.
 
 
 
@@ -26,7 +82,7 @@ DESCRIPTION:
 -> Tested on MacBook Pro running High Sierra OS(10.13.1); 3.1GHz Intel Core i7;
    16 GB 1867 MHz DDR3
 
-	-using gcc/g++ 7.2.0 processor 
+	-using gcc/g++ 7.2.0 processor
 	-Linted using both Clang and gcc 7.4.2
 
 -> Tested on csegrid.ucdenver.pvt
@@ -37,7 +93,11 @@ DESCRIPTION:
 **********************
 
 
-XXX: Future implementations will. . .
+XXX: Future implementations will remove the guff and leave ArrayBag as a clean
+ADT. All Set manipulations will be pulled out into another layer of Class
+Abstraction in a class called Set. Set will contain the ArrayBag as a ADT
+private member. This will allow for cleaner access and more reusable code.
+This will be done in the next day or two.
 
 
 
