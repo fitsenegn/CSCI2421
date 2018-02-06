@@ -10,6 +10,7 @@
 #define BAG_
 
 #include <vector>
+#include <sstream>
 
 typedef int ItemType;
 class ArrayBag
@@ -17,13 +18,13 @@ class ArrayBag
 private:
 	static const int DEFAULT_BAG_SIZE = 100;
 	ItemType items[DEFAULT_BAG_SIZE]; // array of bag items
-   int itemCount;                    // current count of bag items 
+   int itemCount;                    // current count of bag items
    int maxItems;                     // max capacity of the bag
-   
+
    // Returns either the index of the element in the array items that
-   // contains the given target or -1, if the array does not contain 
+   // contains the given target or -1, if the array does not contain
    // the target.
-   int getIndexOf(const ItemType& target) const;   
+   int getIndexOf(const ItemType& target) const;
 
 public:
 	ArrayBag();
@@ -35,7 +36,12 @@ public:
 	bool contains(const ItemType& anEntry) const;
 	int getFrequencyOf(const ItemType& anEntry) const;
     std::vector<ItemType> toVector() const;
+
+	std::vector<ItemType> operator=(std::vector<ItemType>);
+	std::vector<ItemType> operator+(ArrayBag& other);
+	std::vector<ItemType> operator-(ArrayBag& other);
 };  // end Bag
 
+std::ostream &operator<<(std::ostream &out, ArrayBag &bag);
 
 #endif
