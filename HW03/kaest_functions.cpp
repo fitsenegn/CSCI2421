@@ -1,6 +1,6 @@
 #include "read.h"
 #include <sstream>
-
+#include <iostream>
 
 exception_status readIn(my_string& in){
   exception_status exception; //catch exception
@@ -27,15 +27,16 @@ exception_status readIn(my_string& in){
   while(!reformat_file.eof()){
     count++;
 
-      getline(reformat_file, in); //read in a line up to '\n'
 
-      reformat_file.seekg(1);//skip next newline
+      my_string temp;
+      getline(reformat_file, temp); //read in a line up to '\n'
+      in += temp;
 
       if(reformat_file.peek() == '\n'){ //if theres a break, insert flag
           in += "___<br/>____";
       }
 
-
+      // std::cout << in;
   if (reformat_file.fail()) {
       // set exception
       exception.badCall("input_error_line_");

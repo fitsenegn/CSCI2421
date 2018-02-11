@@ -1,6 +1,6 @@
 #include <iostream>
 #include "mystring.h"
-#include "read.h"
+#include "kaest_functions.h"
 
 
 using std::endl;
@@ -32,8 +32,8 @@ for(int i = 0; i < test.length(); i++){
                     if(test[i+9] == '_')
                       if(test[i+10] == '_')
                         if(test[i+11] == '_'){
-                          cout << "\n\n";
-                          i =+12;
+                          cout << endl << endl;
+                          i += 12;
                         }
 
 
