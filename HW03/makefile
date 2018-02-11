@@ -1,7 +1,7 @@
 CC=g++
 LD=g++
 CC_FLAGS=-g -std=c++11
-OBJECTS= main.o mystring.o
+OBJECTS= main.o mystring.o read.o
 TEST= test.o implementation.o
 OB= kaest_CSCI2421_Assignment3
 BINARY=reformat
