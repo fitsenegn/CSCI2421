@@ -2,14 +2,14 @@
 #include <sstream>
 #include <iostream>
 
-exception_status readIn(my_string& in){
+exception_status readIn(my_string& in, std::string file){
   exception_status exception; //catch exception
 
   int count = 0;
 
   std::ifstream reformat_file;
 
-      reformat_file.open("sample.txt");
+      reformat_file.open(file);
 
       ///////////check file/////////
     if (!reformat_file.is_open()) {
@@ -28,15 +28,16 @@ exception_status readIn(my_string& in){
     count++;
 
 
+      reformat_file >> std::ws;
+
       my_string temp;
       getline(reformat_file, temp); //read in a line up to '\n'
       in += temp;
 
-      if(reformat_file.peek() == '\n'){ //if theres a break, insert flag
-          in += "___<br/>____";
+      if(reformat_file.peek() == '\n'){ //if theres a break, insert space
+          in += " ";
       }
 
-      // std::cout << in;
   if (reformat_file.fail()) {
       // set exception
       exception.badCall("input_error_line_");

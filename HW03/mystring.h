@@ -96,6 +96,7 @@ class my_string
   my_string(const my_string& source);
   ~my_string( );
   // MODIFICATION MEMBER FUNCTIONS
+  my_string* split(int splitSize);
   void operator +=(const my_string& addend);
   void operator +=(const char addend[ ]);
   void operator +=(char addend);
@@ -105,6 +106,7 @@ class my_string
   // CONSTANT MEMBER FUNCTIONS
   size_t length( ) const { return current_length; }
   char operator [ ](size_t position) const;
+  char privateAccess(size_t position) const;
   // FRIEND FUNCTIONS
   friend std::ostream& operator <<(std::ostream& outs, const my_string& source);
   friend bool operator ==(const my_string& s1, const my_string& s2);

@@ -27,4 +27,4 @@ struct exception_status {
   exception_status() : status(""), error(false), which(0) {}
 };
 
-exception_status readIn(my_string&);
+exception_status readIn(my_string&, std::string);

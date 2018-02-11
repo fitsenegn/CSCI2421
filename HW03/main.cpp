@@ -11,34 +11,25 @@ using std::cout;
 int main(){
 my_string test;
 exception_status check;
+std::string file;
 
-check = readIn(test);
+file = "sample.txt";
+check = readIn(test, file);
 
 if(check.error == true){
-  cout << check.what() << check.which;
+  cout << check.what() << check.which << endl << endl;
 }
 
-// ___<br/>____
-for(int i = 0; i < test.length(); i++){
-  if(test[i] == '_')
-    if(test[i+1] == '_')
-      if(test[i+2] == '_')
-        if(test[i+3] == '<')
-          if(test[i+4] == 'b')
-            if(test[i+5] == 'r')
-              if(test[i+6] == '/')
-                if(test[i+7] == '>')
-                  if(test[i+8] == '_')
-                    if(test[i+9] == '_')
-                      if(test[i+10] == '_')
-                        if(test[i+11] == '_'){
-                          cout << endl << endl;
-                          i += 12;
-                        }
+
+my_string* test_split;
+
+test_split = test.split(86);
 
 
-  cout << test[i];
+for(int i = 0; i < 24; i++){
+  cout << test_split[i] << endl;
 }
+
 
 
 

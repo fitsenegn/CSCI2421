@@ -43,6 +43,53 @@ my_string::~my_string( )
 }
 
 // MODIFICATION MEMBER FUNCTIONS
+
+my_string* my_string::split(int splitSize){ //Added by TRYSTAN KAES
+  int lines = (this->length()/splitSize + 1);
+  my_string* splitString = new my_string[lines];
+
+  int cursor = 0;
+  int end_position = 0;
+  int index = 0;
+
+
+  while(cursor < this->length() - 1 ){
+
+    my_string temp;
+
+    end_position = cursor + splitSize;
+
+
+
+    for(; cursor < end_position; cursor++){
+
+          if(cursor == this->length())
+              break;
+
+        temp += this->privateAccess(cursor);
+    }
+
+
+
+
+    if(this->privateAccess(cursor - 1) != ' ')
+      if(this->privateAccess(cursor) != ' ')
+        if(cursor != this->length())
+          temp += "-";
+
+
+    splitString[index] = temp;
+
+
+
+
+    index++;
+  }
+
+  return splitString;
+}
+
+
 // CONSTANT MEMBER FUNCTIONS
 // In-lined: size_t length( ) const;
 char my_string::operator [ ](size_t position) const
@@ -52,6 +99,13 @@ char my_string::operator [ ](size_t position) const
     return sequence[position];
 }
 
+// In-lined: size_t length( ) const;
+char my_string::privateAccess(size_t position) const
+// Library facilities used: assert.h
+{
+    // assert(position < current_length);
+    return sequence[position];
+}
 
 // += Operator overloading.
 void my_string::operator +=(const my_string& addend)
