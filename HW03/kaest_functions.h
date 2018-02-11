@@ -28,3 +28,7 @@ struct exception_status {
 };
 
 exception_status readIn(my_string&, std::string);
+
+void readOut(my_string*);
+
+int readInt(int, int &, int);

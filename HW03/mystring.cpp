@@ -22,6 +22,7 @@ namespace hw4
 my_string::my_string(const char str[ ])
 // Library facilities used: string.h
 {
+    partition_amount = 0;
     current_length = strlen(str);
     allocated = current_length + 1;
     sequence = new char[allocated];
@@ -31,6 +32,7 @@ my_string::my_string(const char str[ ])
 my_string::my_string(const my_string& source)
 // Library facilities used: string.h
 {
+    partition_amount = 0;
     sequence = new char[source.allocated];
     current_length = source.current_length;
     allocated = source.allocated;
@@ -45,7 +47,17 @@ my_string::~my_string( )
 // MODIFICATION MEMBER FUNCTIONS
 
 my_string* my_string::split(int splitSize){ //Added by TRYSTAN KAES
-  int lines = (this->length()/splitSize + 1);
+
+  int lines = 0;
+
+  if(this->length() % splitSize > 0){
+    lines = (this->length()/splitSize + 1);
+  }else{
+    lines = (this->length()/splitSize);
+  }
+
+
+
   my_string* splitString = new my_string[lines];
 
   int cursor = 0;
@@ -85,7 +97,7 @@ my_string* my_string::split(int splitSize){ //Added by TRYSTAN KAES
 
     index++;
   }
-
+  splitString->partition_amount = lines;
   return splitString;
 }
 

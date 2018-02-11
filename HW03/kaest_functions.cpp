@@ -1,5 +1,4 @@
 #include "kaest_functions.h"
-#include <sstream>
 #include <iostream>
 
 exception_status readIn(my_string& in, std::string file){
@@ -48,4 +47,39 @@ exception_status readIn(my_string& in, std::string file){
 
 
       return exception;
+}
+
+
+
+
+void readOut(my_string* out){
+  std::ofstream outfile;
+  outfile.open("data.out", std::ios::out);
+
+  for(int i = 0; i < out->partitions(); i++){
+    outfile << out[i] << std::endl;
+  }
+  outfile.close();
+}
+
+
+
+
+/*Read in an int within bounds
+\@param lowerbound, int& n is user input, upperbound
+\@return int| -1 if fail, 0 if success  */
+int readInt(int lowerBound, int &n, int upperBound) {
+  std::cin >> n;
+
+  if (std::cin.fail()) // check type
+  {
+    std::cin.clear();//clear buffer
+    std::cin.ignore(1024, '\n'); //ignore some large bit size
+    std::cout << "*** invalid ***" << '\n';
+    return -1;                                       // fail
+  } else if ((n < lowerBound) || (upperBound < n)) { // check bounds
+    std::cout << "*** out of bounds ***" << '\n';
+    return -1; // fail
+  }
+  return 0; // success!
 }

@@ -105,6 +105,7 @@ class my_string
   void insert(size_t n);
   // CONSTANT MEMBER FUNCTIONS
   size_t length( ) const { return current_length; }
+  size_t partitions( ) const { return partition_amount;}
   char operator [ ](size_t position) const;
   char privateAccess(size_t position) const;
   // FRIEND FUNCTIONS
@@ -119,6 +120,7 @@ class my_string
   char *sequence;
   size_t allocated;
   size_t current_length;
+  size_t partition_amount;
 };
 
 // NON-MEMBER FUNCTIONS for the string class
