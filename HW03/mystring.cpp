@@ -46,9 +46,17 @@ my_string::~my_string( )
 
 // MODIFICATION MEMBER FUNCTIONS
 
+/**This function splits a long string into an array of individual strings of
+  * determined size
+  *\param splitSize is the amount of elements in a column.
+  *\param return splitString is the sliced array of individual parts. */
 my_string* my_string::split(int splitSize){ //Added by TRYSTAN KAES
 
+  //lines is how many rows are included
+  // this is the amount of elements in a string divided
+  //by the amount of elements in a column.
   int lines = 0;
+
 
   if(this->length() % splitSize > 0){
     lines = (this->length()/splitSize + 1);
@@ -57,15 +65,15 @@ my_string* my_string::split(int splitSize){ //Added by TRYSTAN KAES
   }
 
 
-
+  // pointer points to a list of each row the size of columns
   my_string* splitString = new my_string[lines];
 
-  int cursor = 0;
-  int end_position = 0;
-  int index = 0;
+  int cursor = 0; //current character that is pointed at in the string
+  int end_position = 0; //column size past the cursor
+  int index = 0; //current row
 
 
-  while(cursor < this->length() - 1 ){
+  while(cursor < this->length() - 1 ){ //prevent overflow
 
     my_string temp;
 
@@ -73,32 +81,33 @@ my_string* my_string::split(int splitSize){ //Added by TRYSTAN KAES
 
 
 
-    for(; cursor < end_position; cursor++){
+    for(; cursor < end_position; cursor++){ //count out column size into this row
 
-          if(cursor == this->length())
+          if(cursor == this->length()) //fault check
               break;
 
-        temp += this->privateAccess(cursor);
+        temp += this->privateAccess(cursor); //fill row
     }
 
 
 
-
-    if(this->privateAccess(cursor - 1) != ' ')
-      if(this->privateAccess(cursor) != ' ')
-        if(cursor != this->length())
+    //insert the split character if in the middle of a word
+    if(this->privateAccess(cursor - 1) != ' ') //previous character
+      if(this->privateAccess(cursor) != ' ') //this character
+        if(cursor != this->length()) //dont add at end
           temp += "-";
 
 
-    splitString[index] = temp;
+    splitString[index] = temp; //place the row into the array
 
 
 
 
-    index++;
+    index++; //next row
   }
-  splitString->partition_amount = lines;
-  return splitString;
+  splitString->partition_amount = lines; //set a partitions variable,
+                                        //this is an abstracted "length"
+  return splitString; //return the formatted my_string array
 }
 
 
@@ -111,8 +120,12 @@ char my_string::operator [ ](size_t position) const
     return sequence[position];
 }
 
+/** My access might be dodgy but the algorithm is tight. This allows for free
+  * access of the pointers without checking viability first. UNSAFE
+  *\param position is the index
+  *\return sequence[position] is the element here.*/
 // In-lined: size_t length( ) const;
-char my_string::privateAccess(size_t position) const
+char my_string::privateAccess(size_t position) const //Added by Trystan Kaes
 // Library facilities used: assert.h
 {
     // assert(position < current_length);

@@ -13,7 +13,7 @@ test: $(TEST) test.o
 	$(LD) -o test $(TEST) test.o
 
 clean:
-	rm -rf $(OBJECTS) $(TEST) $(BINARY) html latex $(OB).zip test test.o def docbook man rtf
+	rm -rf $(OBJECTS) $(TEST) $(BINARY) html latex $(OB).zip test test.o *.out def rtf
 
 %.o: %.cpp
 	$(CC) -c $(CC_FLAGS) $< -o $@
