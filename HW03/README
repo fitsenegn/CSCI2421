@@ -40,6 +40,36 @@ le.
 
 ************Structure***********
 
+Program is contained within mystring.*, kaest_functions.*, and the main interface.
+
+kaest_functions.* contain the read in, read out, and integer bound/validity
+checking.
+
+mystring.* contains the algorithmic logic behind splitting strings.
+While best described in the comments in that function, a high level analysis is
+this:
+When a call to split is made with the column size, the split function
+allocates a pointer that points to new strings. The amount of strings is
+determined by dividing the amount of elements in the string by the amount of
+column elements desired. If the result of the modulus is > than one, it is
+assumed that there are a small amount of elements that are not enough to
+constitute a full row but are enough to need their own. In such a case, 1 is
+added to the result.
+Characters = the column size are placed in a temporary string and then placed
+into the current row that is being indexed in the pointer. A cursor keeps track
+of current place in the original string and if the last character wasn't a space,
+this character isn't a space, and the cursor isn't at the end, a hyphen is Added
+(in the middle of a word.)
+The completed split string pointer is returned into the initial call location
+and the rest of the practical interface is handled.
+
+Call to the start of the program will prompt the user whether to format a
+provided file or the file that comes with the program. The user can enter the
+custom file in as a string(required for std::ifstream).
+If the read in fails, the user is returned back into the initial menu.
+When the read succeeds the user is prompted to enter in the desired column size.
+Split is run, the reformat is printed to the screen, and the end data is written
+out into data.out.
 
 
 
@@ -60,7 +90,8 @@ le.
 **********************
 
 
-XXX: Future implementations will. . .
+XXX: Future implementations will. . . I am actually satisfied with how this is
+in it's current state.
 
 
 
@@ -68,7 +99,7 @@ XXX: Future implementations will. . .
 ************Copyright***********
 
 
-   Copyright {2017} {Trystan Kaes}
+   Copyright {2018} {Trystan Kaes}
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.

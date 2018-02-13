@@ -14,11 +14,11 @@ my_string test;
 std::string file; //std::ifstream needs std::string to parse filename
 
 bool m_exit = false;
-while(m_exit == false){ //run default(sample.txt) or custom file through formatting
+while(m_exit == false){ //run default(data.txt) or custom file through formatting
   char selection;
   std::cout << "Select a file to reformat.\n"
             << "1) Custom File \n"
-            << "2) Default File (sample.txt)\n    > ";
+            << "2) Default File (data.txt)\n    > ";
     cin >> selection;
 
     switch(selection){
@@ -30,7 +30,7 @@ while(m_exit == false){ //run default(sample.txt) or custom file through formatt
         cin.ignore();
         break;
 
-      case '2': file = "sample.txt";
+      case '2': file = "data.txt";
         break;
 
       default: cout << "\n\n***invalid input***\n\n";
