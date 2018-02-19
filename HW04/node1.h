@@ -124,6 +124,7 @@
 #ifndef MAIN_SAVITCH_NODE1_H
 #define MAIN_SAVITCH_NODE1_H
 #include <cstdlib> // Provides size_t and NULL
+#include <string>
 
 namespace main_savitch_5
 {
@@ -131,7 +132,7 @@ namespace main_savitch_5
     {
     public:
 	// TYPEDEF
-	typedef double value_type;
+	typedef std::string value_type;
 
 	// CONSTRUCTOR
 	node(
@@ -151,6 +152,7 @@ namespace main_savitch_5
 	// the current link:
 	const node* link( ) const { return link_field; }
     	node* link( )             { return link_field; }
+
 
     private:
 	value_type data_field;
