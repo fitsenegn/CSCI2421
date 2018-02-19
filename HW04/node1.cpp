@@ -139,9 +139,57 @@ namespace main_savitch_5
   void list_piece(const node* start_ptr, const node* end_ptr,
                      node*& head_ptr, node*& tail_ptr)
    {
+     // Handle the case of the empty list.
+     if (start_ptr == NULL)
+         return;
 
+     // Make the head node for the newly created list, and put data in it.
+     list_head_insert(head_ptr, start_ptr->data( ));
+     tail_ptr = head_ptr;
+
+     // Copy the rest of the nodes one at a time, adding at the tail of new list.
+     start_ptr = start_ptr->link( );
+     while (start_ptr != end_ptr)
+     {
+         list_insert(tail_ptr, start_ptr->data( ));
+         tail_ptr = tail_ptr->link( );
+         start_ptr = start_ptr->link( );
+     }
+         list_insert(tail_ptr, start_ptr->data( ));
+         tail_ptr = tail_ptr->link( );
+         start_ptr = start_ptr->link( );
 
 
    }
+
+   /**Checks if the start node comes before the end node in the associated list
+   *\return true if bounds are good, false if bounds are bad.*/
+   bool list_bounds(const node* head, const node* start_ptr, const node* end_ptr){
+      int startIndex = 0; //initialize to assume fail case
+      int endIndex = -1;
+
+      for(int i = 1; i < list_length(head); i++){
+        if(list_locate(head, i) == start_ptr){
+          startIndex = i;
+          i = list_length(head); //skip
+          break;
+        }
+      }
+
+      for(int i = 1; i < list_length(end_ptr); i++){
+        if(list_locate(head, i) == end_ptr){
+          endIndex = i;
+          i = list_length(head); //skip
+          break;
+        }
+      }
+
+      if(startIndex <= endIndex){
+        return true;
+      }
+     return false;
+   }
+
+
 
 }
