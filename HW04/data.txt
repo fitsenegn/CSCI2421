@@ -1,1 +1,1 @@
-This is a test to see if everything works.
+The input text file may have sentences with punctuation marks. But to simplify the issue, let's assume that the text file will have only five punctuation marks . , ' - ? . So when you assign a string to a node, you need to get rid of those five punctuation marks and store only the word itself.

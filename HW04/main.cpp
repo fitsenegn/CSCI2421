@@ -35,9 +35,39 @@ int main(int argc, char* argv[]){
 
   node* cursor = head;
 
-  // cout << cursor->data() << endl;
+  // std::string word1 = "So";
+  // std::string word2 = "store";
+  // node* start = NULL;
+  // node* end = NULL;
   //
-  // cout << cursor->link()->data();
+  // if(list_search(head, word1) != NULL){
+  //   if(list_search(head, word2) != NULL){
+  //     start = list_search(head, word1);
+  //     end = list_search(head, word2);
+  //   }
+  // }
+  //
+  // cout << start->data();
+  // cout << end->data();
+
+
+
+  // list_piece(start, end, head, list_locate(head, list_length(head)));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   for(int i = 0; i < list_length(head); i++){
     cout << cursor->data() << endl;

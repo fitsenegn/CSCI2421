@@ -1,5 +1,6 @@
 #include "kaest_functions.h"
 #include <iostream>
+#include <cctype>
 
 /**Read in text continuously into a string and strip all whitespace leaving
    only spaces.
@@ -28,21 +29,32 @@ exception_status readIn(node* head, std::string file){
 
 
   count = 0; //what line are we on?
+
   infile >> std::ws;
+
   node *cursor = head;
+
   while(!infile.eof()){
-  // while(count < 3){
+
     count++;
 
     std::string temp;
 
-    std::getline(infile, temp, ' ');
+    std::getline(infile, temp, ' '); //read the current word up to space
 
-    std::cout << temp << std::endl;
+    for(int i = 0; i < temp.size()+1; i++){ //strip punctuation
+      if(ispunct(temp[i])){  //if index is punctuation
+        temp.erase(i, i-1); //remove the current character
+      }
+    }
 
-    list_insert(cursor, temp);
+    if(temp.size() > 0){ //if the read thing wasn't ONLY punctuation
 
-    cursor = cursor->link();
+      list_insert(cursor, temp); //add new node with the contents read in
+
+      cursor = cursor->link(); //move forward
+      
+    }
 
   if (infile.fail()) {
       // set exception
