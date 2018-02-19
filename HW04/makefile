@@ -1,10 +1,10 @@
 CC=g++
 LD=g++
 CC_FLAGS=-g -std=c++11
-OBJECTS= assignment.o node1.o
+OBJECTS= main.o node1.o
 TEST= test.o node1.o
-OB= kaest_CSCI2421_Assignment
-BINARY=name
+OB= kaest_CSCI2421_Assignment4
+BINARY=subset
 
 all: $(OBJECTS) #docs
 	$(LD) -o $(BINARY) $(OBJECTS)
