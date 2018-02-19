@@ -1,6 +1,13 @@
 #include "kaest_functions.h"
 #include <iostream>
 
+/**Read in text continuously into a string and strip all whitespace leaving
+   only spaces.
+   *\param in is the string to be read into
+   *\param file is the name of the file to be readIn
+                                      | std::ifstream needs std::string
+   *\return exception tracks if there was an error, what type, and where in the
+                                                                          file.*/
 exception_status readIn(my_string& in, std::string file){
   exception_status exception; //catch exception
 
@@ -20,7 +27,7 @@ exception_status readIn(my_string& in, std::string file){
 
 
 
-  count = 0;
+  count = 0; //what line are we on?
   reformat_file >> std::ws;
 
   while(!reformat_file.eof()){
@@ -51,10 +58,11 @@ exception_status readIn(my_string& in, std::string file){
 
 
 
-
+/**read out each element into a newly created file if not existent. Overwrites
+  *\param out is the formatted string to write out*/
 void readOut(my_string* out){
   std::ofstream outfile;
-  outfile.open("data.out", std::ios::out);
+  outfile.open("data.out", std::ios::out); //overwrite
 
   for(int i = 0; i < out->partitions(); i++){
     outfile << out[i] << std::endl;

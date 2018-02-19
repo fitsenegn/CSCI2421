@@ -13,7 +13,30 @@ Assignment
 
 DESCRIPTION:
 
-
+Refer to the documenting and submitting homework from here. Using the the sample
+ code of linked list node1.h and node1.cpp Implement the list_piece() function a-
+nd a driver main program. Implement a main program that takes a text file as an
+input (as a command line argument or after a prompt) and processes followings. T-
+he words in the input text file should be stored in a linked list, one word at a
+ node. So you have to modify the node1.h to accommodate a string. Then ask the u-
+ser to pick two words, one for the starting and one for the ending word. And sea-
+rch the original list to find a new sub-list that contains the items, as a start-
+ing and ending node, and print out the new list. When you print, include the las-
+t word. So you have to implement the list_piece() to include the last word as we-
+ll. If there's no such sub-list, just print out an error message. Once you print-
+out the new sub-list, you need to sort the sub-list (in dictionary order) using
+the insertion sort algorithm and print out the new sorted sub-list. When you sor-
+t the list, you must rearrange the link structure of nodes by updating associate-
+d pointers, not by copying/moving the strings between nodes. Just in case, here'-
+s a detailed description of the insertion sort algorithm and a sample implementa-
+tion. http://www.algolist.net/Algorithms/Sorting/Insertion_sort The input text f-
+ile may have sentences with punctuation marks. But to simplify the issue, let's
+assume that the text file will have only five punctuation marks . , ' - ? . So w-
+hen you assign a string to a node, you need to get rid of those five punctuation
+ marks and store only the word itself. Note that the main objective of this home-
+work is to reinforce the understanding of linked list by implementing pertinent
+functions, not getting a sub list by using any means. So I want you to use provi-
+ded node class to implement this homework.
 
 ************Structure***********
 
@@ -26,7 +49,7 @@ DESCRIPTION:
 -> Tested on MacBook Pro running High Sierra OS(10.13.1); 3.1GHz Intel Core i7;
    16 GB 1867 MHz DDR3
 
-	-using gcc/g++ 7.2.0 processor 
+	-using gcc/g++ 7.2.0 processor
 	-Linted using both Clang and gcc 7.4.2
 
 -> Tested on csegrid.ucdenver.pvt
