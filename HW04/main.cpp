@@ -95,6 +95,8 @@ node* partial_tail = partial_head;
 
 if(list_bounds(head, start, end) == true){
     list_piece(start, end, partial_head, partial_tail);
+}else{
+  cout << "First word must come before the last word.\n";
 }
 
 
