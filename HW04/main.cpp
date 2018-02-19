@@ -73,7 +73,7 @@ int main(int argc, char* argv[]){
     if(list_search(head, word2) != NULL){
 
       if(m_exit == true){
-        end = list_search(head, word2);
+        end = list_search(start, word2);
         m_exit = true;
       }
 
@@ -93,7 +93,7 @@ int main(int argc, char* argv[]){
 node* partial_head = new node();
 node* partial_tail = partial_head;
 
-if(list_bounds(head, start, end) == true){
+if(list_bounds(head, start, end) == false){
     list_piece(start, end, partial_head, partial_tail);
 }else{
   cout << "First word must come before the last word.\n";
