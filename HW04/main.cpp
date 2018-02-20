@@ -29,7 +29,7 @@ int main(int argc, char* argv[]){
     filename = argv[1];
   }
 
-//----------------------------------------------------------------------
+//--------------------read-in--------------------------------------------
 
   node* head = new node(); //this is the main list
 
@@ -44,15 +44,16 @@ int main(int argc, char* argv[]){
   node* cursor = head; //cursor will be used to manipulate the list
 
 
-  std::string word1 = "So";
-  std::string word2 = "node";
+//-------put off declarations
+  std::string word1 = "";
+  std::string word2 = "";
   node* start = NULL;
   node* end = NULL;
   bool m_exit = false;
 
 
 
-  while(m_exit == false){ //as long as the specified words aren't in list
+  while(m_exit == false){ //as long as error checking fails
 
       //---------------Get sublist specifiers---
   cout << "\n\nSetting the sublist . . . \n";
@@ -75,7 +76,7 @@ int main(int argc, char* argv[]){
       if(m_exit == true){
         end = list_search(start, word2); //search for end word after first word
 
-        if(end != NULL){ //if it still exists coolio
+        if(end != NULL){ //if it exists after the first coolio
             m_exit = true;
           }else{
             m_exit = false; //fail
@@ -87,6 +88,12 @@ int main(int argc, char* argv[]){
       m_exit = false; //fail
     }
 
+    //if somehow the first comes after the last
+    if(list_bounds(head, start, end) == false){
+      m_exit = false;
+      cout << "First word must come before the last word.\n";
+    }
+
     if(m_exit == true){ //if success leave
       break;
     }else{ //else request input again
@@ -94,40 +101,42 @@ int main(int argc, char* argv[]){
     }
 
 }
+//FINALLY the user input is validated and set
+
+node* partial_head = new node(); //sublist
+node* partial_tail = partial_head; //sublist tail
 
 
-node* partial_head = new node();
-node* partial_tail = partial_head;
-
-if(list_bounds(head, start, end) == false){
-    list_piece(start, end, partial_head, partial_tail);
-}else{
-  cout << "First word must come before the last word.\n";
-}
+    list_piece(start, end, partial_head, partial_tail); //create the sublist
 
 
-cursor = partial_head;
 
+    cursor = partial_head; //printing cursor
 
-  for(int i = 0; i < list_length(head); i++){
-    if(cursor->link() != NULL){
+    cout << "\n   SUBLIST:\n";
+
+  for(int i = 0; i < (list_length(partial_head)); i++){ //print out unsorted sublist
+    if(cursor->link() != NULL){ //until end
       cout << cursor->data() << endl;
-      cursor = cursor->link();
+      cursor = cursor->link(); //move forward
     }
 
   }
 
 
-  list_sort(partial_head, partial_tail);
+  list_sort(partial_head, partial_tail); //sort sublist
 
-  cursor = partial_head;
+  cursor = partial_head; //prepare to print sorted sublist
 
-  for(int i = 0; i < list_length(head); i++){
-    if(cursor->link() != NULL){
+  cout << "\n   SORTED SUBLIST:\n";
+
+  for(int i = 0; i < list_length(partial_head); i++){ //print out sorted sublist
+    if(cursor->link() != NULL){ //until end
       cout << cursor->data() << endl;
-      cursor = cursor->link();
+      cursor = cursor->link(); //move forward
+    }else{
+      cout << cursor->data() << endl;
     }
-    cursor = cursor->link();
 
   }
 

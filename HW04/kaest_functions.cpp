@@ -2,9 +2,9 @@
 #include <iostream>
 #include <cctype>
 
-/**Read in text continuously into a string and strip all whitespace leaving
-   only spaces.
-   *\param in is the string to be read into
+/**Read in text continuously into linked list and strip all whitespace and
+   punctuation leaving only spaces.
+   *\param head is the string to be read into
    *\param file is the name of the file to be readIn
                                       | std::ifstream needs std::string
    *\return exception tracks if there was an error, what type, and where in the
@@ -45,6 +45,8 @@ exception_status readIn(node* head, std::string file){
     for(int i = 0; i < temp.size()+1; i++){ //strip punctuation
       if(ispunct(temp[i])){  //if index is punctuation
         temp.erase(i, i-1); //remove the current character
+      }else{
+        temp[i] = tolower(temp[i]); //capitals cause problems with sort
       }
     }
 
@@ -53,7 +55,7 @@ exception_status readIn(node* head, std::string file){
       list_insert(cursor, temp); //add new node with the contents read in
 
       cursor = cursor->link(); //move forward
-      
+
     }
 
   if (infile.fail()) {

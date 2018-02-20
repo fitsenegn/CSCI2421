@@ -203,7 +203,7 @@ void list_sort(node*& head_ptr, node*& tail_ptr){
   //move through the unsorted list and insert each node sorted into new list
     node* cursor = head_ptr;
     node* next;
-  while (cursor != NULL){
+  while (cursor->link() != NULL){
 
        next = cursor->link(); //hold onto next link(link will change)
 
@@ -213,7 +213,8 @@ void list_sort(node*& head_ptr, node*& tail_ptr){
       //jump to unsorted
       cursor = next;
   }
-    
+  list_sortInsert(sorted_list, cursor);
+
   tail_ptr = cursor;
   head_ptr = sorted_list; //roughly equivalent to a return :P
 
@@ -236,7 +237,7 @@ void list_sortInsert(node*& head, node* toSort)
         head = toSort;
         return;
     }
-    
+
     if(head->data() >= toSort->data()){ //data is smaller than head
         toSort->set_link(head);
         head = toSort;
