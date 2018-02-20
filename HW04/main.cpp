@@ -62,28 +62,34 @@ int main(int argc, char* argv[]){
   cin >> word2;
 
      //-------------Search and set
-     // cout << list_search(head, word1)->data();
-    if(list_search(head, word1) != NULL){
-      start = list_search(head, word1);
-      m_exit = true;
+
+    if(list_search(head, word1) != NULL){ //exists in set
+      start = list_search(head, word1); //set
+      m_exit = true; //first was set
     }else{
-      m_exit = false;
+      m_exit = false; //fail
     }
 
-    if(list_search(head, word2) != NULL){
+    if(list_search(head, word2) != NULL){ //if it exists, coolio.
 
       if(m_exit == true){
-        end = list_search(start, word2);
-        m_exit = true;
+        end = list_search(start, word2); //search for end word after first word
+
+        if(end != NULL){ //if it still exists coolio
+            m_exit = true;
+          }else{
+            m_exit = false; //fail
+          }
+
       }
 
     }else{
-      m_exit = false;
+      m_exit = false; //fail
     }
 
-    if(m_exit == true){
+    if(m_exit == true){ //if success leave
       break;
-    }else{
+    }else{ //else request input again
         cout << "\nUnable to find specified words.\n";
     }
 
@@ -112,8 +118,18 @@ cursor = partial_head;
   }
 
 
+  list_sort(partial_head, partial_tail);
 
+  cursor = partial_head;
 
+  for(int i = 0; i < list_length(head); i++){
+    if(cursor->link() != NULL){
+      cout << cursor->data() << endl;
+      cursor = cursor->link();
+    }
+    cursor = cursor->link();
+
+  }
 
   return 0;
 }

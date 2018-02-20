@@ -191,5 +191,68 @@ namespace main_savitch_5
    }
 
 
+/**Insertion sort for linked list. Each element is isolated and inserted
+  *new list at a sorted position. The old list is then set equal to the
+  *sorted one.
+  \@head_ptr is the head of the list to be sorted
+  \@tail_ptr is the tail of the list to be sorted
+*/
+void list_sort(node*& head_ptr, node*& tail_ptr){
+  node* sorted_list = NULL;
+
+  //move through the unsorted list and insert each node sorted into new list
+    node* cursor = head_ptr;
+    node* next;
+  while (cursor != NULL){
+
+       next = cursor->link(); //hold onto next link(link will change)
+
+      // insert current in sorted linked list
+      list_sortInsert(sorted_list, cursor);
+
+      //jump to unsorted
+      cursor = next;
+  }
+    
+  tail_ptr = cursor;
+  head_ptr = sorted_list; //roughly equivalent to a return :P
+
+}
+
+
+
+
+
+/** Insert the toSort node at the position designated by comparison operators
+  \@param head is the head of this list
+  \@param toSort is the node to be placed into the list of head*/
+void list_sortInsert(node*& head, node* toSort)
+{
+    node* cursor;
+    //If this is a bodyless list or new data is smaller than head,
+    //the head is the new node.
+    if (head == NULL){ //empty list
+        toSort->set_link(head);
+        head = toSort;
+        return;
+    }
+    
+    if(head->data() >= toSort->data()){ //data is smaller than head
+        toSort->set_link(head);
+        head = toSort;
+        return;
+    }
+
+        cursor = head;
+
+          //push forward until just before insertion
+        while((cursor->link()!= NULL)
+           && (cursor->link()->data() < toSort->data()))
+          {    cursor = cursor->link();    }
+
+        toSort->set_link(cursor->link()); //hang rest on new node
+        cursor->set_link(toSort); //hang new node on previous node
+    }
+
 
 }
