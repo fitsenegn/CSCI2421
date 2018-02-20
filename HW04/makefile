@@ -4,7 +4,7 @@ CC_FLAGS=-g -std=c++11
 OBJECTS= main.o node1.o kaest_functions.o
 TEST= test.o node1.o kaest_functions.o
 OB= kaest_CSCI2421_Assignment4
-BINARY=subset
+BINARY=sublist
 
 all: $(OBJECTS) #docs
 	$(LD) -o $(BINARY) $(OBJECTS)

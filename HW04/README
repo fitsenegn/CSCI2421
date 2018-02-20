@@ -4,12 +4,12 @@ ID 108652414 (kaest)
 
 CSCI 2421-E01
 
-Assignment
+Assignment 4
 
-****************************************
-** TO COMPILE ----- 'make all'	      **
-** TO RUN --------- './name' #binary  **
-****************************************
+*********************************************
+** TO COMPILE ----- 'make all'	           **
+** TO RUN --------- './sublist [filename]' **
+*********************************************
 
 DESCRIPTION:
 
@@ -41,6 +41,40 @@ ded node class to implement this homework.
 ************Structure***********
 
 
+The majority of this program in it's bulk takes place in the driver file. This is
+because of how much error checking is contained within it.
+
+Update that were made to the node1 class functions are as follows:
+
+void list_piece(...); //ADDED BY TRYSTAN KAES
+    fills new list with the sublist contents of larger one
+
+bool list_bounds(...); //ADDED BY TRYSTAN KAES
+    Checks whether the first flag word is before the last word in the list.
+    if it is not, returns false.
+
+void list_sort(...);  //ADDED BY TRYSTAN KAES
+    Employs a basic insertion sort on the list by manipulating the pointers
+
+void list_sortInsert(..);  //ADDED BY TRYSTAN KAES
+    inserts the new node at a sorted/correct position
+
+
+
+
+
+---------------------------------------------------------
+
+
+Call to start of program checks whether the commandline arguments are valid.
+
+Once validated, the file is checked, read in.
+
+The user is then requested to select two flags. Rigorous error testing.
+
+The sublist is created and printed.
+
+Then it is sorted and re-printed.
 
 
 
@@ -55,12 +89,12 @@ ded node class to implement this homework.
 -> Tested on csegrid.ucdenver.pvt
 
 
-**********************
-** WORKS COMPLETELY **
-**********************
+**************************************************************
+** WORKS UNlESS SUBLIST and LIST SIZE EXCEED CERTAIN AMOUNT **
+**************************************************************
 
 
-XXX: Future implementations will. . .
+XXX: Future implementations will clean up where the error checking is
 
 
 
