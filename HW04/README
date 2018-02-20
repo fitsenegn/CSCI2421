@@ -92,9 +92,10 @@ Then it is sorted and re-printed.
 **************************************************************
 ** WORKS UNlESS SUBLIST and LIST SIZE EXCEED CERTAIN AMOUNT **
 **************************************************************
+****error occurence is unpredictable and varies not between builds but between RUNS***
 
 
-XXX: Future implementations will clean up where the error checking is
+XXX: Future implementations will clean up where the error checking is and increase reliability
 
 
 

@@ -1,1 +1,1 @@
-The input text file may have sentences with punctuation marks. But to simplify the issue, let's assume that the text file will have only five punctuation marks . , ' - ? . So when you 
+The input text file may have sentences with punctuation marks. But to simplify the issue, let's 
