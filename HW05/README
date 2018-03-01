@@ -14,6 +14,60 @@ Assignment
 DESCRIPTION:
 
 
+For this assignment, you will implement dictionary.h to create a dictionary that
+reads in a list of unsorted words into a <list> STL (which is an implementation
+of a doubly linked list.) from a file called dictionary.txt.  Next, you must
+sort the list.  The list STL has a member function .sort which works as long as
+you have overloaded the < operator for the data type you are sorting).  Now,
+you will read a list of words from a file called findwords.txt  For each word in
+findwords.txt, you will search that list from the beginning of the list and if
+found, print (to the screen) how many searches/comparisons you had to make to
+find the word.  Then you will search from the back of the list and print how
+many searches you had to make.
+
+This will help you visualize that a Doubly Linked List might on average cut your
+search time in half by sorting the data, then choosing which end to start the
+search.
+
+When complete print out each word with spaces in between in a file called
+revsorted.txt.Start at the back of the list so you end up with a reverse sorted
+list (words starting with z's first).
+
+The reason you have a separate DictEntry.h is to separate the dictionary methods
+from the type of data.  If you were implementing your own doubly linked list,
+you would create a separate Node class.  Remember, Nodes have data (which would
+be a dictionary entry), and forward and back pointers.  Currently we are only
+using the word in DictEntry, but could easily use the definition, pronunciation,
+word history etc.
+
+Some Important tips (please read):
+http://www.cplusplus.com/reference/list/list/
+(Links to an external site.)Links to an external site.)
+
+- Remember like a vector, you have a list of a particular type (dictionary in
+  this case)
+
+- A list<dictionary>::iterator is a pointer to a list containing dictionary items.
+  Not every operator is defined, but ++ and -- are defined, so you can increment
+  or decrement the pointer.
+
+- There are member functions for a list   .begin() which is pointing to the first
+item on the list and .end() which is the last pointer NULL.  So, you generally
+want to loop from .begin() to != .end()
+
+To start at the back (tail pointer) and work you way to the front you want to
+reverse the process.  so instead of an iterator (which points to the head of the
+list), you want to use reverse_iterator.  And instead of .begin() to != .end(),
+you want to go from .rbegin() to != .rend()
+
+In order to use the .sort() function for lists, you must overload the operator <
+(as listed in the DictEntry.h.  The .sort() function uses this operator to sort.
+
+Remember if you are looking at the VALUE of what the pointer points to, you must
+dereference the pointer.  An iterator or reverse_iterator is a pointer.  If you
+are pointing to a class with a public member function called findValue, you
+would write that as xPtr->getWords(), NOT xPtr.findValue.
+
 
 ************Structure***********
 
@@ -26,7 +80,7 @@ DESCRIPTION:
 -> Tested on MacBook Pro running High Sierra OS(10.13.1); 3.1GHz Intel Core i7;
    16 GB 1867 MHz DDR3
 
-	-using gcc/g++ 7.2.0 processor 
+	-using gcc/g++ 7.2.0 processor
 	-Linted using both Clang and gcc 7.4.2
 
 -> Tested on csegrid.ucdenver.pvt
