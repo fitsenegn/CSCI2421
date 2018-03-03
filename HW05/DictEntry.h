@@ -8,7 +8,7 @@ class DictEntry
 private:
     wordType word;
     wordType definition;
-    
+
 public:
     wordType getWord(){return word;}
     void setWord(wordType _word){word = _word;}
@@ -16,6 +16,8 @@ public:
     void setDef(wordType _def){definition = _def;}
     bool operator < (const DictEntry &entry) const {
         return (word < entry.word);}
+    bool operator > (const DictEntry &entry) const {
+        return (word > entry.word);}
 
 };
 

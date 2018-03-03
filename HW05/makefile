@@ -1,10 +1,10 @@
 CC=g++
 LD=g++
 CC_FLAGS=-g -std=c++11
-OBJECTS= assignment.o implementations.o
-TEST= test.o implementation.o
-OB= kaest_CSCI2421_Assignment
-BINARY=name
+OBJECTS= DictEntry.o dictionary.o exception.o main.o
+TEST= test.o DictEntry.o dictionary.o exception.o
+OB= kaest_CSCI2421_Assignment5
+BINARY=dictionary
 
 all: $(OBJECTS) #docs
 	$(LD) -o $(BINARY) $(OBJECTS)

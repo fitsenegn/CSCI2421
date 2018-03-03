@@ -112,3 +112,16 @@ XXX: Future implementations will. . .
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+
+
+
+
+
+
+
+   func addPopup(_ sender: NodeButton){
+    let point = CGPoint(x: sender.xPos, y: sender.yPos)
+    let Rect = CGRect(origin: point, size: CGSize(width: 290, height: 450))
+    let Popup = QPopup(frame: Rect)
+    view.addSubview(Popup)
+}
