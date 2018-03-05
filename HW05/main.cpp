@@ -50,6 +50,7 @@ int main(){
   }
 
 //Print out reversed list
+cout << "\n\nPrinting out revsorted.txt. . .\n\n";
 std::filebuf fileOutput;
 fileOutput.open("revsorted.txt", std::ios::out);
 std::ostream outFile(&fileOutput);
