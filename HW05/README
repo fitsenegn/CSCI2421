@@ -30,7 +30,7 @@ search time in half by sorting the data, then choosing which end to start the
 search.
 
 When complete print out each word with spaces in between in a file called
-revsorted.txt.Start at the back of the list so you end up with a reverse sorted
+revsorted.txt. Start at the back of the list so you end up with a reverse sorted
 list (words starting with z's first).
 
 The reason you have a separate DictEntry.h is to separate the dictionary methods
@@ -71,6 +71,31 @@ would write that as xPtr->getWords(), NOT xPtr.findValue.
 
 ************Structure***********
 
+This program is seperated into dictionary.*(contains the dictionary
+implementations), DictEntry.*(contains the term: definition implamentations),
+exception.*(contains some error checking functions), and housekeeping.*(contains
+the read from file functions).
+
+
+Call to start of main reads in from dictionary.txt into an stl::list of DictEntry,
+a newDictionary of type dictionary is initialized with this new list.
+
+The TERMS to search are read in from findwords.txt into an stl::list of DictEntry.
+
+"newDictionary" is sorted.
+
+The findwords list is iterated through and each element is searched for in the
+forwardSearch function found within newDictionary. If found, the word is printed
+to screen with a count of how many searches were made. If not found, the word is
+printed to screen and "not found" is specified.
+
+The same procedure is repeated but This time the backwardsSearch method of
+newDictionary is called. Once these two operations are completed, the
+newDictionary is printed out to revsorted.txt starting with the last link and
+ending with the first(z-a).
+
+Program terminates.
+
 
 
 
@@ -91,7 +116,8 @@ would write that as xPtr->getWords(), NOT xPtr.findValue.
 **********************
 
 
-XXX: Future implementations will. . .
+XXX: Future implementations will add in initialization of definitions that are
+assigned to each term.
 
 
 
@@ -112,16 +138,3 @@ XXX: Future implementations will. . .
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-
-
-
-
-
-
-
-   func addPopup(_ sender: NodeButton){
-    let point = CGPoint(x: sender.xPos, y: sender.yPos)
-    let Rect = CGRect(origin: point, size: CGSize(width: 290, height: 450))
-    let Popup = QPopup(frame: Rect)
-    view.addSubview(Popup)
-}
