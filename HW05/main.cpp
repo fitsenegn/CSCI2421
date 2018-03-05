@@ -11,19 +11,22 @@ using std::endl;
 
 int main(){
   somePages searchTerms;
-  dictionary newDictionary;
-  newDictionary.readDictionary("dictionary.txt");
+  somePages initializingList;
+
+  readIn("dictionary.txt", initializingList); //read in the dictionary terms
+  dictionary newDictionary(initializingList);
+
+
+  readIn("findwords.txt",searchTerms); //read in the terms to be searched
+
   newDictionary.sortList();
-  newDictionary.print();
-  readIn("findwords.txt",searchTerms);
 
-
-  cout << "SEARCHING TERMS FORWARD. . . \n";
+  cout << "\n\nFORWARD SEARCHING TERMS. . . \n";
 //Search every term forward
   for(somePages::iterator i = searchTerms.begin(); i != searchTerms.end(); i++){
     wordType term = i->getWord();
-    int count = newDictionary.searchForward(term);
-    if(count == -1){
+    int count = newDictionary.searchForward(term); //search
+    if(count == -1){ //print to interface
       cout << term << " was not found in the dictionary." << endl;
     }else if(count > 0){
       cout << term << " was found in " << count << " comparisons." << endl;
@@ -32,12 +35,12 @@ int main(){
     }
   }
 
-  cout << "\n\nSEARCHING TERMS BACKWARD. . . \n";
+  cout << "\n\nBACKWARD SEARCHING TERMS. . . \n";
 //Search every term backwards
   for(somePages::iterator i = searchTerms.begin(); i != searchTerms.end(); i++){
-    wordType term = i->getWord();
+    wordType term = i->getWord(); //search
     int count = newDictionary.searchBackward(term);
-    if(count == -1){
+    if(count == -1){//print to interface
       cout << term << " was not found in the dictionary." << endl;
     }else if(count > 0){
       cout << term << " was found in " << count << " comparisons." << endl;

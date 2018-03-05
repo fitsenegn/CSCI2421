@@ -22,6 +22,9 @@ public:
     dictionary()
     { }
 
+    dictionary(somePages init): wordList(init)
+    {   }
+
     /*Searches the list starting at the front of the list and moving to the back
      Returns the number of searches it took to find the findString, or a -1 if not found*/
     int searchForward(wordType &findString);
@@ -38,12 +41,6 @@ public:
 
     /*Debug print*/
     void print();
-
-    /*Get the entry at a specific index*/
-    DictEntry getEntry(int);
-
-    /*Read each entry in a specified file into the dictionary*/
-    exception_status readDictionary(std::string);
 
 private:
     list<DictEntry> wordList;
