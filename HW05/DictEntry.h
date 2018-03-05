@@ -18,6 +18,8 @@ public:
         return (word < entry.word);}
     bool operator > (const DictEntry &entry) const {
         return (word > entry.word);}
+        
+  //functionality to print out a full dictionary entry.
     friend std::ostream& operator<<(std::ostream& out, DictEntry& entry){
       wordType spacer = ": ";
       out << entry.getWord() << spacer << entry.getDef();
