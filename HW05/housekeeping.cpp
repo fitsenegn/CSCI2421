@@ -1,53 +1,4 @@
-#include "dictionary.h"
-
-
-/*Searches the list starting at the front of the list and moving to the back
- Returns the number of searches it took to find the findString, or a -1 if not found*/
-int dictionary::searchForward(wordType &findString){
-  int count = 1;
-  for(somePages::iterator i = this->wordList.begin(); i != this->wordList.end(); ++i){
-          if(i->getWord() == findString){
-            return count;
-          }
-      count++;
-  }
-  return -1;
-}
-
-/*Searches the list starting at the back of the list and moving to the front
- Returns the number of searches it took to find the findString, or a -1 if not found*/
-int dictionary::searchBackward(wordType &findString){
-  int count = 1;
-  for(somePages::reverse_iterator i = this->wordList.rbegin(); i != this->wordList.rend(); ++i){
-          if(i->getWord() == findString){
-            return count;
-          }
-      count++;
-  }
-  return -1;
-}
-
-/*Prints the list of words in reverse alphabetic order to a file*/
-void dictionary::revPrintList(ostream& output){
-  for(somePages::reverse_iterator i = this->wordList.rbegin(); i != this->wordList.rend(); ++i){
-      output << i->getWord() << " ";
-  }
-}
-
-void dictionary::print(){
-  somePages print = this->wordList;
-
-  for(somePages::iterator i = print.begin(); i != print.end(); ++i){
-          std::cout << (*i);
-          std::cout << "\n";
-  }
-}
-
-/*Get the entry at a specific index*/
-DictEntry dictionary::getEntry(int i){
-
-return DictEntry("","");
-}
+#include "housekeeping.h"
 
 /**Read in text continuously into linked list and strip all whitespace and
    punctuation leaving only spaces.
@@ -57,7 +8,7 @@ return DictEntry("","");
    *\return error tracks if there was an error, what type, and where in the
                                                                           file.*/
 /*Read each entry in a specified file into the dictionary*/
-exception_status dictionary::readDictionary(std::string file){
+exception_status readIn(std::string file, somePages& fillList){
   exception_status error;
 
     int count = 0;
@@ -101,7 +52,7 @@ exception_status dictionary::readDictionary(std::string file){
       if(temp.size() > 0){ //if the read thing wasn't ONLY punctuation
 
       // this->wordList.emplace_back(temp,"no definition available");
-      this->wordList.emplace_back(temp,"");
+      fillList.emplace_back(temp,"");
 
       }
 

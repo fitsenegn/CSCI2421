@@ -1,0 +1,7 @@
+#!/bin/sh
+
+cp -a ~/kaest/CSCI2421/z_PROJECT_TEMPLATE/. $PWD
+
+git add $PWD
+
+git commit -a
