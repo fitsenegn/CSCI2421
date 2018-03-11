@@ -4,11 +4,11 @@ ID 108652414 (kaest)
 
 CSCI 2421-E01
 
-Assignment
+Assignment 5
 
 ****************************************
 ** TO COMPILE ----- 'make all'	      **
-** TO RUN --------- './name' #binary  **
+** TO RUN --------- './dictionary'    **
 ****************************************
 
 DESCRIPTION:
