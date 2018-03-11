@@ -2,7 +2,7 @@
 #define CALCULATOR_H_
 
 #include <string>
-#include "stackImplementations.h"
+#include "MyArrayStack.h"
 
 class Calculator{
 

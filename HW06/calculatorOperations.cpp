@@ -3,7 +3,7 @@
 
 std::string Calculator::toPostfix(std::string infix) {
   std::string postFix;
-  MyStack<char> operatorStack;
+  MyArrayStack<char> operatorStack;
 
   for(int i = 0; i <= infix.length(); i++){
     char C = infix[i];
