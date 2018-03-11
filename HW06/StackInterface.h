@@ -1,11 +1,11 @@
-#ifndef STACKIMPLEMENTATIONS_
-#define STACKIMPLEMENTATIONS_
+#ifndef STACKINTERFACE_H_
+#define STACKINTERFACE_H_
 
 
 
 template <class ItemType>
 
-class MyStack {
+class StackInterface {
 public:
   /** Sees wether this stack is is empty
     \@return True if the stack is empty, or false if note */
@@ -30,7 +30,7 @@ public:
   virtual ItemType peek() const = 0;
 
   /** Destroys this stack and frees its assigned memory. */
-  virtual ~MyStack() {  }
+  virtual ~StackInterface() {  }
 
 };
 
