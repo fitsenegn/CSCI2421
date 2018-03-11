@@ -4,11 +4,10 @@
 template<class ItemType>
 MyArrayStack<ItemType>::MyArrayStack() : top(-1){   } //constructor
 
-
 template<class ItemType>
 bool MyArrayStack<ItemType>::isEmpty() const {
   return top < 0; //if empty, top = -1 and this expression evaluates to true
-}
+}//end isEmpty
 
 
 template<class ItemType>
@@ -20,7 +19,7 @@ bool MyArrayStack<ItemType>::push(const ItemType& newEntry){
     success = true; //sucess
   }
   return success;
-}
+}//end push
 
 
 template<class ItemType>
@@ -31,11 +30,11 @@ bool MyArrayStack<ItemType>::pop(){
     success = true; //sucess
   }
   return success;
-}
+}//end pop
 
 template<class ItemType>
 ItemType MyArrayStack<ItemType>::peek() const{
   assert(!isEmpty()); //crash if accessed bad
 
   return items[top];
-}
+}//end peek

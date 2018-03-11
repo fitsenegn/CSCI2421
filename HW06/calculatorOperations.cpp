@@ -3,7 +3,7 @@
 
 std::string Calculator::toPostfix(std::string infix) {
   std::string postFix;
-  MyArrayStack<char> operatorStack;
+  StackInterface<char>* operatorStackptr =  new MyArrayStack<char>();
 
   for(int i = 0; i <= infix.length(); i++){
     char C = infix[i];
@@ -11,30 +11,30 @@ std::string Calculator::toPostfix(std::string infix) {
     if(isNumber(C)){ // add the number to the postfix expression
       postFix =+C;
     }else if(C == '('){ //save this for processing operators
-      operatorStack.push(C);
+      operatorStackptr->push(C);
     }else if(isOperator(C)){ //check for precedence and process
-      while(!operatorStack.isEmpty() &&
-             operatorStack.peek() != '(' &&
-             precedence(C) <= precedence(operatorStack.peek()))
+      while(!operatorStackptr->isEmpty() &&
+             operatorStackptr->peek() != '(' &&
+             precedence(C) <= precedence(operatorStackptr->peek()))
              {
-                  postFix+= operatorStack.peek();
-                  operatorStack.pop();
+                  postFix+= operatorStackptr->peek();
+                  operatorStackptr->pop();
              }
-             operatorStack.push(C); //save current operator
+             operatorStackptr->push(C); //save current operator
 
     }else if(C == ')'){ //look for a matching '('
-      while(operatorStack.peek() != '(')
+      while(operatorStackptr->peek() != '(')
       {
-            postFix+= operatorStack.peek();
-            operatorStack.pop();
+            postFix+= operatorStackptr->peek();
+            operatorStackptr->pop();
       }
-      operatorStack.pop(); //remove the found '('
+      operatorStackptr->pop(); //remove the found '('
     }
   }
   //Finish up processing the stack.
-  while(!operatorStack.isEmpty()){
-    postFix =+ operatorStack.peek();
-    operatorStack.pop();
+  while(!operatorStackptr->isEmpty()){
+    postFix =+ operatorStackptr->peek();
+    operatorStackptr->pop();
   }
   return postFix;
 }
@@ -43,7 +43,7 @@ std::string Calculator::toPostfix(std::string infix) {
 //------------------HOUSEKEEPING
 
 /** Check whether character is an operator */
-bool isOperator(char C) {
+bool Calculator::isOperator(char C) {
   if (C == '+' || C == '-' || C == '*' || C == '/' || C == '$')
     return true;
 
@@ -51,7 +51,7 @@ bool isOperator(char C) {
 }
 
 /** Verify that the character is in fact a number. */
-bool isOperand(char C) {
+bool Calculator::isNumber(char C) {
 
   if (C >= 'a' && C <= 'z') { // is a letter
     return true;
@@ -65,7 +65,7 @@ bool isOperand(char C) {
 }
 
 /** Check the precedence of an operator and return its weight */
-int precedence(char C){
+int Calculator::precedence(char C){
   	int precedence = -1; //fail case.
 
   	switch(C)

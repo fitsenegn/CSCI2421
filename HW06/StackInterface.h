@@ -9,7 +9,7 @@ class StackInterface {
 public:
   /** Sees wether this stack is is empty
     \@return True if the stack is empty, or false if note */
-  virtual bool isEmpty() = 0;
+  virtual bool isEmpty() const = 0;
 
   /** Adds a new entry to the top of this stack.
   \@post If the operation was succesful, newEntry is at the top of the stack.

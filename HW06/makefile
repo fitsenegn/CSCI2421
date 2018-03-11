@@ -1,13 +1,16 @@
 CC=g++
 LD=g++
 CC_FLAGS=-g -std=c++11
-OBJECTS= stackImplementations.o
-TEST= test.o stackImplementations.o
+OBJECTS= MyArrayStack.o calculatorOperations.o main.o
+TEST= test.o MyArrayStack.o calculatorOperations.o
 OB= kaest_CSCI2421_Assignment
 BINARY=postfixCalculator
 
 all: $(OBJECTS) #docs
 	$(LD) -o $(BINARY) $(OBJECTS)
+
+invocation: $(OBJECTS) #docs
+	$(LD) -o $(BINARY) $(OBJECTS) -v
 
 test: $(TEST) test.o
 	$(LD) -o test $(TEST) test.o
