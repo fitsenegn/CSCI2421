@@ -2,6 +2,7 @@
 #define MY_ARRAY_STACK_
 
 #include "StackInterface.h"
+#include "PrecondViolatedException.h"
 
 
 
@@ -18,8 +19,9 @@ public:
   bool isEmpty() const;
   bool push(const ItemType& newEntry);
   bool pop();
-  ItemType peek() const;
+  ItemType peek() const throw(PrecondViolatedException);
 };
 
+#include "MyArrayStack.cpp"
 
 #endif

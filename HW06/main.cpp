@@ -10,7 +10,10 @@ using std::endl;
 
 
 int main(){
+  Calculator calculator;
+  std::string infix = calculator.toPostfix("a*(b+c)");
 
+  cout << infix << endl;
 
     return 0;
 }

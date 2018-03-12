@@ -1,5 +1,4 @@
-#include "MyArrayStack.h"
-#include<cassert>
+#include <cassert>
 
 template<class ItemType>
 MyArrayStack<ItemType>::MyArrayStack() : top(-1){   } //constructor
@@ -33,8 +32,12 @@ bool MyArrayStack<ItemType>::pop(){
 }//end pop
 
 template<class ItemType>
-ItemType MyArrayStack<ItemType>::peek() const{
-  assert(!isEmpty()); //crash if accessed bad
+ItemType MyArrayStack<ItemType>::peek() const throw(PrecondViolatedException){
+  // assert(!isEmpty()); //crash if accessed bad
+  if(isEmpty()){
+    throw PrecondViolatedException("peek() called with empty stack");
+  }else{
+    return items[top];
+  }
 
-  return items[top];
 }//end peek

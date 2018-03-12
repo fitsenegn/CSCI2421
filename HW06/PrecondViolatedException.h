@@ -6,6 +6,7 @@
 
 
 class PrecondViolatedException : public std::logic_error{
+public:
   PrecondViolatedException(const std::string& message = "");
 };
 
