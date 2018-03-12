@@ -9,7 +9,7 @@ std::string Calculator::toPostfix(std::string infix) {
     char C = infix[i];
 
     if(isNumber(C)){ // add the number to the postfix expression
-      postFix =+C;
+      postFix.push_back(C);
     }else if(C == '('){ //save this for processing operators
       operatorStackptr->push(C);
     }else if(isOperator(C)){ //check for precedence and process
@@ -17,7 +17,7 @@ std::string Calculator::toPostfix(std::string infix) {
              operatorStackptr->peek() != '(' &&
              precedence(C) <= precedence(operatorStackptr->peek()))
              {
-                  postFix+= operatorStackptr->peek();
+                  postFix.push_back(operatorStackptr->peek());
                   operatorStackptr->pop();
              }
              operatorStackptr->push(C); //save current operator
@@ -25,7 +25,7 @@ std::string Calculator::toPostfix(std::string infix) {
     }else if(C == ')'){ //look for a matching '('
       while(operatorStackptr->peek() != '(')
       {
-            postFix+= operatorStackptr->peek();
+            postFix.push_back(operatorStackptr->peek());
             operatorStackptr->pop();
       }
       operatorStackptr->pop(); //remove the found '('
@@ -33,10 +33,48 @@ std::string Calculator::toPostfix(std::string infix) {
   }
   //Finish up processing the stack.
   while(!operatorStackptr->isEmpty()){
-    postFix =+ operatorStackptr->peek();
+    postFix.push_back(operatorStackptr->peek());
     operatorStackptr->pop();
   }
   return postFix;
+}
+
+#include <iostream>
+int Calculator::solve(std::string postFix){
+  int value = -1;
+  StackInterface<char>* stackPtr =  new MyArrayStack<char>();
+
+  for(int i = 0; i < postFix.length(); i++){
+    char C = postFix[i];
+    if(isNumber(C)){ // put on the number stack
+      stackPtr->push(C);
+    }else{
+      int operand2 = ((stackPtr->peek()) - '0');
+      stackPtr->pop();
+      int operand1 = ((stackPtr->peek()) - '0');
+      stackPtr->pop();
+
+      switch(C){
+        case '+': value = operand1 + operand2;
+        stackPtr->push(value + '0');
+          break;
+        case '-': value = operand1 - operand2;
+        stackPtr->push(value + '0');
+          break;
+        case '*': value = operand1 * operand2;
+        stackPtr->push(value + '0');
+          break;
+        case '/': value = operand1 / operand2;
+        stackPtr->push(value + '0');
+          break;
+        default: std::cout << "\nOHNOOOOOO\n";
+          break;
+      }
+    }
+
+  }
+
+  return value;
 }
 
 

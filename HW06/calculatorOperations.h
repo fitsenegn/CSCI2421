@@ -11,6 +11,8 @@ public:
   \@return  The postfix expression.   */
   std::string toPostfix(std::string);
 
+  int solve(std::string);
+
   /** Check whether character is an operator */
   bool isOperator(char);
   /** Verify that the character is in fact a number. */
