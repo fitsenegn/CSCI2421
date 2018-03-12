@@ -21,5 +21,7 @@ public:
   ItemType peek() const;
 };
 
-
+// Include the implementation in the header so it is accessible to the compiler
+// while still being separated for more modular reading.
+#include "MyArrayStack.cpp"
 #endif
