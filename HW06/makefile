@@ -2,7 +2,7 @@ CC=g++
 LD=g++
 CC_FLAGS=-g -std=c++11
 OBJECTS= calculatorOperations.o main.o PrecondViolatedException.o
-TEST= test.o calculatorOperations.o
+TEST= test.o MyArrayStack.o calculatorOperations.o
 OB= kaest_CSCI2421_Assignment
 BINARY=postfixCalculator
 
