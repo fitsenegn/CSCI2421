@@ -4,19 +4,54 @@ ID 108652414 (kaest)
 
 CSCI 2421-E01
 
-Assignment
+Assignment 6
 
-****************************************
-** TO COMPILE ----- 'make all'	      **
-** TO RUN --------- './name' #binary  **
-****************************************
+*********************************************
+** TO COMPILE ----- 'make all'	           **
+** TO RUN --------- './postfixCalculator'  **
+*********************************************
 
 DESCRIPTION:
+As shown in the textbook p219 Programming Problems #6, implement a class of
+infix calculators.
 
+Consider a simple infix expression that consist of single digit operands; the
+operators +, -, *, and / ; and parentheses. Assume that unary operators are
+illegal and that the expression contains no embedded spaces.
+
+Design and implement a class of infix calculators. Use the algorithms given in
+the chapter 6 to evaluate infix expressions as entered into the calculator. You
+must first convert the infix expression to postfix form and then evaluate the
+resulting postfix expression.
+
+Use the stack implementation in Chapter06 , Chapter07.
+
+You need to implement a driver function that takes one line of infix expression
+either from console         #<-this is the implementation chosen
+(or an input file infix.dat<-not used), and print out the post fix
+expression and calculated result to the console.
 
 
 ************Structure***********
+MyArrayStack.* are derived from template class StackInterface.h. There is an
+error depending on IDE/Linter in MyStackArray.cpp. This error is not actually a
+problem as it is handled in the makefile. Because MyArrayStack.* is generated
+and compiled using template, the templates when placed in a *.cpp can cause
+false warnings with Linters. If the makefile call is run as outlined above,
+there is no problem. If it is used in a more robust IDE such as XCODE or Visual
+studio, The contents of MyArrayStack.cpp must be placed in the MyArrayStack.h.
 
+MyArrayStack.h is included and used in calculatorOperations.*.
+
+The brunt of the operations and algorithms are placed in calculatorOperations.*.
+It has necessary functions to evaluate the infix expression and convert into a
+Postfix expression. Algorithms are based on the algorithms presented in the book.
+
+Call to start of program asks user to enter an infix expression. The driver
+function passes the infix expression as a string to (Calculator).toPostfix(infix).
+This converted string is printed to screen and passed to (Calculator).solve(postfix).
+
+The result is printed to screen and program terminates.
 
 
 
@@ -26,7 +61,7 @@ DESCRIPTION:
 -> Tested on MacBook Pro running High Sierra OS(10.13.1); 3.1GHz Intel Core i7;
    16 GB 1867 MHz DDR3
 
-	-using gcc/g++ 7.2.0 processor 
+	-using gcc/g++ 7.2.0 processor
 	-Linted using both Clang and gcc 7.4.2
 
 -> Tested on csegrid.ucdenver.pvt
@@ -37,7 +72,8 @@ DESCRIPTION:
 **********************
 
 
-XXX: Future implementations will. . .
+XXX: Future implementations will allow the program to perform operations on
+multi-digit operands.
 
 
 
@@ -45,7 +81,7 @@ XXX: Future implementations will. . .
 ************Copyright***********
 
 
-   Copyright {2017} {Trystan Kaes}
+   Copyright {2018} {Trystan Kaes}
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
