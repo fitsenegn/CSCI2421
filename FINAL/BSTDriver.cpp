@@ -5,12 +5,12 @@ Status: works with completed and correct BSTree.cpp
 
 /*Template Directions: #include "BSTREEInt.hpp"
 but do NOT compile it (or add it to the project)*/
-#include <iostream>
+// #include <iostream>
 #include "BSTree.h"
 #include "BSTree.hpp"
-using namespace std;
+// using namespace std;
 
-int main()
+void test()
 {
 	BSTree<GeneralData, int> *tree = new BSTree<GeneralData, int>;
 	cout << "Adding Nodes...\n";
@@ -34,53 +34,65 @@ int main()
 	tempData.number = 30;
 	tempData.name = "Eta";
 	tree->addNode(tempData.number, tempData);
-	
+
 	tempData.number = 25;
 	tempData.name = "Epsilon";
 	tree->addNode(tempData.number, tempData);
-	
+
 	tempData.number = 2;
 	tempData.name = "Beta";
 	tree->addNode(tempData.number, tempData);
 
 	cout << "Printing in order...\n";
 	tree->printInorder();
-
-	if (tree->findNode(25) != nullptr)
-		cout << "25 found\n";
-	else
+	cout << endl;
+	if (tree->findNode(25) != nullptr){
+		cout << "25 found\n\n" << "\t";
+		tree->print(cout, tree->findNode(25)->Data());
+		cout << endl;
+	}else
 		cout << "25 not found\n";
 
-	if (tree->findNode(26) != nullptr)
-		cout << "26 found\n";
-	else
-		cout << "26 not found\n";
+	if (tree->findNode(26) != nullptr){
+		cout << "26 found\n\n" << "\t";
+		tree->print(cout, tree->findNode(26)->Data());
+		cout << endl;
+	}else
+		cout << "26 not found\n\n";
 
 	cout << "After Deleting 1...\n";
 	tree->deleteNode(1);
 	tree->printInorder();
+	cout << endl;
 
 	cout << "After Deleting 10...\n";
 	tree->deleteNode(10);
 	tree->printInorder();
+	cout << endl;
 
 	cout << "After Deleting 25...\n";
 	tree->deleteNode(25);
 	tree->printInorder();
+	cout << endl;
 
 	cout << "After Deleting 2...\n";
 	tree->deleteNode(2);
 	tree->printInorder();
+	cout << endl;
 
 	cout << "After Deleting 5...\n";
 	tree->deleteNode(5);
 	tree->printInorder();
+	cout << endl;
 
 	cout << "After Deleting 20...\n";
 	tree->deleteNode(20);
 	tree->printInorder();
+	cout << endl;
 
 	cout << "After Deleting 30...\n";
 	tree->deleteNode(30);
 	tree->printInorder();
+	cout << endl;
+
 }

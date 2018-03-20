@@ -12,7 +12,7 @@ using namespace std;
 
 struct GeneralData
 {
-    int number; //Update this to your data field  
+    int number; //Update this to your data field
 	string name;
 };
 

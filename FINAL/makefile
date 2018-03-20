@@ -1,8 +1,8 @@
 CC=g++
 LD=g++
 CC_FLAGS=-g -std=c++11
-OBJECTS= main.o BSTDriver.o
-TEST= test.o BSTDriver.o
+OBJECTS=  main.o
+TEST=
 OB= kaest_CSCI2421_FINAL
 BINARY=ACADEMY_AWARDS
 
