@@ -12,6 +12,7 @@ but do NOT compile it (or add it to the project)*/
 
 void test()
 {
+	std::string testPrint;
 	BSTree<GeneralData, int> *tree = new BSTree<GeneralData, int>;
 	cout << "Adding Nodes...\n";
 	GeneralData tempData;
@@ -42,6 +43,7 @@ void test()
 	tempData.number = 2;
 	tempData.name = "Beta";
 	tree->addNode(tempData.number, tempData);
+	tree->debugPrint(tree->Root(), testPrint);
 
 	cout << "Printing in order...\n";
 	tree->printInorder();

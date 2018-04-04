@@ -3,6 +3,7 @@
 #ifndef BSTREEINT_H
 #define BSTREEINT_H
 #include <iostream>
+#include <sstream>
 using namespace std;
 #include "Node.h"
 
@@ -29,5 +30,7 @@ public:
     void deleteNode(KEYTYPE key);
 	Node<DATATYPE, KEYTYPE> * min(Node<DATATYPE, KEYTYPE> * node);
 	Node<DATATYPE, KEYTYPE> * max(Node<DATATYPE, KEYTYPE> * node);
+  void debugPrint(Node<DATATYPE,KEYTYPE> * node, std::string);
 };
+
 #endif  //BST
