@@ -1,42 +1,30 @@
-//  Created by Frank M. Carrano and Timothy M. Henry.
-//  Copyright (c) 2017 Pearson Education, Hoboken, New Jersey.
+#ifndef NODE_H_
+#define NODE_H_
+#include <iostream>
+#include <string>
 
-/** A class of nodes for a link-based binary tree.
- Listing 16-2.
- @file BinaryNode.h */
-
-#ifndef BINARY_NODE_
-#define BINARY_NODE_
-
-#include <memory>
-
-template<class ItemType>
-class BinaryNode
-{
-private:
-   ItemType              item;           // Data portion
-   std::shared_ptr<BinaryNode<ItemType>> leftChildPtr;   // Pointer to left child
-   std::shared_ptr<BinaryNode<ItemType>> rightChildPtr;  // Pointer to right child
-
+//Binary Tree Node
+template <class itemType>
+class BinaryNode {
 public:
-   BinaryNode();
-   BinaryNode(const ItemType& anItem);
-   BinaryNode(const ItemType& anItem,
-              std::shared_ptr<BinaryNode<ItemType>> leftPtr,
-              std::shared_ptr<BinaryNode<ItemType>> rightPtr);
+    BinaryNode() {left=nullptr; right=nullptr; parent = nullptr;};
 
-   void setItem(const ItemType& anItem);
-   ItemType getItem() const;
+    void setParentPtr(BinaryNode<itemType> * aParent) { parent = aParent; };
+    void setRightChildPtr(BinaryNode<itemType> * aRight) { right = aRight; };
+    void setLeftChildPtr(BinaryNode<itemType> * aLeft) { left = aLeft; };
 
-   bool isLeaf() const;
+    BinaryNode<itemType> * getParentPtr() { return parent; };
+    BinaryNode<itemType> * getRightChildPtr() { return right; };
+    BinaryNode<itemType> * getLeftChildPtr() { return left; };
 
-   auto getLeftChildPtr() const;
-   auto getRightChildPtr() const;
+	  void setItem(itemType newItem) { item = newItem; }
+	  itemType getItem() const { return item; }
 
-   void setLeftChildPtr(std::shared_ptr<BinaryNode<ItemType>> leftPtr);
-   void setRightChildPtr(std::shared_ptr<BinaryNode<ItemType>> rightPtr);
-}; // end BinaryNode
-
-#include "BinaryNode.hpp"
+private:
+    itemType item;
+    BinaryNode<itemType> * left;
+    BinaryNode<itemType> * right;
+    BinaryNode<itemType> * parent;
+};
 
 #endif
