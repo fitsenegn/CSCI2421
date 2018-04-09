@@ -30,7 +30,7 @@ void BinaryNode<ItemType>::setItem(const ItemType& anItem)
 }  // end setItem
 
 template<class ItemType>
-ItemType BinaryNode<ItemType>::getItem() const 
+ItemType BinaryNode<ItemType>::getItem() const
 {
    return item;
 }  // end getItem
@@ -57,11 +57,10 @@ template<class ItemType>
 auto BinaryNode<ItemType>::getLeftChildPtr() const
 {
    return leftChildPtr;
-}  // end getLeftChildPtr		
+}  // end getLeftChildPtr
 
 template<class ItemType>
 auto BinaryNode<ItemType>::getRightChildPtr() const
 {
    return rightChildPtr;
-}  // end getRightChildPtr		
-
+}  // end getRightChildPtr

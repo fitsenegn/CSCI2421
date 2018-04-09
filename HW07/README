@@ -12,6 +12,35 @@ Assignment
 ****************************************
 
 DESCRIPTION:
+Based on the BinaryNodeTree example in Chapter16
+
+Implement a new function
+
+replace (item: ItemType, replacementItem ItemType) : boolean
+
+This function locates, if possible, the node in a binary tree that contains item
+and replaces item with replacementItem. Add this operation replace to the current
+implementation. The operation should replace an item without alerting the tree
+structure.
+
+You don't have to implement every missing function in BinaryNodeTree.h
+(Listing 16-3.h) but you need to implement a few such as contains, findNode, etc.
+
+Develop a main driver function that takes words from a text file and construct
+a binary tree. Each word from a text file is stored as a string. Let's assume
+there's no special character in the input text file, and there's no duplicate
+words in the input text file.
+
+After completing the replace function, run contains for previous item and
+replace item to verify the operation.
+
+
+Grading guideline
+
+Correct and complete functionality of the two programs 70%
+Reasonable fault tolerance, i.e. it should not crash often. 10%
+Makefile and Readme 10%
+Documentation and comments in the code 10%
 
 
 
@@ -26,7 +55,7 @@ DESCRIPTION:
 -> Tested on MacBook Pro running High Sierra OS(10.13.1); 3.1GHz Intel Core i7;
    16 GB 1867 MHz DDR3
 
-	-using gcc/g++ 7.2.0 processor 
+	-using gcc/g++ 7.2.0 processor
 	-Linted using both Clang and gcc 7.4.2
 
 -> Tested on csegrid.ucdenver.pvt
