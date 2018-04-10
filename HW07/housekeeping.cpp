@@ -65,3 +65,24 @@ exception_status readIn(std::string file, BinaryNodeTree<std::string>* root){
 
   return error;
 }
+
+
+/** Screens user input for validity
+\param 'prompt' is displayed to the user, 'readVal' is the input variable
+\return '-1' returned if invalid input, '0' returned if validity */
+int getSearchTerm(std::string& readVal, std::string prompt){
+  std::cout << prompt;
+  std::cin >> readVal;
+
+  if (std::cin.fail()) // check type
+  {
+    std::cin.clear();
+    std::cin.ignore(1024, '\n');
+    std::cout << "***invalid***" << '\n';
+    return -1;
+  } else {
+    return 0;
+  }
+
+  return -1;
+};

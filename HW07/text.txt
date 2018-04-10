@@ -1,1 +1,1 @@
-If your only need is to visualize your tree, a better method would be to output it into a dot format and draw it with grapviz
+If your only need is to visualize your tree a better method would be to output it into a dot format and draw it with grapviz
