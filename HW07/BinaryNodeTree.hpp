@@ -43,9 +43,6 @@ void BinaryNodeTree<itemType>::addBinaryNode(itemType& item) {
 template <class itemType>
 void BinaryNodeTree<itemType>::addBinaryNode(BinaryNode<itemType> *leaf,
                                         itemType &item) {
-  // Student must fill in
-  // Don't forget to set your key, Parent, then left or right
-  // Based on the case you use you will addNode recursively to the left or right
 
   if (this->Root() == nullptr) { // First check if root is null
     BinaryNode<itemType> *newNodePtr =
@@ -54,7 +51,7 @@ void BinaryNodeTree<itemType>::addBinaryNode(BinaryNode<itemType> *leaf,
     root = newNodePtr;               // set the root
   } else {
 
-    if (item < leaf->getItem()) { // Check to see if the key is < the leaf's key
+    if (item < leaf->getItem()) { // Check to see if the value is < the leaf's value
 
       if (leaf->getLeftChildPtr() != nullptr) { // if left is not null then
         addBinaryNode(leaf->getLeftChildPtr(), item); // Add the node to the left (recursively)
@@ -67,7 +64,7 @@ void BinaryNodeTree<itemType>::addBinaryNode(BinaryNode<itemType> *leaf,
     }
     // Otherwise
 
-    if (item >= leaf->getItem()) { // Check to see if the key >= leaf's key
+    if (item >= leaf->getItem()) { // Check to see if the value >= leaf's value
 
       if (leaf->getRightChildPtr() != nullptr) { // if leaf's right is not null then
         addBinaryNode(leaf->getRightChildPtr(),
@@ -136,24 +133,21 @@ template <class itemType>
 BinaryNode<itemType> *
 BinaryNodeTree<itemType>::deleteBinaryNode(BinaryNode<itemType> *aRoot, itemType value) {
 
-  /* Given a binary search tree and a key, this function deletes the key
-  and returns the new root */
-
   // base case
   if (aRoot == nullptr)
     return aRoot;
 
-  // If the key to be deleted is smaller than the aRoot's key,
+  // If the value to be deleted is smaller than the aRoot's value,
   // then it lies in left subtree
   if (value < aRoot->getItem())
     aRoot->setLeftChildPtr(deleteBinaryNode(aRoot->getLeftChildPtr(), value));
 
-  // If the key to be deleted is greater than the root's key,
+  // If the value to be deleted is greater than the root's value,
   // then it lies in right subtree
   else if (value > aRoot->getItem())
     root->setRightChildPtr(deleteBinaryNode(aRoot->getRightChildPtr(), value));
 
-  // if key is same as root's key, then This is the node
+  // if value is same as root's value, then This is the node
   // to be deleted
   else {
     // node with only one child or no child
@@ -180,9 +174,9 @@ BinaryNodeTree<itemType>::deleteBinaryNode(BinaryNode<itemType> *aRoot, itemType
   return aRoot;
 }
 
-// Find the node with min key
-// Traverse the left sub-BSTree recursively
-// till left sub-BSTree is empty to get min
+// Find the node with min value
+// Traverse the left sub-BinaryNodeTree recursively
+// till left sub-BinaryNodeTree is empty to get min
 template <class itemType>
 BinaryNode<itemType> *
 BinaryNodeTree<itemType>::min(BinaryNode<itemType> *node) {
@@ -195,9 +189,9 @@ BinaryNodeTree<itemType>::min(BinaryNode<itemType> *node) {
   return current;
 }
 
-// Find the node with max key
-// Traverse the right sub-BSTree recursively
-// till right sub-BSTree is empty to get max
+// Find the node with max value
+// Traverse the right sub-BinaryNodeTree recursively
+// till right sub-BinaryNodeTree is empty to get max
 template <class itemType>
 BinaryNode<itemType> *
 BinaryNodeTree<itemType>::max(BinaryNode<itemType> *node) {
