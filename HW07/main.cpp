@@ -55,7 +55,7 @@ int main(int argc, char* argv[]){
 	while(getSearchTerm(replacementTerm,
 										 "Enter a word to replace \"" + searchTerm + "\": \n") == -1){ };
 
-	cout << "Replacing \"" << searchTerm << "\" with \""<< replacementTerm << "\". . . \n\n";
+	cout << "\nReplacing \"" << searchTerm << "\" with \""<< replacementTerm << "\". . . \n\n";
   tree->replace(searchTerm, replacementTerm);
 
 

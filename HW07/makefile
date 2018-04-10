@@ -3,7 +3,7 @@ LD=g++
 CC_FLAGS=-g -std=c++11
 OBJECTS= main.o housekeeping.o
 TEST= test.o implementation.o
-OB= kaest_CSCI2421_Assignment
+OB= kaest_CSCI2421_Assignment7
 BINARY=name
 
 all: $(OBJECTS) #docs
@@ -13,7 +13,7 @@ test: $(TEST) test.o
 	$(LD) -o test $(TEST) test.o
 
 clean:
-	rm -rf $(OBJECTS) $(TEST) $(BINARY) html latex $(OB).zip test test.o def docbook man rtf
+	rm -rf $(OBJECTS) $(TEST) $(BINARY) html latex $(OB).zip test test.o def docbook man rtf 
 
 %.o: %.cpp
 	$(CC) -c $(CC_FLAGS) $< -o $@
