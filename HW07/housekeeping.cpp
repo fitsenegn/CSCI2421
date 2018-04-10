@@ -74,6 +74,14 @@ int getSearchTerm(std::string& readVal, std::string prompt){
   std::cout << prompt;
   std::cin >> readVal;
 
+  for(int i = 0; i < readVal.size()+1; i++){ //strip punctuation
+    if(ispunct(readVal[i])){  //if index is punctuation
+      readVal.erase(i, i-1); //remove the current character
+    }else{
+      readVal[i] = tolower(readVal[i]); //capitals cause problems with sort
+    }
+  }
+
   if (std::cin.fail()) // check type
   {
     std::cin.clear();
