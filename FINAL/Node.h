@@ -6,15 +6,10 @@
 #include <string>
 using namespace std;
 
-// A tree node class for ints
 
 //Placeholder for a composite data type
 
-struct GeneralData
-{
-    int number; //Update this to your data field
-	string name;
-};
+
 
 
 //Binary Tree Node

@@ -117,10 +117,7 @@ BSTree<DATATYPE, KEYTYPE>::findNode(KEYTYPE key,
       return nullptr; // not found
     }
   }
-  // Student must fill in
-  // trap nullptr first in case we've hit the end unsuccessfully.
-  // success base case
-  // Greater than (Right), Less than (Left)
+
 }
 
 template <typename DATATYPE, typename KEYTYPE>
@@ -238,35 +235,35 @@ BSTree<DATATYPE, KEYTYPE>::max(Node<DATATYPE, KEYTYPE> *node) {
   return tempNode;
 }
 
-template <typename DATATYPE, typename KEYTYPE>
-void BSTree<DATATYPE, KEYTYPE>::debugPrint(Node<DATATYPE,KEYTYPE> * node, std::string check){
-
-Node<DATATYPE,KEYTYPE> * trackr = node;
-
-  check = "";
-  // bases case
-  if (node == nullptr){
-      return;
-  }
-
-  // push the root data as character
-  check.append(node->Data() + '0');
-
-  // if leaf node, then return
-  if (!trackr->Left() && !trackr->Right()){
-      return;
-    }
-
-  // for left subtree
-  check.push_back('{');
-  debugPrint(trackr->Left(), check);
-  check.push_back('}');
-
-  // only if right child is present to
-  // avoid extra parenthesis
-  if (trackr->Right()) {
-      check.push_back('{');
-      debugPrint(trackr->Right(), check);
-      check.push_back('}');
-  }
-}
+// template <typename DATATYPE, typename KEYTYPE>
+// void BSTree<DATATYPE, KEYTYPE>::debugPrint(Node<DATATYPE,KEYTYPE> * node, std::string check){
+//
+// Node<DATATYPE,KEYTYPE> * trackr = node;
+//
+//   check = "";
+//   // bases case
+//   if (node == nullptr){
+//       return;
+//   }
+//
+//   // push the root data as character
+//   check.append(node->Data() + '0');
+//
+//   // if leaf node, then return
+//   if (!trackr->Left() && !trackr->Right()){
+//       return;
+//     }
+//
+//   // for left subtree
+//   check.push_back('{');
+//   debugPrint(trackr->Left(), check);
+//   check.push_back('}');
+//
+//   // only if right child is present to
+//   // avoid extra parenthesis
+//   if (trackr->Right()) {
+//       check.push_back('{');
+//       debugPrint(trackr->Right(), check);
+//       check.push_back('}');
+//   }
+// }
