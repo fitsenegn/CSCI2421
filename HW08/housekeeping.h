@@ -1,4 +1,4 @@
 #include "exception.h"
-#include "BinaryNodeTree.h"
-exception_status readIn(std::string, BinaryNodeTree<std::string>*);
+exception_status readInPeople();
+exception_status readInPictures();
 int getSearchTerm(std::string&, std::string);
