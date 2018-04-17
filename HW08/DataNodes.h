@@ -31,6 +31,8 @@ struct Picture{ //name,year,nominations,rating,duration,
   std::string Synopsis;
 };
 
+
+
 struct GeneralData
 {
     int number; //Update this to your data field
