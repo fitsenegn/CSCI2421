@@ -33,6 +33,7 @@ exception_status readIn(std::string file, std::unordered_map<std::string,int>* h
 
     infile >> std::ws; //strip initial whitespace
 
+    int lineCount = 0;
 
     while(!infile.eof()){
 
@@ -40,7 +41,23 @@ exception_status readIn(std::string file, std::unordered_map<std::string,int>* h
 
       std::string temp;
 
+      int startRead = infile.tellg();
       std::getline(infile, temp, '\n'); //read the current word up to newline
+      lineCount++;
+
+      bool line = false;
+      for(int i = 0; i < temp.size()+1; i++){ //check for spaces
+        if(temp[i] == ' '){  //if index is space
+          line = true;
+          lineCount--;
+          break;
+        }
+      }
+
+      if(line == true){ //if a line was read in
+        infile.seekg(startRead); //Move back to the start of read
+        std::getline(infile, temp, ' '); //read until spaces instead
+      }
 
       for(int i = 0; i < temp.size()+1; i++){ //strip punctuation
         if(ispunct(temp[i])){  //if index is punctuation
@@ -51,48 +68,36 @@ exception_status readIn(std::string file, std::unordered_map<std::string,int>* h
       }
 
       if(temp.size() > 0){ //if the read thing wasn't ONLY punctuation
-
-      hashMap->insert({temp, count});
+        if(temp != " ") // and wasn't just a space
+            hashMap->insert({temp, count});
 
       }
-      std::cout << "\n\nInserted " + temp + ".\n\n";
 
     if (infile.fail()) {
         // set error
         error.badCall("input_error_line_");
-        error.which = count;
+        error.which = lineCount;
         return error; // if the file didn't read correctly, no need to continue.
     }
+
+    infile >> std::ws;
   }
 
   return error;
 }
 
 
-/** Screens user input for validity
-\param 'prompt' is displayed to the user, 'readVal' is the input variable
-\return '-1' returned if invalid input, '0' returned if validity */
-int getSearchTerm(std::string& readVal, std::string prompt){
-  std::cout << prompt;
-  std::cin >> readVal;
 
-  for(int i = 0; i < readVal.size()+1; i++){ //strip punctuation
-    if(ispunct(readVal[i])){  //if index is punctuation
-      readVal.erase(i, i-1); //remove the current character
-    }else{
-      readVal[i] = tolower(readVal[i]); //capitals cause problems with sort
-    }
+
+/**Checks how many places are used for an int. Used to determine number of
+   Characters needed to represent a number. Used for carriage return.
+   @param n is the int to check;
+   @return places is the amount of Characters   */
+int getPlaces(int n){
+int places = 0;
+  while(n > 0){
+    n /= 10;
+    places++;
   }
-
-  if (std::cin.fail()) // check type
-  {
-    std::cin.clear();
-    std::cin.ignore(1024, '\n');
-    std::cout << "***invalid***" << '\n';
-    return -1;
-  } else {
-    return 0;
-  }
-
-  return -1;
-};
+return places;
+}
