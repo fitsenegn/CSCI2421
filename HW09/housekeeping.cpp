@@ -40,7 +40,7 @@ exception_status readIn(std::string file, std::unordered_map<std::string,int>* h
 
       std::string temp;
 
-      std::getline(infile, temp, ' '); //read the current word up to space
+      std::getline(infile, temp, '\n'); //read the current word up to newline
 
       for(int i = 0; i < temp.size()+1; i++){ //strip punctuation
         if(ispunct(temp[i])){  //if index is punctuation
