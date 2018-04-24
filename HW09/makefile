@@ -1,7 +1,7 @@
 CC=g++
 LD=g++
 CC_FLAGS=-g -std=c++11
-OBJECTS= main.o housekeeping.o 
+OBJECTS= main.o housekeeping.o
 TEST= test.o implementation.o
 OB= kaest_CSCI2421_Assignment9
 BINARY=spell_checker
