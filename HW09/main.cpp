@@ -91,8 +91,8 @@ int main(int argc, char* argv[]){
 
     }
 
-    std::cout << "\nThere were " << dict.size() << " words in dict.txt.\n\n";
-    std::cout << "\nThere were " << toCheck.size() << " words in " + filename + "\n\n";
+    std::cout << "\nThere were " << dict.size() << "unique words in dict.txt.\n\n";
+    std::cout << "\nThere were " << toCheck.size() << "unique words in " + filename + "\n\n";
     std::cout << "\nThere were " << countWords << " words in " + filename +
                  " that did not exist in dict.txt\n\n";
 
