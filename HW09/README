@@ -89,7 +89,11 @@ At the end of a program all required information is printed to the screen.
 
 
 XXX: Future implementations will account for duplicates in a way that doesn't 
-overload the interface and look awful.
+overload the interface and look awful. Also, I am not positive but have an
+incling that the punctuation isn't stripping completly and might be causing
+ errors. Lastly, I want to step through and check each number to make sure
+that all is going well. I don't have time during this finals week to 
+count all the duplicates in the Potter.txt though. 
 
 
 
