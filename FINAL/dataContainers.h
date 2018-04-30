@@ -11,11 +11,11 @@ struct Full_Name
 };
 
 struct Actor_Actress_temp{
-  int Year;
-  std::string Award; //maybe Enum?
-  int Winner; // 0 means they lost 1 means they won
-  std::string Name;
-  std::string Film;
+  int Year = 0;
+  std::string Award = " "; //maybe Enum?
+  int Winner = -1; // 0 means they lost 1 means they won
+  std::string Name = " ";
+  std::string Film = " ";
 };
 
 
@@ -40,29 +40,47 @@ struct Actor_Actress //Year,Award,Winner,Name,Film
     std::string print() const{ //this will return a formatted string for printing
       std::stringstream out;
 
-      out << "Name:\n       " << _self.Name;
+      out << "Name:       " << _self.Name;
 
 
-      out << "\nAward: \n    " << _self.Award;
+      out << "\nAward:      " << _self.Award;
 
       if(_self.Winner == 1){
-        out << "\nWinner: \n     Yes";
+        out << "\nWinner:     Yes";
       }else if(_self.Winner == 0){
-        out << "\nWinner: \n     No";
+        out << "\nWinner:     No";
       }
 
-      out << "\nFilm: \n    " << _self.Film;
+      out << "\nFilm:       " << _self.Film;
 
-      out << "\nYear: \n    " << _self.Year;
+      out << "\nYear:       " << _self.Year;
 
       return out.str();
 
     }
 
+    bool operator>=(Actor_Actress comp){
+      return _self.Name >= comp.getName();
+    }
+
+    bool operator<=(Actor_Actress comp){
+      return _self.Name >= comp.getName();
+    }
+
+    bool operator>(Actor_Actress comp){
+      return _self.Name > comp.getName();
+    }
+
+    bool operator<(Actor_Actress comp){
+      return _self.Name < comp.getName();
+    }
+
     Actor_Actress(Actor_Actress_temp instantiation): _self(instantiation)
     { }
 
-    Actor_Actress();
+    Actor_Actress()
+    {Actor_Actress_temp temp;
+    this->_self = temp;}
 
 };
 

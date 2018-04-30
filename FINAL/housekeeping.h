@@ -1,3 +1,6 @@
+#ifndef HOUSEKEEPING_H_
+#define HOUSEKEEPING_H_
+
 #include "exception.h"
 #include "BinaryNodeTree.h"
 
@@ -14,3 +17,4 @@ struct misspelling{ //used to give details on the misspelling
   misspelling(std::string s, int n) : word(s),line(n) //quick vector push
   { }
 };
+#endif

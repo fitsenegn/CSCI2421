@@ -120,7 +120,7 @@ void BinaryNodeTree<itemType>::printInorder(BinaryNode<itemType> *node) {
 
 template <class itemType>
 void BinaryNodeTree<itemType>::print(ostream &out, const itemType &item) {
-  out << item.print() << endl;
+  out << item.print() << endl << endl;
 }
 
 template <class itemType>

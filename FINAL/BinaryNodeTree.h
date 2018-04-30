@@ -1,5 +1,5 @@
-#ifndef BINARYSEARCHTREE_H_
-#define BINARYSEARCHTREE_H_
+#ifndef BINARYNODETREE_H_
+#define BINARYNODETREE_H_
 #include <iostream>
 #include <sstream>
 using namespace std;
@@ -23,7 +23,7 @@ private:
 
 public:
     BinaryNodeTree<itemType>();
-    virtual ~BinaryNodeTree<itemType>();
+    ~BinaryNodeTree<itemType>();
     BinaryNode<itemType> * Root() { return root; }
     void setRoot(BinaryNode<itemType> * _root) {root = _root;}
     void addBinaryNode(itemType &item);
