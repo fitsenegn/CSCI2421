@@ -2,15 +2,18 @@
 #include <fstream>
 #include <iostream>
 
-/**Read in text continuously into hash and strip all whitespace and
+std::string stripPunctuation(std::string);
+
+
+/**Read in text continuously into linked list and strip all whitespace and
    punctuation leaving only spaces.
-   *\param hashMap is the tree to be read into
+   *\param root is the tree to be read into
    *\param file is the name of the file to be readIn
                                       | std::ifstream needs std::string
    *\return error tracks if there was an error, what type, and where in the
                                                                           file.*/
 /*Read each entry in a specified file into the tree*/
-exception_status readIn(std::string file, std::unordered_map<std::string,int>* hashMap){
+exception_status readInPeople(std::string file, BinaryNodeTree<Actor_Actress>* PersonTree){
   exception_status error;
 
     int count = 0;
@@ -33,71 +36,64 @@ exception_status readIn(std::string file, std::unordered_map<std::string,int>* h
 
     infile >> std::ws; //strip initial whitespace
 
-    int lineCount = 0;
 
     while(!infile.eof()){
 
       count++;
 
+      Actor_Actress_temp tempContainer;
       std::string temp;
 
-      int startRead = infile.tellg();
-      std::getline(infile, temp, '\n'); //read the current word up to newline
-      lineCount++;
+      //---------YEAR--------
+      std::getline(infile, temp, ','); //read the current word up to space
 
-      bool line = false;
-      for(int i = 0; i < temp.size()+1; i++){ //check for spaces
-        if(temp[i] == ' '){  //if index is space
-          line = true;
-          lineCount--;
-          break;
-        }
-      }
+      tempContainer.Year = std::atoi(temp.c_str());
 
-      if(line == true){ //if a line was read in
-        infile.seekg(startRead); //Move back to the start of read
-        std::getline(infile, temp, ' '); //read until spaces instead
-      }
+      //---------AWARD--------
+      std::getline(infile, temp, ','); //read the current word up to space
 
-      for(int i = 0; i < temp.size()+1; i++){ //strip punctuation
-        if(ispunct(temp[i])){  //if index is punctuation
-          temp.erase(i, i-1); //remove the current character
-        }else{
-          temp[i] = tolower(temp[i]); //capitals cause problems with sort
-        }
-      }
+      tempContainer.Award = stripPunctuation(temp);
 
-      if(temp.size() > 0){ //if the read thing wasn't ONLY punctuation
-        if(temp != " ") // and wasn't just a space
-            hashMap->insert({temp, count});
+      //---------WINNER--------
+      std::getline(infile, temp, ','); //read the current word up to space
 
-      }
+      tempContainer.Winner = std::atoi(temp.c_str());
+
+
+      //---------NAME--------
+      std::getline(infile, temp, ','); //read the current word up to space
+
+      tempContainer.Name = stripPunctuation(temp);
+
+      //---------FILM--------
+      std::getline(infile, temp, '\n'); //read the current word up to space
+
+      tempContainer.Film = "\"" + temp + "\"";
+
+
+
+      Actor_Actress newPerson(tempContainer);
+      PersonTree->addBinaryNode(newPerson);
+
 
     if (infile.fail()) {
         // set error
         error.badCall("input_error_line_");
-        error.which = lineCount;
+        error.which = count;
         return error; // if the file didn't read correctly, no need to continue.
     }
-
-    infile >> std::ws;
   }
 
   return error;
 }
 
-
-
-
-/**Checks how many places are used for an int. Used to determine number of
-   Characters needed to represent a number. Used for carriage return.
-   @param n is the int to check;
-   @return places is the amount of Characters   */
-int getPlaces(int n){
-int places = 0;
-  while(n > 0){
-    n /= 10;
-    places++;
+std::string stripPunctuation(std::string temp){
+for(int i = 0; i < temp.size()+1; i++){ //strip punctuation
+  if(ispunct(temp[i])){  //if index is punctuation
+    temp.erase(i, i-1); //remove the current character
+  }else{
+    temp[i] = tolower(temp[i]); //capitals cause problems with sort
   }
-return places;
+}
+return temp;
 }

@@ -2,65 +2,8 @@
 #define NODE_H_
 #include <iostream>
 #include <string>
+#include "dataContainers.h"
 
-struct Full_Name
-{
-  std::string First;
-  std::string Last;
-};
-
-
-
-namespace _Actor_Actress{
-  enum Actor_Actress_cmd{ year , award , winner , name , film }; //used to specify modifications
-}
-
-struct Actor_Actress //Year,Award,Winner,Name,Film
-{
-    int Year;
-	  std::string Award; //maybe Enum?
-    int Winner; // 0 means they lost 1 means they won
-    Full_Name Name;
-    std::string Film;
-
-    template <class newElement>
-    void modify(_Actor_Actress::Actor_Actress_cmd, newElement);
-
-    std::string print(); //this will return a formatted string for printing
-
-};
-
-namespace _Picture{
-  enum Picture_cmd{ name , year , nominations , rating , duration,
-                    genre1 , genre2 , release , metacritic , synopsis }; //used to specify modifications
-};
-
-struct Picture{ //name,year,nominations,rating,duration,
-                //genre1,genre2,release,metacritic,synopsis
-  std::string Name;
-  int Year;
-  int Nominations;
-  double Rating;
-  int Duration;
-  std::string Genre1;
-  std::string Genre2;
-  std::string Release;
-  int Metacritic;
-  std::string Synopsis;
-
-  template <class newElement>
-  void modify(_Picture::Picture_cmd, newElement); //replace a specific element
-
-  std::string print(); //this will return a formatted string for printing
-};
-
-
-
-struct GeneralData
-{
-    int number; //Update this to your data field
-	  std::string name;
-};
 
 //Binary Tree Node
 template <class itemType>

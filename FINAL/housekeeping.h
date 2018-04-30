@@ -1,8 +1,8 @@
 #include "exception.h"
-#include <unordered_map>
-exception_status readIn(std::string, std::unordered_map<std::string,int>*);
-// exception_status readInPeople();
-// exception_status readInPictures();
+#include "BinaryNodeTree.h"
+
+exception_status readInPeople(std::string, BinaryNodeTree<Actor_Actress>*);
+exception_status readInPictures();
 
 int getSearchTerm(std::string&, std::string);
 int getPlaces(int);

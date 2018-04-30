@@ -1,6 +1,8 @@
 #ifndef interface_h_
 #define interface_h_
 #include <iostream>
+#include "BinaryNodeTree.h"
+#include "housekeeping.h"
 
 
 void banner();

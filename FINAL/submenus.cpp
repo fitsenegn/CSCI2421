@@ -237,6 +237,12 @@ int importExport(){
 void test(){ //Test crap here
 
 
+  BinaryNodeTree<Actor_Actress> person;
+
+  readInPeople("actor-actress.csv", &person);
+
+  person.printInorder();
+
   ///////////////////////////////////
       std::cout << "\npress [ENTER] to continue\n";
       std::cin.get();

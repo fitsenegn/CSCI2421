@@ -23,7 +23,7 @@ private:
 
 public:
     BinaryNodeTree<itemType>();
-    ~BinaryNodeTree<itemType>();
+    virtual ~BinaryNodeTree<itemType>();
     BinaryNode<itemType> * Root() { return root; }
     void setRoot(BinaryNode<itemType> * _root) {root = _root;}
     void addBinaryNode(itemType &item);
@@ -37,5 +37,5 @@ public:
   // void coolView(int);
 
 };
-// #include "BinaryNodeTree.hpp"
+#include "BinaryNodeTree.hpp"
 #endif  //BST
