@@ -90,16 +90,16 @@ struct Actor_Actress //Year,Award,Winner,Name,Film
 
 struct Picture_temp{ //name,year,nominations,rating,duration,
                 //genre1,genre2,release,metacritic,synopsis
-  std::string Name;
-  int Year;
-  int Nominations;
-  double Rating;
-  int Duration;
-  std::string Genre1;
-  std::string Genre2;
-  std::string Release;
-  int Metacritic;
-  std::string Synopsis;
+  std::string Name = "";
+  int Year = -1;
+  int Nominations = -1;
+  double Rating = -1;
+  int Duration = -1;
+  std::string Genre1 = "";
+  std::string Genre2 = "";
+  std::string Release = "";
+  int Metacritic = -1;
+  std::string Synopsis = "";
 };
 
 
@@ -135,6 +135,25 @@ struct Picture{
 
 
 
+  bool operator>=(Picture comp){
+    return _self.Name >= comp.getName();
+  }
+
+  bool operator<=(Picture comp){
+    return _self.Name >= comp.getName();
+  }
+
+  bool operator>(Picture comp){
+    return _self.Name > comp.getName();
+  }
+
+  bool operator<(Picture comp){
+    return _self.Name < comp.getName();
+  }
+
+
+
+
 
   std::string print(){ //this will return a formatted string for printing
     std::stringstream out;
@@ -165,5 +184,8 @@ struct Picture{
 
   Picture(Picture_temp instantiation): _self(instantiation)
   { }
-  Picture();
+  Picture(){
+    Picture_temp temp;
+    this->_self = temp;
+  };
 };
