@@ -1,10 +1,10 @@
 CC=g++
 LD=g++
 CC_FLAGS=-g -std=c++11
-OBJECTS= submenus.o FINAL_MAIN.o housekeeping.o
+OBJECTS= submenus.o FINAL_MAIN.o housekeeping.o dataContainers.o
 TEST= test.o implementation.o
 OB= kaest_CSCI2421_Final
-BINARY=kaesFinal
+BINARY=ACADEMY_AWARDS
 
 all: $(OBJECTS) #docs
 	$(LD) -o $(BINARY) $(OBJECTS)

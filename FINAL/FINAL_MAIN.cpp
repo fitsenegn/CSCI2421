@@ -18,9 +18,11 @@ int main(){
               << "\npress [ENTER] to continue\n";
     std::cin.ignore();
 
-srand((int)time(0)); // seed with system clock (true random)
-
 bool mExit = false;
+BinaryNodeTree<Picture> Pictures;
+BinaryNodeTree<Actor_Actress> People;
+readInPictures("pictures.csv", &Pictures);
+readInPeople("actor-actress.csv", &People);
 
 while(mExit == false){
 char user;
@@ -36,15 +38,15 @@ std::cout << "1) Open Actress/Actor Database\n"
 std::cout << "  > ";
 cin >> user;
 switch(user){
-    case '1': while(Actress_Actor() == -1){   }
+    case '1': while(Actress_Actor(&People) == -1){   }
     break;
-  case '2': while(Pictures() == -1){   }
+  case '2': while(Film_menu(&Pictures) == -1){   }
     break;
   case '3':
       while(options() == -1){   }
     break;
   case '4':
-    while(importExport() == -1){   }
+    while(importExport(&Pictures,&People) == -1){   }
     break;
   case '5': mExit = true;
     break;

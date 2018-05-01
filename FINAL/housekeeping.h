@@ -5,7 +5,7 @@
 #include "BinaryNodeTree.h"
 
 exception_status readInPeople(std::string, BinaryNodeTree<Actor_Actress>*);
-exception_status readInPictures();
+exception_status readInPictures(std::string, BinaryNodeTree<Picture>*);
 
 int getSearchTerm(std::string&, std::string);
 int getPlaces(int);

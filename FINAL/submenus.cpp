@@ -63,7 +63,7 @@ void PictureBanner(){
 }
 
 
-int Actress_Actor(){
+int Actress_Actor(BinaryNodeTree<Actor_Actress>* People){
  char user;
   system("clear");
   Actress_ActorBanner();
@@ -80,9 +80,12 @@ int Actress_Actor(){
   std::cout << "  > ";
   std::cin >> user;
   switch(user){
-    case '1':
+    case '1':{
+          Actor_Actress newPerson;
+          newPerson.userInput();
+          People->addBinaryNode(newPerson);
           return -1;
-      break;
+      break;}
     case '2':
           return -1;
       break;
@@ -100,11 +103,12 @@ int Actress_Actor(){
           return -1;
       break;
     case '8':{
-          std::string file;
-          std::cout << "\nPlease specify your file\n";
-          std::cin.ignore();
-          getline(std::cin, file);
-          std::cin.clear();
+          // std::string file;
+          // std::cout << "\nPlease specify your file\n";
+          // std::cin.ignore();
+          // getline(std::cin, file);
+          // std::cin.clear();
+          People->printInorder();
           }
           return 0;
       break;
@@ -116,7 +120,7 @@ int Actress_Actor(){
   return -1;
 }
 
-int Pictures(){
+int Film_menu(BinaryNodeTree<Picture>* Pictures){
  char user;
   system("clear");
   PictureBanner();
@@ -133,9 +137,12 @@ int Pictures(){
   std::cout << "  > ";
   std::cin >> user;
   switch(user){
-    case '1':
+    case '1':{
+          Picture newFilm;
+          newFilm.userInput();
+          Pictures->addBinaryNode(newFilm);
           return -1;
-      break;
+      break;}
     case '2':
           return -1;
       break;
@@ -153,11 +160,12 @@ int Pictures(){
           return -1;
       break;
     case '8':{
-          std::string file;
-          std::cout << "\nPlease specify your file\n";
-          std::cin.ignore();
-          getline(std::cin, file);
-          std::cin.clear();
+          // std::string file;
+          // std::cout << "\nPlease specify your file\n";
+          // std::cin.ignore();
+          // getline(std::cin, file);
+          // std::cin.clear();
+          Pictures->printInorder();
           }
           return 0;
       break;
@@ -198,8 +206,8 @@ int options(){
 
 
 
-int importExport(){
-  char user;
+int importExport(BinaryNodeTree<Picture>* Pictures, BinaryNodeTree<Actor_Actress>* People){
+   char user;
    system("clear");
    importBanner();
    std::cout << std::endl;
@@ -215,6 +223,7 @@ int importExport(){
        std::cin.ignore();
        getline(std::cin, file);
        std::cin.clear();
+       readInPeople(file, People);
      }
        break;
        case '2':{
@@ -223,6 +232,7 @@ int importExport(){
            std::cin.ignore();
            getline(std::cin, file);
            std::cin.clear();
+           readInPictures("pictures.csv", Pictures);
        }
        break;
      case '3': return 0;
@@ -240,9 +250,26 @@ void test(){ //Test crap here
 
   BinaryNodeTree<Actor_Actress> person;
 
-  readInPeople("actor-actress.csv", &person);
+  Actor_Actress test;
 
+  test.userInput();
+
+  test.print();
+
+  person.addBinaryNode(test);
+  // readInPeople("actor-actress.csv", &person);
+  //
   person.printInorder();
+
+  // BinaryNodeTree<Picture> Films;
+
+  // Films.addBinaryNode(test);
+
+  //
+  // readInPictures("pictures.csv", &Films);
+
+  // Films.printInorder();
+
 
   ///////////////////////////////////
       std::cout << "\npress [ENTER] to continue\n";

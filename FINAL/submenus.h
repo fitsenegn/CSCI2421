@@ -8,11 +8,11 @@
 void banner();
 void optionBanner();
 void importBanner();
-int Actress_Actor();
-int Pictures();
+int Actress_Actor(BinaryNodeTree<Actor_Actress>*);
+int Film_menu(BinaryNodeTree<Picture>*);
 void duelPrint();
 int options();
-int importExport();
+int importExport(BinaryNodeTree<Picture>*, BinaryNodeTree<Actor_Actress>*);
 void test();
 
 #endif

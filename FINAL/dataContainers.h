@@ -1,6 +1,11 @@
+#ifndef DATACONTAINERS_H_
+#define DATACONTAINERS_H_
 #include <string>
 #include <iostream>
 #include <sstream>
+
+
+std::string stripPunctuation(std::string temp);
 
 
 //---------------------------ACTOR_ACTRESS------------------------------------------
@@ -11,6 +16,7 @@ struct Full_Name
 };
 
 struct Actor_Actress_temp{
+  std::string Compare = "";
   int Year = 0;
   std::string Award = " "; //maybe Enum?
   int Winner = -1; // 0 means they lost 1 means they won
@@ -19,64 +25,52 @@ struct Actor_Actress_temp{
 };
 
 
-struct Actor_Actress //Year,Award,Winner,Name,Film
+class Actor_Actress //Year,Award,Winner,Name,Film
 {
+public:
     Actor_Actress_temp _self;
 
+    int userInput();
+
     //SEEETTERS
+    void setComp(std::string comp){_self.Compare = comp;};
     void setYear(int year){_self.Year = year;};
     void setAward(std::string award){_self.Award = award;};
     void setWinner(int winner){_self.Winner = winner;};
-    void setName(std::string name){_self.Name = name;};
+    void setName(std::string name){
+        _self.Name = name;
+        setComp(stripPunctuation(name));
+      };
     void setFilm(std::string film){_self.Film = film;};
 
     //GEEETTERS
+    std::string getComp(){return _self.Compare;};
     int getYear(){return _self.Year;};
     std::string getAward(){return _self.Award;};
     int getWinner(){return _self.Winner;};
     std::string getName(){return _self.Name;};
     std::string getFilm(){return _self.Film;};
 
-    std::string print() const{ //this will return a formatted string for printing
-      std::stringstream out;
-
-      out << "Name:       " << _self.Name;
-
-
-      out << "\nAward:      " << _self.Award;
-
-      if(_self.Winner == 1){
-        out << "\nWinner:     Yes";
-      }else if(_self.Winner == 0){
-        out << "\nWinner:     No";
-      }
-
-      out << "\nFilm:       " << _self.Film;
-
-      out << "\nYear:       " << _self.Year;
-
-      return out.str();
-
-    }
+    std::string print() const;
 
     bool operator>=(Actor_Actress comp){
-      return _self.Name >= comp.getName();
+      return _self.Compare >= comp.getComp();
     }
 
     bool operator<=(Actor_Actress comp){
-      return _self.Name >= comp.getName();
+      return _self.Compare >= comp.getComp();
     }
 
     bool operator>(Actor_Actress comp){
-      return _self.Name > comp.getName();
+      return _self.Compare > comp.getComp();
     }
 
     bool operator<(Actor_Actress comp){
-      return _self.Name < comp.getName();
+      return _self.Compare < comp.getComp();
     }
 
     Actor_Actress(Actor_Actress_temp instantiation): _self(instantiation)
-    { }
+    { this->setName(this->getName());} //set Comparison
 
     Actor_Actress()
     {Actor_Actress_temp temp;
@@ -90,6 +84,7 @@ struct Actor_Actress //Year,Award,Winner,Name,Film
 
 struct Picture_temp{ //name,year,nominations,rating,duration,
                 //genre1,genre2,release,metacritic,synopsis
+  std::string Compare = "";
   std::string Name = "";
   int Year = -1;
   int Nominations = -1;
@@ -103,12 +98,18 @@ struct Picture_temp{ //name,year,nominations,rating,duration,
 };
 
 
-struct Picture{
+class Picture{
+public:
   Picture_temp _self;
 
+  int userInput();
 
   //SEEEEEEEEEETTERS
-  void setName(std::string name){_self.Name = name;};
+  void setComp(std::string comp){_self.Compare = comp;};
+  void setName(std::string name){
+      _self.Name = name;
+      setComp(stripPunctuation(name));
+    };
   void setYear(int year){_self.Year = year;};
   void setNom(int nominations){_self.Nominations = nominations;};
   void setRating(double rating){_self.Rating = rating;};
@@ -120,6 +121,7 @@ struct Picture{
   void setSynopsis(std::string synopsis){_self.Synopsis = synopsis;};
 
   //GEEEEEEEEEETTERS
+  std::string getComp(){return _self.Compare;};
   std::string getName(){return _self.Name;};
   int getYear(){return _self.Year;};
   int getNom(){return _self.Nominations;};
@@ -136,56 +138,32 @@ struct Picture{
 
 
   bool operator>=(Picture comp){
-    return _self.Name >= comp.getName();
+    return _self.Compare >= comp.getComp();
   }
 
   bool operator<=(Picture comp){
-    return _self.Name >= comp.getName();
+    return _self.Compare >= comp.getComp();
   }
 
   bool operator>(Picture comp){
-    return _self.Name > comp.getName();
+    return _self.Compare > comp.getComp();
   }
 
   bool operator<(Picture comp){
-    return _self.Name < comp.getName();
+    return _self.Compare < comp.getComp();
   }
 
 
-
-
-
-  std::string print(){ //this will return a formatted string for printing
-    std::stringstream out;
-
-    out << "Name: " << _self.Name;
-
-
-    out << "\nYear: \n    " << _self.Year;
-
-    out << "\nNominations: \n    " << _self.Nominations;
-
-    out << "\nRating: \n    " << _self.Rating;
-
-    out << "\nDuration: \n    " << _self.Duration;
-
-    out << "\nGenre1: \n    " << _self.Genre1;
-
-    out << "\nGenre2: \n    " << _self.Genre2;
-
-    out << "\nRelease: \n    " << _self.Release;
-
-    out << "\nMetacritic: \n    " << _self.Metacritic;
-
-    out << "\nSynopsis: \n    " << _self.Synopsis;
-
-    return out.str();
-  }
+  std::string print() const; //this will return a formatted string for printing
 
   Picture(Picture_temp instantiation): _self(instantiation)
-  { }
+  {this->setName(this->getName());} //set Comparison
+
   Picture(){
     Picture_temp temp;
     this->_self = temp;
   };
+
 };
+
+#endif
