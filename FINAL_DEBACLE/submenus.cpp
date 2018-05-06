@@ -63,7 +63,7 @@ void PictureBanner(){
 }
 
 
-int Actress_Actor_Search(BinaryNodeTree<Actor_Actress>* People){
+int Actress_Actor_Search(BinaryNodeTree<Actor_Actress>* Film){
   char user;
    system("clear");
    Actress_ActorBanner();
@@ -97,9 +97,13 @@ int Actress_Actor(BinaryNodeTree<Actor_Actress>* People){
   std::cout << std::endl;
   std::cout << "1) Add a record\n"
             << "2) Search for a record\n"
-            << "3) Sort by specified value\n"
-            << "4) Print out changes\n"
-            << "5) Back\n";
+            << "3) Modify Record\n"
+            << "4) Delete Record\n"
+            << "5) Sort by specified value\n"
+            << "6) Complete Search\n"
+            << "7) Modify Records\n"
+            << "8) Print out changes\n"
+            << "9) Back\n";
   std::cout << "  > ";
   std::cin >> user;
   switch(user){
@@ -110,13 +114,22 @@ int Actress_Actor(BinaryNodeTree<Actor_Actress>* People){
           return -1;
       break;}
     case '2':
-          Actress_Actor_Search(People);
           return -1;
       break;
-    case '3':
+    case '3': return -1;
+      break;
+    case '4':
           return -1;
       break;
-    case '4':{
+    case '5':
+          return -1;
+      break;
+    case '6': return -1;
+      break;
+    case '7':
+          return -1;
+      break;
+    case '8':{
           // std::string file;
           // std::cout << "\nPlease specify your file\n";
           // std::cin.ignore();
@@ -126,7 +139,7 @@ int Actress_Actor(BinaryNodeTree<Actor_Actress>* People){
           }
           return 0;
       break;
-    case '5': return 0;
+    case '9': return 0;
     default:
       std::cout<<"invalid input\n";
     }
@@ -171,23 +184,39 @@ int Film_menu(BinaryNodeTree<Picture>* Pictures){
   std::cout << std::endl;
   std::cout << "1) Add a record\n"
             << "2) Search for a record\n"
-            << "3) Sort by specified value\n"
-            << "4) Print out changes\n"
-            << "5) Back\n";
+            << "3) Modify Record\n"
+            << "4) Delete Record\n"
+            << "5) Sort by specified value\n"
+            << "6) Complete Search\n"
+            << "7) Modify Records\n"
+            << "8) Print out changes\n"
+            << "9) Back\n";
   std::cout << "  > ";
   std::cin >> user;
   switch(user){
     case '1':{
+          Picture newFilm;
+          newFilm.userInput();
+          Pictures->addBinaryNode(newFilm);
           return -1;
       break;}
-    case '2':{
-      Film_Search(Pictures);
+    case '2':
           return -1;
       break;
-    }case '3':
+    case '3': return -1;
+      break;
+    case '4':
           return -1;
       break;
-    case '4':{
+    case '5':
+          return -1;
+      break;
+    case '6': return -1;
+      break;
+    case '7':
+          return -1;
+      break;
+    case '8':{
           // std::string file;
           // std::cout << "\nPlease specify your file\n";
           // std::cin.ignore();
@@ -197,7 +226,7 @@ int Film_menu(BinaryNodeTree<Picture>* Pictures){
           }
           return 0;
       break;
-    case '5':
+    case '9':
           return 0;
       break;
     default:

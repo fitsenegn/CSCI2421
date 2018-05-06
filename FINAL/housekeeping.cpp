@@ -203,3 +203,33 @@ exception_status readInPictures(std::string file, BinaryNodeTree<Picture>* Pictu
 
   return error;
 }
+
+
+
+/** Screens user input for validity
+\param 'prompt' is displayed to the user, 'readVal' is the input variable
+\return '-1' returned if invalid input, '0' returned if validity */
+int getSearchTerm(std::string& readVal, std::string prompt){
+  std::cout << prompt;
+  std::cin >> readVal;
+
+  for(int i = 0; i < readVal.size()+1; i++){ //strip punctuation
+    if(ispunct(readVal[i])){  //if index is punctuation
+      readVal.erase(i, i-1); //remove the current character
+    }else{
+      readVal[i] = tolower(readVal[i]); //capitals cause problems with sort
+    }
+  }
+
+  if (std::cin.fail()) // check type
+  {
+    std::cin.clear();
+    std::cin.ignore(1024, '\n');
+    std::cout << "***invalid***" << '\n';
+    return -1;
+  } else {
+    return 0;
+  }
+
+  return -1;
+};

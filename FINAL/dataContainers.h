@@ -31,6 +31,7 @@ public:
     Actor_Actress_temp _self;
 
     int userInput();
+    int modifyField();
 
     //SEEETTERS
     void setComp(std::string comp){_self.Compare = comp;};
@@ -103,6 +104,7 @@ public:
   Picture_temp _self;
 
   int userInput();
+  int modifyField();
 
   //SEEEEEEEEEETTERS
   void setComp(std::string comp){_self.Compare = comp;};
