@@ -23,7 +23,13 @@ int Actress_Actor_Search(BinaryNodeTree<Actor_Actress>* People){
         if(People->findItem(searchTerm) != nullptr){
           std::vector<Actor_Actress> test;
 
-          Actor_Actress Person = People->findItem(searchTerm)->getItem();
+          do{
+            Actor_Actress Person = People->findItem(searchTerm)->getItem();
+            test.push_back(Person);
+              People->deleteBinaryNode(Person);
+          }while(People->findItem(searchTerm) != nullptr);
+
+          Actor_Actress Person = test[0];
 
           std::cout << Person.print();
           std::cout << "\nEntry found. What would you like to do?"
