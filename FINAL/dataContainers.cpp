@@ -28,12 +28,15 @@ int getInt(int &n, std::string prompt) {
   return 0; // success!
 }
 
-/*Read in an int within bounds
+/*Read in a a double within bounds
 \param 'prompt' is displayed to the user,int& n is user input
 \return int| -1 if fail, 0 if success  */
 int getDouble(double &d, std::string prompt) {
+  std::string temp;
   std::cout << prompt;
-  std::cin >> d;
+  std::cin.ignore();
+  std::getline(std::cin, temp);
+  d = std::stod(temp);
 
   if (std::cin.fail()) // check type
   {
@@ -86,6 +89,18 @@ std::string Actor_Actress::print() const{ //this will return a formatted string 
   out << "\nFilm:       " << _self.Film;
 
   out << "\nYear:       " << _self.Year;
+
+  return out.str();
+
+}
+
+std::string Actor_Actress::printToFile() const { //this will return a formatted string for printing
+std::stringstream out;
+  out << _self.Year;
+  out << ", " << _self.Award;
+  out << ", " << _self.Winner;
+  out << ", " << _self.Name;
+  out << ", " << _self.Film;
 
   return out.str();
 
@@ -199,7 +214,27 @@ int Actor_Actress::userInput(){ //Year,Award,Winner,Name,Film
   return -1;
 }
 
-
+bool Actor_Actress::completeCompare(Actor_Actress comp){
+  if(_self.Compare == comp.getComp()){
+    return true;
+  }
+  if(comp.getYear() == _self.Year){
+    return true;
+  }
+  if(comp.getAward() == _self.Award){
+    return true;
+  }
+  if(comp.getWinner() == _self.Winner){
+    return true;
+  }
+  if(comp.getName() == _self.Name){
+    return true;
+  }
+  if(comp.getFilm() == _self.Film){
+    return true;
+  }
+  return false;
+}
 
 //--------------------PICTURE------------------------------
 /**Take user input and sets self
@@ -356,6 +391,42 @@ int Picture::modifyField(){
   return -1;
 }
 
+bool Picture::completeCompare(Picture comp){
+  if(_self.Compare == comp.getComp()){
+    return true;
+  }
+  if(_self.Name == comp.getName()){
+    return true;
+  }
+  if(_self.Year == comp.getYear()){
+    return true;
+  }
+  if(_self.Nominations == comp.getNom()){
+    return true;
+  }
+  if(_self.Rating == comp.getRating()){
+    return true;
+  }
+  if(_self.Duration == comp.getDuration()){
+    return true;
+  }
+  if(_self.Genre1 == comp.getGenre1()){
+    return true;
+  }
+  if(_self.Genre2 == comp.getGenre2()){
+    return true;
+  }
+  if(_self.Release == comp.getRelease()){
+    return true;
+  }
+  if(_self.Metacritic == comp.getMetacritic()){
+    return true;
+  }
+  if(_self.Synopsis == comp.getSynopsis()){
+    return true;
+  }
+  return false;
+}
 
 std::string Picture::print() const{
   std::stringstream out;
@@ -394,6 +465,31 @@ std::string Picture::print() const{
       lines = 0;
     }
   }
+
+  return out.str();
+}
+
+
+std::string Picture::printToFile() const {
+  std::stringstream out;
+  out  << _self.Name;
+
+  out << "," << _self.Year;
+
+  out << "," << _self.Nominations;
+
+  out << "," << _self.Rating;
+
+  out << "," << _self.Duration;
+
+  out << "," << _self.Genre1;
+
+  out << "," << _self.Genre2;
+
+  out << "," << _self.Release;
+
+  out << "," << _self.Metacritic;
+  out << "," << _self.Synopsis;
 
   return out.str();
 }

@@ -204,3 +204,82 @@ XXX: Future implementations will. . .
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   cin.clear();
+   std::string searching;
+   getSearchTerm(searching,"Please enter a name: ");
+   Actor_Actress searchTerm;
+   // std::cout << searching;
+   // std::cout << searchTerm.print();
+   searchTerm.setName(searching);
+
+   if(People->findItem(searchTerm) != nullptr){
+     std::vector<Actor_Actress> test;
+
+     // while(People->findItem(searchTerm) != nullptr){
+     //   Actor_Actress Person = People->findItem(searchTerm)->getItem();
+     //   test.push_back(Person);
+     //   if(Person != nullptr){
+     //     People->deleteBinaryNode(Person);
+     //   }
+
+     // }
+
+     // for(int i = 0; i < test.size(); i++){
+     //   People->addBinaryNode(test[i]);
+     // }
+
+     for(int i = 0; i < test.size(); i++){
+       std::cout << "------> "<< i << endl;
+       std::cout << test[i].print() << endl;
+     }
+     int check;
+     std::cout << "\nWhich of these is the correct reference?\n";
+     std::cin >> check;
+     Actor_Actress Person = test[check];
+     std::cout << Person.print();
+     std::cout << "\nEntry found. What would you like to do?"
+               << "\n1) Modify"
+               << "\n2) Delete"
+               << "\n3) Back"
+               << "\n> ";
+     int c;
+     std::cin >> c;
+     switch(c){
+       case 1:{
+           // People->deleteBinaryNode(Person);
+           Actor_Actress temp = Person;
+           Person.modifyField();
+           People->replace(temp, Person);
+         }break;
+       case 2:
+           People->deleteBinaryNode(Person);
+           std::cout << "\n***Deleted***\n.";
+         break;
+       case 3:
+         break;
+       default: std::cout << "\n***invalid***\n";
+     }
+     std::cin.ignore();
+   }else{
+     std::cout << "Not Found";
+   }

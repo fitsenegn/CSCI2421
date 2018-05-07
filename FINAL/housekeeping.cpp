@@ -30,8 +30,11 @@ exception_status readInPeople(std::string file, BinaryNodeTree<Actor_Actress>* P
 
     count = 0; //what line are we on?
 
-    infile >> std::ws; //strip initial whitespace
 
+    std::string strip;
+    std::getline(infile, strip , '\n'); //strip the format information
+
+    infile >> std::ws; //strip initial whitespace
 
     while(!infile.eof()){
 
@@ -77,6 +80,7 @@ exception_status readInPeople(std::string file, BinaryNodeTree<Actor_Actress>* P
 
       PersonTree->addBinaryNode(newPerson);
 
+      infile >> std::ws;
 
     if (infile.fail()) {
         // set error
@@ -89,7 +93,18 @@ exception_status readInPeople(std::string file, BinaryNodeTree<Actor_Actress>* P
   return error;
 }
 
+exception_status readOutPeople(std::string file, BinaryNodeTree<Actor_Actress>* peopleOut){
+  exception_status error;
 
+  std::ofstream outFile;
+  outFile.open(file, std::ofstream::out);
+  outFile << "Year,Award,Winner,Name,Film\n";
+
+  peopleOut->printInorder(fileFormat, outFile);
+
+
+  return error;
+}
 /**Read in text continuously into linked list and strip all whitespace and
    punctuation leaving only spaces.
    *\param root is the tree to be read into
@@ -118,6 +133,9 @@ exception_status readInPictures(std::string file, BinaryNodeTree<Picture>* Pictu
 
 
     count = 0; //what line are we on?
+
+    std::string strip;
+    std::getline(infile, strip , '\n'); //strip the format information
 
     infile >> std::ws; //strip initial whitespace
 
@@ -155,7 +173,7 @@ exception_status readInPictures(std::string file, BinaryNodeTree<Picture>* Pictu
       //---------RATING--------
       std::getline(infile, temp, ','); //read the current word up to comma
 
-      tempContainer.Rating = std::atoi(temp.c_str());
+      tempContainer.Rating = std::stod(temp.c_str());
 
       //---------DURATION--------
       std::getline(infile, temp, ','); //read the current word up to comma
@@ -203,14 +221,26 @@ exception_status readInPictures(std::string file, BinaryNodeTree<Picture>* Pictu
   return error;
 }
 
+exception_status readOutPictures(std::string file, BinaryNodeTree<Picture>* filmOut){
+  exception_status error;
 
+  std::ofstream outFile;
+  outFile.open(file, std::ofstream::out);
+  outFile << "name,year,nominations,rating,duration,genre1,genre2,release,metacritic,synopsis\n";
+
+  filmOut->printInorder(fileFormat, outFile);
+
+
+  return error;
+}
 
 /** Screens user input for validity
 \param 'prompt' is displayed to the user, 'readVal' is the input variable
 \return '-1' returned if invalid input, '0' returned if validity */
 int getSearchTerm(std::string& readVal, std::string prompt){
   std::cout << prompt;
-  std::cin >> readVal;
+  std::cin.ignore();
+  std::getline(std::cin,readVal);
 
   for(int i = 0; i < readVal.size()+1; i++){ //strip punctuation
     if(ispunct(readVal[i])){  //if index is punctuation

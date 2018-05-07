@@ -22,7 +22,7 @@ bool mExit = false;
 BinaryNodeTree<Picture> Pictures;
 BinaryNodeTree<Actor_Actress> People;
 readInPictures("pictures.csv", &Pictures);
-readInPeople("actor-actress.csv", &People);
+readInPeople("actor-actress.csv", &People); //actor-actress
 
 while(mExit == false){
 char user;

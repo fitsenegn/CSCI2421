@@ -54,6 +54,9 @@ public:
 
     std::string print() const;
 
+    std::string printToFile() const;
+
+    bool completeCompare(Actor_Actress comp);
     bool operator==(Actor_Actress comp){
       return _self.Compare == comp.getComp();
     }
@@ -140,11 +143,11 @@ public:
   std::string getSynopsis(){return _self.Synopsis;};
 
 
+  bool completeCompare(Picture comp);
 
   bool operator==(Picture comp){
     return _self.Compare == comp.getComp();
   }
-
 
   bool operator>=(Picture comp){
     return _self.Compare >= comp.getComp();
@@ -164,6 +167,7 @@ public:
 
 
   std::string print() const; //this will return a formatted string for printing
+  std::string printToFile() const;
 
   Picture(Picture_temp instantiation): _self(instantiation)
   {this->setName(this->getName());} //set Comparison

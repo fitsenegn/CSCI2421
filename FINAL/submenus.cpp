@@ -1,6 +1,7 @@
 #include "submenus.h"
 #include <iostream>
 #include "housekeeping.h"
+#include "searchMenus.h"
 
 
 
@@ -63,47 +64,13 @@ void PictureBanner(){
 }
 
 
-int Actress_Actor_Search(BinaryNodeTree<Actor_Actress>* People){
-  char user;
-   system("clear");
-   Actress_ActorBanner();
-   std::cout << std::endl;
-   std::cout << "1) Partial Search\n"
-             << "2) Complete Search\n"
-             << "3) Back\n";
-   std::cout << "  > ";
-   std::cin >> user;
-   switch(user){
-     case '1':{
-        cin.clear();
-        std::string searching;
-        getSearchTerm(searching,"Please enter a name: ");
-        Actor_Actress searchTerm;
-        searchTerm.setName(searching);
-        BinaryNode<Actor_Actress>* Person = People->findItem(searchTerm);
-        // std::cout << ;
-           return -1;
-       break;}
-     case '2':
-           return -1;
-       break;
-     case '3':
-           return 0;
-       break;
-     default:
-       std::cout<<"invalid input\n";
-     }
-
-   return -1;
-}
-
 int Actress_Actor(BinaryNodeTree<Actor_Actress>* People){
  char user;
   system("clear");
   Actress_ActorBanner();
   std::cout << std::endl;
   std::cout << "1) Add a record\n"
-            << "2) Search for a record\n"
+            << "2) Search for a record(Modify/Delete)\n"
             << "3) Sort by specified value\n"
             << "4) Print out changes\n"
             << "5) Back\n";
@@ -120,16 +87,17 @@ int Actress_Actor(BinaryNodeTree<Actor_Actress>* People){
           Actress_Actor_Search(People);
           return -1;
       break;
-    case '3':
+    case '3':{
           return -1;
-      break;
+      }break;
     case '4':{
-          // std::string file;
-          // std::cout << "\nPlease specify your file\n";
-          // std::cin.ignore();
-          // getline(std::cin, file);
-          // std::cin.clear();
-          People->printInorder();
+          std::string file;
+          std::cout << "\nPlease specify your file\n";
+          std::cin.ignore();
+          getline(std::cin, file);
+          std::cin.clear();
+          People->printInorder(consoleFormat, std::cout);
+          readOutPeople(file, People);
           }
           return 0;
       break;
@@ -141,35 +109,6 @@ int Actress_Actor(BinaryNodeTree<Actor_Actress>* People){
   return -1;
 }
 
-int Film_Search(BinaryNodeTree<Picture>* Pictures){
-  char user;
-   system("clear");
-   PictureBanner();
-   std::cout << std::endl;
-   std::cout << "1) Partial Search\n"
-             << "2) Complete Search\n"
-             << "3) Back\n";
-   std::cout << "  > ";
-   std::cin >> user;
-   switch(user){
-     case '1':{
-           Picture newFilm;
-           newFilm.userInput();
-           Pictures->addBinaryNode(newFilm);
-           return -1;
-       break;}
-     case '2':
-           return -1;
-       break;
-     case '3':
-           return 0;
-       break;
-     default:
-       std::cout<<"invalid input\n";
-     }
-
-   return -1;
-}
 
 int Film_menu(BinaryNodeTree<Picture>* Pictures){
  char user;
@@ -177,7 +116,7 @@ int Film_menu(BinaryNodeTree<Picture>* Pictures){
   PictureBanner();
   std::cout << std::endl;
   std::cout << "1) Add a record\n"
-            << "2) Search for a record\n"
+            << "2) Search for a record(Modify/Delete)\n"
             << "3) Sort by specified value\n"
             << "4) Print out changes\n"
             << "5) Back\n";
@@ -195,12 +134,13 @@ int Film_menu(BinaryNodeTree<Picture>* Pictures){
           return -1;
       break;
     case '4':{
-          // std::string file;
-          // std::cout << "\nPlease specify your file\n";
-          // std::cin.ignore();
-          // getline(std::cin, file);
-          // std::cin.clear();
-          Pictures->printInorder();
+          std::string file;
+          std::cout << "\nPlease specify your file\n";
+          std::cin.ignore();
+          getline(std::cin, file);
+          std::cin.clear();
+          Pictures->printInorder(consoleFormat, std::cout);
+          readOutPictures(file, Pictures);
           }
           return 0;
       break;

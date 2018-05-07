@@ -1,7 +1,7 @@
 CC=g++
 LD=g++
 CC_FLAGS=-g -std=c++11
-OBJECTS= submenus.o FINAL_MAIN.o housekeeping.o dataContainers.o
+OBJECTS= submenus.o main.o housekeeping.o dataContainers.o searchMenus.o
 TEST= test.o implementation.o
 OB= kaest_CSCI2421_Final
 BINARY=ACADEMY_AWARDS

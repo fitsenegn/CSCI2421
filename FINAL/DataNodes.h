@@ -20,7 +20,7 @@ public:
     BinaryNode<itemType> * getLeftChildPtr() { return left; };
 
 	  void setItem(itemType newItem) { item = newItem; }
-	  itemType getItem() const { return item; }
+	  itemType getItem(){ return item; }
 
 private:
     itemType item;

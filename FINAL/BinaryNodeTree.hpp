@@ -1,4 +1,4 @@
-#include "BinaryNodeTree.h"
+// #include "BinaryNodeTree.h"
 
 // Constructor
 template <class itemType>
@@ -88,7 +88,7 @@ BinaryNode<itemType> *BinaryNodeTree<itemType>::findItem(itemType searchable) {
 template <class itemType>
 BinaryNode<itemType> *
 BinaryNodeTree<itemType>::findBinaryNode(itemType target, BinaryNode<itemType> *node) {
-  if((node == nullptr) || (target == node->getItem())){
+  if((node == nullptr) || (node->getItem().completeCompare(target))){
 		return node;
 	} else {
 
@@ -102,25 +102,36 @@ BinaryNodeTree<itemType>::findBinaryNode(itemType target, BinaryNode<itemType> *
   }
 }
 
+/** These following prints serve the function of printing to screen and to file
+  * When called, they are passed both the ostream and the type of output.
+  * Console output is formatted for the screen
+  * file output is formatted for the file. i.e. A csv format
+  \param type is an enum switch type designed to be a command
+  \param out is the printed out content.*/
 template <class itemType>
-void BinaryNodeTree<itemType>::printInorder() {
-  printInorder(root);
+void BinaryNodeTree<itemType>::printInorder(outType type, ostream &out) {
+  printInorder(root,out, type);
 }
 
 template <class itemType>
-void BinaryNodeTree<itemType>::printInorder(BinaryNode<itemType> *node) {
+void BinaryNodeTree<itemType>::printInorder(BinaryNode<itemType> *node,ostream &out,outType type) {
 
   // first, make sure the root node is not null
   if (node != nullptr) {
-    printInorder(node->getLeftChildPtr());  // go to the left
-    print(cout, node->getItem());  // visit the root node
-    printInorder(node->getRightChildPtr()); // go to the right
+    printInorder(node->getLeftChildPtr(), out, type);  // go to the left
+    print(type, out, node->getItem());  // visit the root node
+    printInorder(node->getRightChildPtr(), out, type); //m go to the right
   }
 }
 
 template <class itemType>
-void BinaryNodeTree<itemType>::print(ostream &out, const itemType &item) {
-  out << item.print() << endl << endl;
+void BinaryNodeTree<itemType>::print(outType type, ostream &out, const itemType &item) {
+  if(type == consoleFormat){
+    out << item.print() << endl << endl;
+  }else if(type == fileFormat){
+    out << item.printToFile() << endl;
+  }
+
 }
 
 template <class itemType>
@@ -229,6 +240,28 @@ bool BinaryNodeTree<itemType>::replace(itemType item, itemType replacementItem){
   nodeToReplace->setItem(replacementItem);
     return true;
   }
+
+}
+
+template <class itemType>
+std::vector<BinaryNode<itemType>*> BinaryNodeTree<itemType>::findAllMatches(itemType searchable) {
+  std::vector<BinaryNode<itemType>*> collectionList;
+  findAllBinaryNode(searchable, root, collectionList);
+  return collectionList;
+}
+
+// Find a node
+template <class itemType>
+void BinaryNodeTree<itemType>::findAllBinaryNode(itemType target, BinaryNode<itemType> *node, std::vector<BinaryNode<itemType>*>& list) {
+  if(target == node->getItem()){
+    list.push_back(node);
+  }
+
+    // if (target < node->getItem()) {
+      findAllBinaryNode(target, node->getLeftChildPtr(), list);
+    // }else if (target > node->getItem()) {
+      findAllBinaryNode(target, node->getRightChildPtr(), list);
+    // }
 
 }
 
