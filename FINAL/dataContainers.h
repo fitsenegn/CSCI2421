@@ -54,6 +54,10 @@ public:
 
     std::string print() const;
 
+    bool operator==(Actor_Actress comp){
+      return _self.Compare == comp.getComp();
+    }
+
     bool operator>=(Actor_Actress comp){
       return _self.Compare >= comp.getComp();
     }
@@ -137,6 +141,9 @@ public:
 
 
 
+  bool operator==(Picture comp){
+    return _self.Compare == comp.getComp();
+  }
 
 
   bool operator>=(Picture comp){

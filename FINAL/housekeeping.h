@@ -10,6 +10,7 @@ exception_status readInPictures(std::string, BinaryNodeTree<Picture>*);
 int getSearchTerm(std::string&, std::string);
 int getPlaces(int);
 
+
 struct misspelling{ //used to give details on the misspelling
   std::string word;
   int line;

@@ -75,6 +75,13 @@ int Actress_Actor_Search(BinaryNodeTree<Actor_Actress>* People){
    std::cin >> user;
    switch(user){
      case '1':{
+        cin.clear();
+        std::string searching;
+        getSearchTerm(searching,"Please enter a name: ");
+        Actor_Actress searchTerm;
+        searchTerm.setName(searching);
+        BinaryNode<Actor_Actress>* Person = People->findItem(searchTerm);
+        // std::cout << ;
            return -1;
        break;}
      case '2':

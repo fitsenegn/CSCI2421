@@ -16,7 +16,7 @@ private:
     BinaryNode<itemType> * deleteBinaryNode(BinaryNode<itemType> * BinaryNode, itemType);
     void freeBinaryNode(BinaryNode<itemType> * leaf);
 	void printInorder(BinaryNode<itemType> * BinaryNode);
-	BinaryNode<itemType> * findBinaryNode(itemType, BinaryNode<itemType> * BinaryNode);
+BinaryNode<itemType> * findBinaryNode(itemType, BinaryNode<itemType> * BinaryNode);
   // void debugPrint(BinaryNode<itemType> *, int);
   int getHeightHelper(BinaryNode<itemType>* );
   // void storeNodes(BinaryNode<itemType>*, int,vector<itemType>&);
@@ -27,7 +27,7 @@ public:
     BinaryNode<itemType> * Root() { return root; }
     void setRoot(BinaryNode<itemType> * _root) {root = _root;}
     void addBinaryNode(itemType &item);
-	BinaryNode<itemType> * findItem(itemType newthinger);
+  BinaryNode<itemType> * findItem(itemType newthinger);
 	void printInorder();
 	void print(ostream & out, const itemType & item);
     void deleteBinaryNode(itemType badthinger);

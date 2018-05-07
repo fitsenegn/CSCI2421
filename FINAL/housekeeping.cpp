@@ -3,7 +3,6 @@
 #include <iostream>
 
 
-
 /**Read in Actor and Actress data line by line into a Binary Search Tree
    *\param PersonTree is the tree to be read into
    *\param file is the name of the file to be readIn
@@ -190,7 +189,7 @@ exception_status readInPictures(std::string file, BinaryNodeTree<Picture>* Pictu
 
       Picture newFilm(tempContainer);
       Picturetree->addBinaryNode(newFilm);
-      cout << newFilm.print() << endl << endl;
+      // cout << newFilm.print() << endl << endl;
       infile >> std::ws; //strip upcoming whitespace
 
     if (infile.fail()) {

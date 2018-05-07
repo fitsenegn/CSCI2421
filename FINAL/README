@@ -69,11 +69,11 @@ Requirements are listed with R:
 You are designing and implementing a database for the Academy Award winners.
 
 
-R1/R2: You are to read in information from two files.
+R1/R2: You are to read in information from two files. --
 
 R1: You will read in actor-actress.csv which is formatted as a csv file (Ask the
 user for the file name). Then place the items in a Binary Search Tree, sorted by
-name.
+name. --
 
 This is a common format and is comma separated (instead of being on separate
 lines).  So you will have comma's between the values.  Blank values will just
@@ -93,12 +93,12 @@ The Winner field has a one if they won and a zero if they did not win.
 
 R2: Then you will read in information about the movies (called pictures by the
 Academy of Motion Pictures) that have won best picture award.  Place these items
-in a Binary Search Tree, sorted by name. This is also formatted as a .csv file
+in a Binary Search Tree, sorted by name. This is also formatted as a .csv file --
 
 The first line of pictures.csv contains the data fields including:
-name,year,nominations,rating,duration,genre1,genre2,release,metacritic,synopsis
+name,year,nominations,rating,duration,genre1,genre2,release,metacritic,synopsis--
 
-R3/R4: Choose either the movie or actor database and add a record
+R3/R4: Choose either the movie or actor database and add a record--
 
 R5/R6: Choose either the movie or actor database, search for a record, and
   modify the fields.
