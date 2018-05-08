@@ -1,10 +1,10 @@
 CC=g++
 LD=g++
 CC_FLAGS=-g -std=c++11
-OBJECTS= assignment.o implementations.o
+OBJECTS= submenus.o main.o housekeeping.o dataContainers.o searchMenus.o inputCheckers.o
 TEST= test.o implementation.o
-OB= kaest_CSCI2421_Assignment
-BINARY=name
+OB= kaest_CSCI2421_Final
+BINARY=ACADEMY_AWARDS
 
 all: $(OBJECTS) #docs
 	$(LD) -o $(BINARY) $(OBJECTS)
@@ -13,7 +13,7 @@ test: $(TEST) test.o
 	$(LD) -o test $(TEST) test.o
 
 clean:
-	rm -rf $(OBJECTS) $(TEST) $(BINARY) html latex $(OB).zip test test.o def docbook man rtf
+	rm -rf $(OBJECTS) $(TEST) $(BINARY) html latex $(OB).zip test test.o def docbook man rtf *.pdf
 
 %.o: %.cpp
 	$(CC) -c $(CC_FLAGS) $< -o $@
