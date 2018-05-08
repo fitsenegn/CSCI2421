@@ -49,6 +49,12 @@ switch(user){
     while(importExport(&Pictures,&People) == -1){   }
     break;
   case '5': mExit = true;
+      readOutPeople("modifiedActor_Actress.csv",&People);
+      readOutPictures("modifiedPictures.csv",&Pictures);
+      std::cout << "\n\nThe modified data has been written out to:\n";
+      std::cout << "----->modifiedActor_Actress.csv\n";
+      std::cout << "----->modifiedPictures.csv\n\n\n";
+
     break;
   case '6': test();
     break;

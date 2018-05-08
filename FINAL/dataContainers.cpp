@@ -2,6 +2,7 @@
 
 //--------------------ACTOR_ACTRESS--------------------------
 
+/**This function is designed to output a formatted string to output to console*/
 std::string Actor_Actress::print() const{ //this will return a formatted string for printing
   std::stringstream out;
 
@@ -23,7 +24,7 @@ std::string Actor_Actress::print() const{ //this will return a formatted string 
   return out.str();
 
 }
-
+/**This function is designed to output a formatted string to output to a file*/
 std::string Actor_Actress::printToFile() const { //this will return a formatted string for printing
 std::stringstream out;
   out << _self.Year;
@@ -36,6 +37,7 @@ std::stringstream out;
 
 }
 
+/**This function lets the user modify this Actor_Actress with a navigable interface*/
 int Actor_Actress::modifyField(){
   std::cout << "\n---------MODIFY---------\n       ";
   std::cout << "\n1) Name"
@@ -144,6 +146,7 @@ int Actor_Actress::userInput(){ //Year,Award,Winner,Name,Film
   return -1;
 }
 
+/**Unused and unimplemented|compares everything and returns true if identical match*/
 bool Actor_Actress::completeCompare(Actor_Actress comp){
   if(_self.Compare == comp.getComp()){
     return true;
@@ -228,6 +231,7 @@ int Picture::userInput(){
   return -1;
 }
 
+/**This function lets the user modify this Picture with a navigable interface*/
 int Picture::modifyField(){
   std::cout << "\n---------MODIFY---------\n       ";
   std::cout << "\n1) Name"
@@ -321,6 +325,7 @@ int Picture::modifyField(){
   return -1;
 }
 
+/**Unused and unimplemented|compares everything and returns true if identical match*/
 bool Picture::completeCompare(Picture comp){
   if(_self.Compare == comp.getComp()){
     return true;
@@ -358,6 +363,7 @@ bool Picture::completeCompare(Picture comp){
   return false;
 }
 
+/**This function is designed to output a formatted string to output to console*/
 std::string Picture::print() const{
   std::stringstream out;
 
@@ -399,7 +405,7 @@ std::string Picture::print() const{
   return out.str();
 }
 
-
+/**This function is designed to output a formatted string to output to a file*/
 std::string Picture::printToFile() const {
   std::stringstream out;
   out  << _self.Name;

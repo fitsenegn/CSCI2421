@@ -7,14 +7,15 @@
 
 #include "inputCheckers.h"
 
-
+/** @subsection dataContainers
+  * These structures are designed to hold various data and perform basic operations on them*/
 //---------------------------ACTOR_ACTRESS------------------------------------------
 struct Full_Name
 {
   std::string First;
   std::string Last;
 };
-
+/**Actor_Actress_temp is a basic struct to hold People*/
 struct Actor_Actress_temp{
   std::string Compare = "";
   int Year = 0;
@@ -25,7 +26,8 @@ struct Actor_Actress_temp{
   int key;
 };
 
-
+/**@class*/
+/** ActorActress holds all actor or actress data*/
 class Actor_Actress //Year,Award,Winner,Name,Film
 {
 public:
@@ -93,7 +95,7 @@ public:
 
 
 //----------------------------------FILM----------------------------------------------
-
+/**Picture_temp is a basic struct to hold film*/
 struct Picture_temp{ //name,year,nominations,rating,duration,
                 //genre1,genre2,release,metacritic,synopsis
   std::string Compare = "";
@@ -111,6 +113,8 @@ struct Picture_temp{ //name,year,nominations,rating,duration,
 };
 
 
+/**@class*/
+/** Picture holds all film data*/
 class Picture{
 public:
   Picture_temp _self;

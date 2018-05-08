@@ -63,7 +63,7 @@ void PictureBanner(){
  std::cout << "|_|   |_____\\_____|  |_|   \\____/|_|  \\_\\______|_____/  " << std::endl;
 }
 
-
+/**This function holds all the aActor_Actress Functions*/
 int Actress_Actor(BinaryNodeTree<Actor_Actress,std::string>* People){
  char user;
   system("clear");
@@ -88,6 +88,7 @@ int Actress_Actor(BinaryNodeTree<Actor_Actress,std::string>* People){
           return -1;
       break;
     case '3':{
+      while(Actor_Actress_sorts(People) == -1){ }
           return -1;
       }break;
     case '4':{
@@ -109,7 +110,76 @@ int Actress_Actor(BinaryNodeTree<Actor_Actress,std::string>* People){
   return -1;
 }
 
+/**This function holds all the Actor_Actress sort Functions*/
+int Actor_Actress_sorts(BinaryNodeTree<Actor_Actress,std::string>* People){
+  std::vector<Actor_Actress> allPeople = People->getVector();
+ char user;
+  system("clear");
+  PictureBanner();
+  std::cout << std::endl;
+  std::cout << "Sort by...\n";
+  std::cout << "1) Year\n"
+            << "2) Award\n"
+            << "3) Winner\n"
+            << "4) Name\n"
+            << "5) Film\n";
+  std::cout << "  > ";
+  std::cin >> user;
+  switch(user){
+    case '1':{
+          BinaryNodeTree<Actor_Actress,int>* intPeople = new BinaryNodeTree<Actor_Actress,int>;
+          for(int i = 0; i < allPeople.size(); i++){
+            intPeople->addBinaryNode(allPeople[i].getYear(),allPeople[i]);
+          }
+          intPeople->printInorder(consoleFormat, std::cout);
+          cin.ignore();
+          cin.ignore();
+          return 0;
+      break;
+    }case '2':{
+          BinaryNodeTree<Actor_Actress,std::string>* stringPeople = new BinaryNodeTree<Actor_Actress,std::string>;
+          for(int i = 0; i < allPeople.size(); i++){
+            stringPeople->addBinaryNode(stripPunctuation(allPeople[i].getAward()),allPeople[i]);
+          }
+          stringPeople->printInorder(consoleFormat, std::cout);
+          cin.ignore();
+          cin.ignore();
+          return 0;
+      break;
+    }case '3':{
+          BinaryNodeTree<Actor_Actress,int>* intPeople = new BinaryNodeTree<Actor_Actress,int>;
+          for(int i = 0; i < allPeople.size(); i++){
+            intPeople->addBinaryNode(allPeople[i].getWinner(),allPeople[i]);
+          }
+          intPeople->printInorder(consoleFormat, std::cout);
+          cin.ignore();
+          cin.ignore();
+          return 0;
+      break;
+    }case '4':{
+          People->printInorder(consoleFormat, std::cout);
+          cin.ignore();
+          cin.ignore();
+          return 0;
+      break;
+    }case '5':{
+          BinaryNodeTree<Actor_Actress,std::string>* stringPeople = new BinaryNodeTree<Actor_Actress,std::string>;
+          for(int i = 0; i < allPeople.size(); i++){
+            stringPeople->addBinaryNode(stripPunctuation(allPeople[i].getFilm()),allPeople[i]);
+          }
+          stringPeople->printInorder(consoleFormat, std::cout);
+          cin.ignore();
+          cin.ignore();
+          return 0;
+      break;
+    }default:
+      std::cout<<"invalid input\n";
+    }
 
+  return -1;
+}
+
+/**This function holds all the Picture Functions*/
 int Film_menu(BinaryNodeTree<Picture,std::string>* Pictures){
  char user;
   system("clear");
@@ -165,7 +235,7 @@ int options(){
   std::cout << std::endl;
   std::cout << "1) Some Option\n"
             << "2) Another Option\n"
-            << "3) Back\n";
+            << "3) Back (There really isn't anything here...)\n";
   std::cout << "  > ";
   std::cin >> user;
   switch(user){
@@ -183,7 +253,7 @@ int options(){
   return -1;
 }
 
-
+/**This function holds all the Picture sort Functions*/
 int Film_menu_sorts(BinaryNodeTree<Picture,std::string>* Pictures){
   std::vector<Picture> allFilms = Pictures->getVector();
  char user;
@@ -298,7 +368,7 @@ int Film_menu_sorts(BinaryNodeTree<Picture,std::string>* Pictures){
 
 
 
-
+/**This function asks for user input, clears the current tree, and reads in from the users file*/
 int importExport(BinaryNodeTree<Picture,std::string>* Pictures, BinaryNodeTree<Actor_Actress,std::string>* People){
    char user;
    system("clear");
@@ -311,21 +381,25 @@ int importExport(BinaryNodeTree<Picture,std::string>* Pictures, BinaryNodeTree<A
    std::cin >> user;
    switch(user){
      case '1':{
+       People->clear();
        std::string file;
        std::cout << "\nPlease specify your file\n";
        std::cin.ignore();
        getline(std::cin, file);
        std::cin.clear();
        readInPeople(file, People);
+       return 0;
      }
        break;
        case '2':{
+         Pictures->clear();
            std::string file;
            std::cout << "\nPlease specify your file\n";
            std::cin.ignore();
            getline(std::cin, file);
            std::cin.clear();
            readInPictures("pictures.csv", Pictures);
+           return 0;
        }
        break;
      case '3': return 0;

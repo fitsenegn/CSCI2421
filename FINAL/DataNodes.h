@@ -5,7 +5,9 @@
 #include "dataContainers.h"
 #include "inputCheckers.h"
 
-//Binary Tree Node
+
+/**@class*/
+/** BinaryNode is the substructure of BinaryNodeTree*/
 template <typename itemType, typename KEY>
 class BinaryNode {
 public:

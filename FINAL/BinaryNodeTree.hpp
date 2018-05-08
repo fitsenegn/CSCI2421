@@ -13,7 +13,13 @@ BinaryNodeTree<itemType,KEY>::~BinaryNodeTree() {
     freeBinaryNode(root);
 }
 
-// Free the node
+/**Delete the whole tree*/
+template <typename itemType, typename KEY>
+void BinaryNodeTree<itemType,KEY>::clear(){
+  this->freeBinaryNode(this->Root());
+}
+
+/** Free a node and all of its respective children*/
 template <typename itemType, typename KEY>
 void BinaryNodeTree<itemType,KEY>::freeBinaryNode(BinaryNode<itemType,KEY> *leaf) {
   // Student must fill in
@@ -26,7 +32,7 @@ void BinaryNodeTree<itemType,KEY>::freeBinaryNode(BinaryNode<itemType,KEY> *leaf
   }
 }
 
-// Add a node
+/**The public access add function*/
 template <typename itemType, typename KEY>
 void BinaryNodeTree<itemType,KEY>::addBinaryNode(KEY key, itemType& item) {
   if (Root() == nullptr) {
@@ -40,7 +46,7 @@ void BinaryNodeTree<itemType,KEY>::addBinaryNode(KEY key, itemType& item) {
     addBinaryNode(root, item, key);
 }
 
-// Add a node (private)
+/**The add helper*/
 template <typename itemType, typename KEY>
 void BinaryNodeTree<itemType,KEY>::addBinaryNode(BinaryNode<itemType,KEY> *leaf,
                                         itemType &item, KEY key) {
@@ -83,12 +89,13 @@ void BinaryNodeTree<itemType,KEY>::addBinaryNode(BinaryNode<itemType,KEY> *leaf,
   }
 }
 
+/**The basic find. This will find the first matching key and return it*/
 template <typename itemType, typename KEY>
 BinaryNode<itemType,KEY> *BinaryNodeTree<itemType,KEY>::findItem(KEY key) {
   return findBinaryNode(key, root);
 }
 
-// Find a node
+/**The Helper function for findItem(KEY key)*/
 template <typename itemType, typename KEY>
 BinaryNode<itemType,KEY> *
 BinaryNodeTree<itemType,KEY>::findBinaryNode(KEY target, BinaryNode<itemType,KEY> *node) {
@@ -106,6 +113,7 @@ BinaryNodeTree<itemType,KEY>::findBinaryNode(KEY target, BinaryNode<itemType,KEY
   }
 }
 
+
 /** These following prints serve the function of printing to screen and to file
   * When called, they are passed both the ostream and the type of output.
   * Console output is formatted for the screen
@@ -116,7 +124,7 @@ template <typename itemType, typename KEY>
 void BinaryNodeTree<itemType,KEY>::printInorder(outType type, ostream &out) {
   printInorder(root,out, type);
 }
-
+/**refer to the detailed print in order*/
 template <typename itemType, typename KEY>
 void BinaryNodeTree<itemType,KEY>::printInorder(BinaryNode<itemType,KEY> *node,ostream &out,outType type) {
 
@@ -127,7 +135,7 @@ void BinaryNodeTree<itemType,KEY>::printInorder(BinaryNode<itemType,KEY> *node,o
     printInorder(node->getRightChildPtr(), out, type); //m go to the right
   }
 }
-
+/**refer to the detailed print in order*/
 template <typename itemType, typename KEY>
 void BinaryNodeTree<itemType,KEY>::print(outType type, ostream &out, const itemType &item) {
   if(type == consoleFormat){
@@ -137,18 +145,18 @@ void BinaryNodeTree<itemType,KEY>::print(outType type, ostream &out, const itemT
   }
 
 }
-
+/**The basic deleteBinaryNode public function*/
 template <typename itemType, typename KEY>
 void BinaryNodeTree<itemType,KEY>::deleteBinaryNode(KEY toRemove) {
   setRoot(deleteBinaryNode(Root(), toRemove));
 }
 
-// deleteNode (Private)
+/// deleteNode (Private)
 template <typename itemType, typename KEY>
 BinaryNode<itemType,KEY> *
 BinaryNodeTree<itemType,KEY>::deleteBinaryNode(BinaryNode<itemType,KEY> *aRoot, KEY value) {
 
- /* Given a binary search tree and a key, this function deletes the key
+ /** Given a binary search tree and a key, this function deletes the key
  and returns the new root */
 
  // base case
@@ -191,14 +199,14 @@ BinaryNodeTree<itemType,KEY>::deleteBinaryNode(BinaryNode<itemType,KEY> *aRoot, 
    aRoot->setItem(temp->getItem());
 
    // Delete the inorder successor
-   aRoot->setRightChildPtr(deleteBinaryNode(aRoot->getRightChildPtr(), temp->getItem()));
+   aRoot->setRightChildPtr(deleteBinaryNode(aRoot->getRightChildPtr(), temp->getKey()));
  }
  return aRoot;
 }
 
-// Find the node with min value
-// Traverse the left sub-BinaryNodeTree recursively
-// till left sub-BinaryNodeTree is empty to get min
+/** Find the node with min value
+    Traverse the left sub-BinaryNodeTree recursively
+    till left sub-BinaryNodeTree is empty to get min */
 template <typename itemType, typename KEY>
 BinaryNode<itemType,KEY> *
 BinaryNodeTree<itemType,KEY>::min(BinaryNode<itemType,KEY> *node) {
@@ -211,9 +219,9 @@ BinaryNodeTree<itemType,KEY>::min(BinaryNode<itemType,KEY> *node) {
   return current;
 }
 
-// Find the node with max value
-// Traverse the right sub-BinaryNodeTree recursively
-// till right sub-BinaryNodeTree is empty to get max
+/** Find the node with max value
+    Traverse the right sub-BinaryNodeTree recursively
+    till right sub-BinaryNodeTree is empty to get max */
 template <typename itemType, typename KEY>
 BinaryNode<itemType,KEY> *
 BinaryNodeTree<itemType,KEY>::max(BinaryNode<itemType,KEY> *node) {
@@ -229,7 +237,7 @@ BinaryNodeTree<itemType,KEY>::max(BinaryNode<itemType,KEY> *node) {
 }
 
 
-
+/**Returns how tall the tree is. Used for debug print but not currently implemented*/
 template <typename itemType, typename KEY>
 int BinaryNodeTree<itemType,KEY>::
     getHeightHelper(BinaryNode<itemType,KEY>* subTreePtr)
@@ -242,6 +250,7 @@ int BinaryNodeTree<itemType,KEY>::
 }  // end getHeightHelper
 
 
+/**Unused however this function replaces one item with another*/
 template <typename itemType, typename KEY>
 bool BinaryNodeTree<itemType,KEY>::replace(itemType item, itemType replacementItem){
   BinaryNode<itemType,KEY>* nodeToReplace = findBinaryNode(item, root);
@@ -253,7 +262,7 @@ bool BinaryNodeTree<itemType,KEY>::replace(itemType item, itemType replacementIt
   }
 
 }
-
+/**This function finds every single matching item and returns a list of them*/
 template <typename itemType, typename KEY>
 std::vector<itemType> BinaryNodeTree<itemType,KEY>::findAllMatches(KEY searchable) {
   std::vector<itemType> collectionList;
@@ -261,23 +270,23 @@ std::vector<itemType> BinaryNodeTree<itemType,KEY>::findAllMatches(KEY searchabl
   return collectionList;
 }
 
-// Find a node
+/**The helper function for findAllMatches(KEY)*/
 template <typename itemType, typename KEY>
 void BinaryNodeTree<itemType,KEY>::findAllBinaryNode(KEY target, BinaryNode<itemType,KEY> *node, std::vector<itemType>& list) {
-  if(target == node->getKey()){
-    list.push_back(node->getItem());
-  }
-
-    // if (target < node->getItem()) {
-      findAllBinaryNode(target, node->getLeftChildPtr(), list);
-    // }else if (target > node->getItem()) {
-      findAllBinaryNode(target, node->getRightChildPtr(), list);
-    // }
-
+    if (node != nullptr) {
+        if(target == node->getKey()){
+          list.push_back(node->getItem());
+        }
+        // if (target < node->getItem()) {
+          findAllBinaryNode(target, node->getLeftChildPtr(), list);
+        // }else if (target > node->getItem()) {
+          findAllBinaryNode(target, node->getRightChildPtr(), list);
+        // }
+      }
 }
 
 
-
+/**This function returns a vector containing the complete contents of the tree*/
 template <typename itemType, typename KEY>
 std::vector<itemType> BinaryNodeTree<itemType,KEY>::getVector() {
   std::vector<itemType> collectionList;
@@ -285,7 +294,7 @@ std::vector<itemType> BinaryNodeTree<itemType,KEY>::getVector() {
   return collectionList;
 }
 
-// Find a node
+/**The Helper Function for getVector();*/
 template <typename itemType, typename KEY>
 void BinaryNodeTree<itemType,KEY>::getVector(BinaryNode<itemType,KEY> *node, std::vector<itemType>& list) {
     if (node != nullptr) {
@@ -295,6 +304,61 @@ void BinaryNodeTree<itemType,KEY>::getVector(BinaryNode<itemType,KEY> *node, std
     }
 }
 
+
+
+
+//__________________________________________________PARTIAL SEARCHES_______________
+
+/**Unimplemented*/
+template <typename itemType, typename KEY>
+BinaryNode<itemType,KEY> *BinaryNodeTree<itemType,KEY>::findItemPartial(KEY key) {
+  return findBinaryNodePartial(key, root);
+}
+
+/**Unimplemented*/
+template <typename itemType, typename KEY>
+BinaryNode<itemType,KEY> *
+BinaryNodeTree<itemType,KEY>::findBinaryNodePartial(KEY target, BinaryNode<itemType,KEY> *node) {
+  std::string current = node->getKey();
+  std::string search = target;
+  if((node == nullptr) || (current.find(search))){
+		return node;
+	} else {
+
+    if (target < node->getKey()) {
+      return findBinaryNodePartial(target, node->getLeftChildPtr());
+    }else if (target > node->getKey()) {
+      return findBinaryNodePartial(target, node->getRightChildPtr());
+    } else {
+      return nullptr; // not found
+    }
+  }
+}
+/**Unimplemented*/
+template <typename itemType, typename KEY>
+std::vector<itemType> BinaryNodeTree<itemType,KEY>::findAllMatchesPartial(KEY searchable) {
+  std::vector<itemType> collectionList;
+  findAllBinaryNodePartial(searchable, root, collectionList);
+  return collectionList;
+}
+
+/**Unimplemented*/
+template <typename itemType, typename KEY>
+void BinaryNodeTree<itemType,KEY>::findAllBinaryNodePartial(KEY target, BinaryNode<itemType,KEY> *node, std::vector<itemType>& list) {
+    if (node != nullptr) {
+      std::string current = node->getKey();
+      std::string search = target;
+
+        if((current.find(search))){
+          list.push_back(node->getItem());
+        }
+        // if (target < node->getItem()) {
+          findAllBinaryNodePartial(target, node->getLeftChildPtr(), list);
+        // }else if (target > node->getItem()) {
+          findAllBinaryNodePartial(target, node->getRightChildPtr(), list);
+        // }
+      }
+}
 
 // template<class itemType>
 // std::string BinaryNodeTree<itemType>::debugPrint(){

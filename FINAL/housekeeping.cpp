@@ -93,7 +93,7 @@ exception_status readInPeople(std::string file, BinaryNodeTree<Actor_Actress,std
   return error;
 }
 
-
+/**Read out the Actor_Actress tree*/
 exception_status readOutPeople(std::string file, BinaryNodeTree<Actor_Actress,std::string>* peopleOut){
   exception_status error;
 
@@ -224,7 +224,7 @@ exception_status readInPictures(std::string file, BinaryNodeTree<Picture,std::st
   return error;
 }
 
-
+/**Read out the Pictures tree*/
 exception_status readOutPictures(std::string file, BinaryNodeTree<Picture,std::string>* filmOut){
   exception_status error;
 
