@@ -11,35 +11,37 @@ using namespace std;
 enum outType{consoleFormat,fileFormat};
 
 // Binary Search Tree class
-template <class itemType>
+template <typename itemType, typename KEY>
 class BinaryNodeTree {
 private:
-    BinaryNode<itemType> * root;
-    void addBinaryNode(BinaryNode<itemType> * leaf, itemType& item);
-    BinaryNode<itemType> * deleteBinaryNode(BinaryNode<itemType> * BinaryNode, itemType);
-    void freeBinaryNode(BinaryNode<itemType> * leaf);
-	void printInorder(BinaryNode<itemType> * BinaryNode,ostream &,outType);
-BinaryNode<itemType> * findBinaryNode(itemType, BinaryNode<itemType> * BinaryNode);
-void findAllBinaryNode(itemType, BinaryNode<itemType>*, std::vector<BinaryNode<itemType>*>&);
+    BinaryNode<itemType,KEY> * root;
+    void addBinaryNode(BinaryNode<itemType,KEY> * leaf, itemType& item,KEY key);
+    BinaryNode<itemType,KEY> * deleteBinaryNode(BinaryNode<itemType,KEY> * BinaryNode, KEY key);
+    void freeBinaryNode(BinaryNode<itemType,KEY> * leaf);
+	  void printInorder(BinaryNode<itemType,KEY> * BinaryNode,ostream &,outType);
+    BinaryNode<itemType,KEY> * findBinaryNode(KEY key, BinaryNode<itemType,KEY> * BinaryNode);
+    void findAllBinaryNode(KEY key, BinaryNode<itemType,KEY>*, std::vector<itemType>&);
+    void getVector(BinaryNode<itemType,KEY>*, std::vector<itemType>&);
   // void debugPrint(BinaryNode<itemType> *, int);
-  int getHeightHelper(BinaryNode<itemType>* );
+    int getHeightHelper(BinaryNode<itemType,KEY>* );
   // void storeNodes(BinaryNode<itemType>*, int,vector<itemType>&);
 
 public:
-    BinaryNodeTree<itemType> duplicate();
-    BinaryNodeTree<itemType>();
-    ~BinaryNodeTree<itemType>();
-    BinaryNode<itemType> * Root() { return root; }
-    void setRoot(BinaryNode<itemType> * _root) {root = _root;}
-    void addBinaryNode(itemType &item);
-  BinaryNode<itemType> * findItem(itemType newthinger);
-  std::vector<BinaryNode<itemType>*> findAllMatches(itemType);
-	void printInorder(outType,ostream&);
-	void print(outType, ostream & out, const itemType & item);
-  void deleteBinaryNode(itemType badthinger);
-	BinaryNode<itemType> * min(BinaryNode<itemType> * BinaryNode);
-	BinaryNode<itemType> * max(BinaryNode<itemType> * BinaryNode);
-  bool replace(itemType item, itemType replacementItem); //THIS IS THE ASSIGNMENT FUNCTION XXX
+    BinaryNodeTree<itemType,KEY> duplicate();
+    BinaryNodeTree<itemType,KEY>();
+    ~BinaryNodeTree<itemType,KEY>();
+    BinaryNode<itemType,KEY> * Root() { return root; }
+    void setRoot(BinaryNode<itemType,KEY> * _root) {root = _root;}
+    void addBinaryNode(KEY key, itemType &item);
+    BinaryNode<itemType,KEY> * findItem(KEY key);
+    std::vector<itemType> findAllMatches(KEY key);
+    std::vector<itemType> getVector();
+  	void printInorder(outType,ostream&);
+  	void print(outType, ostream & out, const itemType & item);
+    void deleteBinaryNode(KEY);
+  	BinaryNode<itemType,KEY> * min(BinaryNode<itemType,KEY> * BinaryNode);
+  	BinaryNode<itemType,KEY> * max(BinaryNode<itemType,KEY> * BinaryNode);
+    bool replace(itemType item, itemType replacementItem); //THIS IS THE ASSIGNMENT FUNCTION XXX
   // void coolView(int);
 
 };

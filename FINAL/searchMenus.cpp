@@ -1,6 +1,6 @@
 #include "searchMenus.h"
 
-int Actress_Actor_Search(BinaryNodeTree<Actor_Actress>* People){
+int Actress_Actor_Search(BinaryNodeTree<Actor_Actress,std::string>* People){
   char user;
    system("clear");
    // Actress_ActorBanner();
@@ -15,15 +15,11 @@ int Actress_Actor_Search(BinaryNodeTree<Actor_Actress>* People){
         cin.clear();
         std::string searching;
         getSearchTerm(searching,"Please enter a name: ");
-        Actor_Actress searchTerm;
-        // std::cout << searching;
-        // std::cout << searchTerm.print();
-        searchTerm.setName(searching);
 
-        if(People->findItem(searchTerm) != nullptr){
-          std::vector<Actor_Actress> test;
+        if(People->findItem(searching) != nullptr){
+          std::vector<Actor_Actress> test = People->findAllMatches(searching);
 
-          Actor_Actress Person = People->findItem(searchTerm)->getItem();
+          Actor_Actress Person = People->findItem(searching)->getItem();
 
           std::cout << Person.print();
           std::cout << "\nEntry found. What would you like to do?"
@@ -35,13 +31,9 @@ int Actress_Actor_Search(BinaryNodeTree<Actor_Actress>* People){
           std::cin >> c;
           switch(c){
             case 1:{
-                // People->deleteBinaryNode(Person);
-                Actor_Actress temp = Person;
-                Person.modifyField();
-                People->replace(temp, Person);
+
               }break;
             case 2:
-                People->deleteBinaryNode(Person);
                 std::cout << "\n***Deleted***\n.";
               break;
             case 3:
@@ -55,10 +47,6 @@ int Actress_Actor_Search(BinaryNodeTree<Actor_Actress>* People){
            return -1;
        break;
      }case '2':{
-     Actor_Actress searchTerm;
-     searchTerm.setFilm("In Old Arizona");
-     Actor_Actress Person = People->findItem(searchTerm)->getItem();
-     cout << Person.print();
            return -1;
        break;
      }case '3':
@@ -72,7 +60,7 @@ int Actress_Actor_Search(BinaryNodeTree<Actor_Actress>* People){
 }
 
 
-int Film_Search(BinaryNodeTree<Picture>* Pictures){
+int Film_Search(BinaryNodeTree<Picture,std::string>* Pictures){
   char user;
    system("clear");
    // PictureBanner();
@@ -84,9 +72,6 @@ int Film_Search(BinaryNodeTree<Picture>* Pictures){
    std::cin >> user;
    switch(user){
      case '1':{
-           Picture newFilm;
-           newFilm.userInput();
-           Pictures->addBinaryNode(newFilm);
            return -1;
        break;}
      case '2':

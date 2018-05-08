@@ -19,8 +19,8 @@ int main(){
     std::cin.ignore();
 
 bool mExit = false;
-BinaryNodeTree<Picture> Pictures;
-BinaryNodeTree<Actor_Actress> People;
+BinaryNodeTree<Picture,std::string> Pictures;
+BinaryNodeTree<Actor_Actress,std::string> People;
 readInPictures("pictures.csv", &Pictures);
 readInPeople("actor-actress.csv", &People); //actor-actress
 

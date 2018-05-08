@@ -64,7 +64,7 @@ void PictureBanner(){
 }
 
 
-int Actress_Actor(BinaryNodeTree<Actor_Actress>* People){
+int Actress_Actor(BinaryNodeTree<Actor_Actress,std::string>* People){
  char user;
   system("clear");
   Actress_ActorBanner();
@@ -80,7 +80,7 @@ int Actress_Actor(BinaryNodeTree<Actor_Actress>* People){
     case '1':{
           Actor_Actress newPerson;
           newPerson.userInput();
-          People->addBinaryNode(newPerson);
+          People->addBinaryNode(newPerson.getName(), newPerson);
           return -1;
       break;}
     case '2':
@@ -110,7 +110,7 @@ int Actress_Actor(BinaryNodeTree<Actor_Actress>* People){
 }
 
 
-int Film_menu(BinaryNodeTree<Picture>* Pictures){
+int Film_menu(BinaryNodeTree<Picture,std::string>* Pictures){
  char user;
   system("clear");
   PictureBanner();
@@ -181,7 +181,7 @@ int options(){
 
 
 
-int importExport(BinaryNodeTree<Picture>* Pictures, BinaryNodeTree<Actor_Actress>* People){
+int importExport(BinaryNodeTree<Picture,std::string>* Pictures, BinaryNodeTree<Actor_Actress,std::string>* People){
    char user;
    system("clear");
    importBanner();
@@ -222,15 +222,21 @@ int importExport(BinaryNodeTree<Picture>* Pictures, BinaryNodeTree<Actor_Actress
 
 void test(){ //Test crap here
 
-  BinaryNodeTree<Actor_Actress> person;
+  BinaryNodeTree<Actor_Actress,std::string>* person;
 
-  Actor_Actress test;
+  readInPeople("actor-actress.csv", person);
 
-  std::cout << test.print();
+  std::vector<Actor_Actress> shift = person->getVector();
 
-  test.modifyField();
+  std::cout << shift.size();
 
-  std::cout << test.print();
+  // Actor_Actress test;
+  //
+  // std::cout << test.print();
+  //
+  // test.modifyField();
+  //
+  // std::cout << test.print();
 
   // person.addBinaryNode(test);
   // readInPeople("actor-actress.csv", &person);

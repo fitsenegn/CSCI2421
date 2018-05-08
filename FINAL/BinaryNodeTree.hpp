@@ -1,21 +1,21 @@
 // #include "BinaryNodeTree.h"
 
 // Constructor
-template <class itemType>
-BinaryNodeTree<itemType>::BinaryNodeTree() {
+template <typename itemType, typename KEY>
+BinaryNodeTree<itemType,KEY>::BinaryNodeTree() {
   root = nullptr;
 }
 
 // Destructor
-template <class itemType>
-BinaryNodeTree<itemType>::~BinaryNodeTree() {
+template <typename itemType, typename KEY>
+BinaryNodeTree<itemType,KEY>::~BinaryNodeTree() {
   if (root != nullptr)
     freeBinaryNode(root);
 }
 
 // Free the node
-template <class itemType>
-void BinaryNodeTree<itemType>::freeBinaryNode(BinaryNode<itemType> *leaf) {
+template <typename itemType, typename KEY>
+void BinaryNodeTree<itemType,KEY>::freeBinaryNode(BinaryNode<itemType,KEY> *leaf) {
   // Student must fill in
   if (this->Root() == leaf) { // if the root is the leaf, delete that leaf
     delete leaf;
@@ -27,51 +27,55 @@ void BinaryNodeTree<itemType>::freeBinaryNode(BinaryNode<itemType> *leaf) {
 }
 
 // Add a node
-template <class itemType>
-void BinaryNodeTree<itemType>::addBinaryNode(itemType& item) {
+template <typename itemType, typename KEY>
+void BinaryNodeTree<itemType,KEY>::addBinaryNode(KEY key, itemType& item) {
   if (Root() == nullptr) {
-    BinaryNode<itemType> *newNodePtr = new BinaryNode<itemType>;
+    BinaryNode<itemType,KEY> *newNodePtr = new BinaryNode<itemType,KEY>;
     newNodePtr->setItem(item);
+    newNodePtr->setKey(key);
     root = newNodePtr;
     root->setParentPtr(root);
 
   } else
-    addBinaryNode(root, item);
+    addBinaryNode(root, item, key);
 }
 
 // Add a node (private)
-template <class itemType>
-void BinaryNodeTree<itemType>::addBinaryNode(BinaryNode<itemType> *leaf,
-                                        itemType &item) {
+template <typename itemType, typename KEY>
+void BinaryNodeTree<itemType,KEY>::addBinaryNode(BinaryNode<itemType,KEY> *leaf,
+                                        itemType &item, KEY key) {
 
   if (this->Root() == nullptr) { // First check if root is null
-    BinaryNode<itemType> *newNodePtr =
-        new BinaryNode<itemType>; // make a new node
+    BinaryNode<itemType,KEY> *newNodePtr =
+        new BinaryNode<itemType,KEY>; // make a new node
     newNodePtr->setItem(item);       // set the item
+    newNodePtr->setKey(key);
     root = newNodePtr;               // set the root
   } else {
 
-    if (item < leaf->getItem()) { // Check to see if the value is < the leaf's value
+    if (key < leaf->getKey()) { // Check to see if the value is < the leaf's value
 
       if (leaf->getLeftChildPtr() != nullptr) { // if left is not null then
-        addBinaryNode(leaf->getLeftChildPtr(), item); // Add the node to the left (recursively)
+        addBinaryNode(leaf->getLeftChildPtr(), item, key); // Add the node to the left (recursively)
       } else {         // Otherwise make a new node and attach it to the left
-        BinaryNode<itemType> *newNodePtr = new BinaryNode<itemType>;
+        BinaryNode<itemType,KEY> *newNodePtr = new BinaryNode<itemType,KEY>;
         newNodePtr->setItem(item);
+        newNodePtr->setKey(key);
         newNodePtr->setParentPtr(leaf);
         leaf->setLeftChildPtr(newNodePtr);
       }
     }
     // Otherwise
 
-    if (item >= leaf->getItem()) { // Check to see if the value >= leaf's value
+    if (key >= leaf->getKey()) { // Check to see if the value >= leaf's value
 
       if (leaf->getRightChildPtr() != nullptr) { // if leaf's right is not null then
         addBinaryNode(leaf->getRightChildPtr(),
-                item); // Add the node to the right (recursively)
+                item, key); // Add the node to the right (recursively)
       } else {         // Otherwise make new node and attach it to the right
-        BinaryNode<itemType> *newNodePtr = new BinaryNode<itemType>;
+        BinaryNode<itemType,KEY> *newNodePtr = new BinaryNode<itemType,KEY>;
         newNodePtr->setItem(item);
+        newNodePtr->setKey(key);
         newNodePtr->setParentPtr(leaf);
         leaf->setRightChildPtr(newNodePtr);
       }
@@ -79,22 +83,22 @@ void BinaryNodeTree<itemType>::addBinaryNode(BinaryNode<itemType> *leaf,
   }
 }
 
-template <class itemType>
-BinaryNode<itemType> *BinaryNodeTree<itemType>::findItem(itemType searchable) {
-  return findBinaryNode(searchable, root);
+template <typename itemType, typename KEY>
+BinaryNode<itemType,KEY> *BinaryNodeTree<itemType,KEY>::findItem(KEY key) {
+  return findBinaryNode(key, root);
 }
 
 // Find a node
-template <class itemType>
-BinaryNode<itemType> *
-BinaryNodeTree<itemType>::findBinaryNode(itemType target, BinaryNode<itemType> *node) {
-  if((node == nullptr) || (node->getItem().completeCompare(target))){
+template <typename itemType, typename KEY>
+BinaryNode<itemType,KEY> *
+BinaryNodeTree<itemType,KEY>::findBinaryNode(KEY target, BinaryNode<itemType,KEY> *node) {
+  if((node == nullptr) || (target == node->getKey())){
 		return node;
 	} else {
 
-    if (target < node->getItem()) {
+    if (target < node->getKey()) {
       return findBinaryNode(target, node->getLeftChildPtr());
-    }else if (target > node->getItem()) {
+    }else if (target > node->getKey()) {
       return findBinaryNode(target, node->getRightChildPtr());
     } else {
       return nullptr; // not found
@@ -108,13 +112,13 @@ BinaryNodeTree<itemType>::findBinaryNode(itemType target, BinaryNode<itemType> *
   * file output is formatted for the file. i.e. A csv format
   \param type is an enum switch type designed to be a command
   \param out is the printed out content.*/
-template <class itemType>
-void BinaryNodeTree<itemType>::printInorder(outType type, ostream &out) {
+template <typename itemType, typename KEY>
+void BinaryNodeTree<itemType,KEY>::printInorder(outType type, ostream &out) {
   printInorder(root,out, type);
 }
 
-template <class itemType>
-void BinaryNodeTree<itemType>::printInorder(BinaryNode<itemType> *node,ostream &out,outType type) {
+template <typename itemType, typename KEY>
+void BinaryNodeTree<itemType,KEY>::printInorder(BinaryNode<itemType,KEY> *node,ostream &out,outType type) {
 
   // first, make sure the root node is not null
   if (node != nullptr) {
@@ -124,8 +128,8 @@ void BinaryNodeTree<itemType>::printInorder(BinaryNode<itemType> *node,ostream &
   }
 }
 
-template <class itemType>
-void BinaryNodeTree<itemType>::print(outType type, ostream &out, const itemType &item) {
+template <typename itemType, typename KEY>
+void BinaryNodeTree<itemType,KEY>::print(outType type, ostream &out, const itemType &item) {
   if(type == consoleFormat){
     out << item.print() << endl << endl;
   }else if(type == fileFormat){
@@ -134,64 +138,71 @@ void BinaryNodeTree<itemType>::print(outType type, ostream &out, const itemType 
 
 }
 
-template <class itemType>
-void BinaryNodeTree<itemType>::deleteBinaryNode(itemType toRemove) {
+template <typename itemType, typename KEY>
+void BinaryNodeTree<itemType,KEY>::deleteBinaryNode(KEY toRemove) {
   setRoot(deleteBinaryNode(Root(), toRemove));
 }
 
 // deleteNode (Private)
-template <class itemType>
-BinaryNode<itemType> *
-BinaryNodeTree<itemType>::deleteBinaryNode(BinaryNode<itemType> *aRoot, itemType value) {
+template <typename itemType, typename KEY>
+BinaryNode<itemType,KEY> *
+BinaryNodeTree<itemType,KEY>::deleteBinaryNode(BinaryNode<itemType,KEY> *aRoot, KEY value) {
 
-  // base case
-  if (aRoot == nullptr)
-    return aRoot;
+ /* Given a binary search tree and a key, this function deletes the key
+ and returns the new root */
 
-  // If the value to be deleted is smaller than the aRoot's value,
-  // then it lies in left subtree
-  if (value < aRoot->getItem())
-    aRoot->setLeftChildPtr(deleteBinaryNode(aRoot->getLeftChildPtr(), value));
+ // base case
+ if (aRoot == nullptr) return aRoot;
 
-  // If the value to be deleted is greater than the root's value,
-  // then it lies in right subtree
-  else if (value > aRoot->getItem())
-    root->setRightChildPtr(deleteBinaryNode(aRoot->getRightChildPtr(), value));
+ // If the key to be deleted is smaller than the aRoot's key,
+ // then it lies in left subtree
+ if (value < aRoot->getKey())
+   aRoot->setLeftChildPtr(deleteBinaryNode(aRoot->getLeftChildPtr(), value));
 
-  // if value is same as root's value, then This is the node
-  // to be deleted
-  else {
-    // node with only one child or no child
-    if (aRoot->getLeftChildPtr() == nullptr) {
-      BinaryNode<itemType> *temp = aRoot->getRightChildPtr();
-      delete aRoot;
-      return temp;
-    } else if (aRoot->getRightChildPtr() == nullptr) {
-      BinaryNode<itemType> *temp = aRoot->getLeftChildPtr();
-      delete aRoot;
-      return temp;
-    }
+ // If the key to be deleted is greater than the root's key,
+ // then it lies in right subtree
+ else if (value > aRoot->getKey())
+   root->setRightChildPtr(deleteBinaryNode(aRoot->getRightChildPtr(), value));
 
-    // node with two children: Get the inorder successor (smallest
-    // in the right subtree)
-    BinaryNode<itemType> *temp = min(aRoot->getRightChildPtr());
+ // if key is same as root's key, then This is the node
+ // to be deleted
+ else
+ {
+   // node with only one child or no child
+   if (aRoot->getLeftChildPtr() == nullptr)
+   {
+     BinaryNode<itemType,KEY> *temp = aRoot->getRightChildPtr();
+     delete aRoot;
+     return temp;
+   }
+   else if (aRoot->getRightChildPtr() == nullptr)
+   {
+    BinaryNode<itemType,KEY> *temp = aRoot->getLeftChildPtr();
+     delete aRoot;
+     return temp;
+   }
 
-    // Copy the inorder successor's content to this node
-    aRoot->setItem(temp->getItem());
+   // node with two children: Get the inorder successor (smallest
+   // in the right subtree)
+   BinaryNode<itemType,KEY> * temp = min(aRoot->getRightChildPtr());
 
-    // Delete the inorder successor
-    aRoot->setRightChildPtr(deleteBinaryNode(aRoot->getRightChildPtr(), temp->getItem()));
-  }
-  return aRoot;
+   // Copy the inorder successor's content to this node
+   aRoot->setKey(temp->getKey());
+   aRoot->setItem(temp->getItem());
+
+   // Delete the inorder successor
+   aRoot->setRightChildPtr(deleteBinaryNode(aRoot->getRightChildPtr(), temp->getItem()));
+ }
+ return aRoot;
 }
 
 // Find the node with min value
 // Traverse the left sub-BinaryNodeTree recursively
 // till left sub-BinaryNodeTree is empty to get min
-template <class itemType>
-BinaryNode<itemType> *
-BinaryNodeTree<itemType>::min(BinaryNode<itemType> *node) {
-  BinaryNode<itemType> *current = node;
+template <typename itemType, typename KEY>
+BinaryNode<itemType,KEY> *
+BinaryNodeTree<itemType,KEY>::min(BinaryNode<itemType,KEY> *node) {
+  BinaryNode<itemType,KEY> *current = node;
 
   /* loop down to find the leftmost leaf */
   while (current->getLeftChildPtr() != nullptr)
@@ -203,10 +214,10 @@ BinaryNodeTree<itemType>::min(BinaryNode<itemType> *node) {
 // Find the node with max value
 // Traverse the right sub-BinaryNodeTree recursively
 // till right sub-BinaryNodeTree is empty to get max
-template <class itemType>
-BinaryNode<itemType> *
-BinaryNodeTree<itemType>::max(BinaryNode<itemType> *node) {
-  BinaryNode<itemType> *tempNode = node;
+template <typename itemType, typename KEY>
+BinaryNode<itemType,KEY> *
+BinaryNodeTree<itemType,KEY>::max(BinaryNode<itemType,KEY> *node) {
+  BinaryNode<itemType,KEY> *tempNode = node;
   if (node == nullptr)
     tempNode = nullptr;
   else if (node->getRightChildPtr())
@@ -219,9 +230,9 @@ BinaryNodeTree<itemType>::max(BinaryNode<itemType> *node) {
 
 
 
-template<class itemType>
-int BinaryNodeTree<itemType>::
-    getHeightHelper(BinaryNode<itemType>* subTreePtr)
+template <typename itemType, typename KEY>
+int BinaryNodeTree<itemType,KEY>::
+    getHeightHelper(BinaryNode<itemType,KEY>* subTreePtr)
 {
    if (subTreePtr == nullptr)
       return 0;
@@ -231,9 +242,9 @@ int BinaryNodeTree<itemType>::
 }  // end getHeightHelper
 
 
-template<class itemType>
-bool BinaryNodeTree<itemType>::replace(itemType item, itemType replacementItem){
-  BinaryNode<itemType>* nodeToReplace = findBinaryNode(item, root);
+template <typename itemType, typename KEY>
+bool BinaryNodeTree<itemType,KEY>::replace(itemType item, itemType replacementItem){
+  BinaryNode<itemType,KEY>* nodeToReplace = findBinaryNode(item, root);
   if(nodeToReplace == nullptr){
     return false;
   }else{
@@ -243,18 +254,18 @@ bool BinaryNodeTree<itemType>::replace(itemType item, itemType replacementItem){
 
 }
 
-template <class itemType>
-std::vector<BinaryNode<itemType>*> BinaryNodeTree<itemType>::findAllMatches(itemType searchable) {
-  std::vector<BinaryNode<itemType>*> collectionList;
+template <typename itemType, typename KEY>
+std::vector<itemType> BinaryNodeTree<itemType,KEY>::findAllMatches(KEY searchable) {
+  std::vector<itemType> collectionList;
   findAllBinaryNode(searchable, root, collectionList);
   return collectionList;
 }
 
 // Find a node
-template <class itemType>
-void BinaryNodeTree<itemType>::findAllBinaryNode(itemType target, BinaryNode<itemType> *node, std::vector<BinaryNode<itemType>*>& list) {
-  if(target == node->getItem()){
-    list.push_back(node);
+template <typename itemType, typename KEY>
+void BinaryNodeTree<itemType,KEY>::findAllBinaryNode(KEY target, BinaryNode<itemType,KEY> *node, std::vector<itemType>& list) {
+  if(target == node->getKey()){
+    list.push_back(node->getItem());
   }
 
     // if (target < node->getItem()) {
@@ -266,6 +277,26 @@ void BinaryNodeTree<itemType>::findAllBinaryNode(itemType target, BinaryNode<ite
 }
 
 
+
+template <typename itemType, typename KEY>
+std::vector<itemType> BinaryNodeTree<itemType,KEY>::getVector() {
+  std::vector<itemType> collectionList;
+  getVector(searchable, root, collectionList);
+  return collectionList;
+}
+
+// Find a node
+template <typename itemType, typename KEY>
+void BinaryNodeTree<itemType>::getVector(BinaryNode<itemType> *node, std::vector<itemType>& list) {
+
+    if (node != nullptr) {
+      getVector(node->getLeftChildPtr(), list);
+      list.push_back(node);
+      getVector(node->getRightChildPtr(), list);
+    }
+}
+
+
 // template<class itemType>
 // std::string BinaryNodeTree<itemType>::debugPrint(){
 //  std::string thisTree = "";
@@ -273,7 +304,7 @@ void BinaryNodeTree<itemType>::findAllBinaryNode(itemType target, BinaryNode<ite
 //  return debugPrint(root, thisTree);
 // }
 //
-// template <class itemType>
+// template <typename itemType, typename KEY>
 // std::string BinaryNodeTree<itemType>::debugPrint(BinaryNode<itemType> * node, std::string &check){
 //
 // BinaryNode<itemType> * trackr = node;

@@ -9,7 +9,7 @@
                                       | std::ifstream needs std::string
    *\return error tracks if there was an error, what type, and where in the
                                                                           file.*/
-exception_status readInPeople(std::string file, BinaryNodeTree<Actor_Actress>* PersonTree){
+exception_status readInPeople(std::string file, BinaryNodeTree<Actor_Actress,std::string>* PersonTree){
   exception_status error;
 
     int count = 0;
@@ -75,10 +75,10 @@ exception_status readInPeople(std::string file, BinaryNodeTree<Actor_Actress>* P
 
         tempContainer.Film = temp;
 
-
+        tempContainer.key = count;
       Actor_Actress newPerson(tempContainer);
 
-      PersonTree->addBinaryNode(newPerson);
+      PersonTree->addBinaryNode(newPerson.getName(), newPerson);
 
       infile >> std::ws;
 
@@ -93,7 +93,7 @@ exception_status readInPeople(std::string file, BinaryNodeTree<Actor_Actress>* P
   return error;
 }
 
-exception_status readOutPeople(std::string file, BinaryNodeTree<Actor_Actress>* peopleOut){
+exception_status readOutPeople(std::string file, BinaryNodeTree<Actor_Actress,std::string>* peopleOut){
   exception_status error;
 
   std::ofstream outFile;
@@ -113,7 +113,7 @@ exception_status readOutPeople(std::string file, BinaryNodeTree<Actor_Actress>* 
    *\return error tracks if there was an error, what type, and where in the
                                                                           file.*/
 /*Read each entry in a specified file into the tree*/
-exception_status readInPictures(std::string file, BinaryNodeTree<Picture>* Picturetree){
+exception_status readInPictures(std::string file, BinaryNodeTree<Picture,std::string>* Picturetree){
   exception_status error;
 
     int count = 0;
@@ -205,8 +205,10 @@ exception_status readInPictures(std::string file, BinaryNodeTree<Picture>* Pictu
 
       tempContainer.Synopsis = temp;
 
+      tempContainer.key = count;
+
       Picture newFilm(tempContainer);
-      Picturetree->addBinaryNode(newFilm);
+      Picturetree->addBinaryNode(newFilm.getName(), newFilm);
       // cout << newFilm.print() << endl << endl;
       infile >> std::ws; //strip upcoming whitespace
 
@@ -221,7 +223,7 @@ exception_status readInPictures(std::string file, BinaryNodeTree<Picture>* Pictu
   return error;
 }
 
-exception_status readOutPictures(std::string file, BinaryNodeTree<Picture>* filmOut){
+exception_status readOutPictures(std::string file, BinaryNodeTree<Picture,std::string>* filmOut){
   exception_status error;
 
   std::ofstream outFile;

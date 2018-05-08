@@ -22,6 +22,7 @@ struct Actor_Actress_temp{
   int Winner = -1; // 0 means they lost 1 means they won
   std::string Name = " ";
   std::string Film = " ";
+  int key;
 };
 
 
@@ -43,6 +44,7 @@ public:
         setComp(stripPunctuation(name));
       };
     void setFilm(std::string film){_self.Film = film;};
+    void setKey(int n){_self.key = n;}
 
     //GEEETTERS
     std::string getComp(){return _self.Compare;};
@@ -51,12 +53,14 @@ public:
     int getWinner(){return _self.Winner;};
     std::string getName(){return _self.Name;};
     std::string getFilm(){return _self.Film;};
+    int getKey(){return _self.key;}
 
     std::string print() const;
 
     std::string printToFile() const;
 
     bool completeCompare(Actor_Actress comp);
+
     bool operator==(Actor_Actress comp){
       return _self.Compare == comp.getComp();
     }
@@ -103,6 +107,7 @@ struct Picture_temp{ //name,year,nominations,rating,duration,
   std::string Release = "";
   int Metacritic = -1;
   std::string Synopsis = "";
+  int key;
 };
 
 
@@ -128,6 +133,7 @@ public:
   void setRelease(std::string release){_self.Release = release;};
   void setMetacritic(int metacritic){_self.Metacritic = metacritic;};
   void setSynopsis(std::string synopsis){_self.Synopsis = synopsis;};
+  void setKey(int n){_self.key = n;}
 
   //GEEEEEEEEEETTERS
   std::string getComp(){return _self.Compare;};
@@ -141,6 +147,7 @@ public:
   std::string getRelease(){return _self.Release;};
   int getMetacritic(){return _self.Metacritic;};
   std::string getSynopsis(){return _self.Synopsis;};
+  int getKey(){return _self.key;}
 
 
   bool completeCompare(Picture comp);

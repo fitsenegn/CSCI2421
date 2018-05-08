@@ -6,27 +6,30 @@
 
 
 //Binary Tree Node
-template <class itemType>
+template <typename itemType, typename KEY>
 class BinaryNode {
 public:
     BinaryNode() {left=nullptr; right=nullptr; parent = nullptr;};
 
-    void setParentPtr(BinaryNode<itemType> * aParent) { parent = aParent; };
-    void setRightChildPtr(BinaryNode<itemType> * aRight) { right = aRight; };
-    void setLeftChildPtr(BinaryNode<itemType> * aLeft) { left = aLeft; };
+    void setParentPtr(BinaryNode<itemType,KEY> * aParent) { parent = aParent; };
+    void setRightChildPtr(BinaryNode<itemType,KEY> * aRight) { right = aRight; };
+    void setLeftChildPtr(BinaryNode<itemType,KEY> * aLeft) { left = aLeft; };
 
-    BinaryNode<itemType> * getParentPtr() { return parent; };
-    BinaryNode<itemType> * getRightChildPtr() { return right; };
-    BinaryNode<itemType> * getLeftChildPtr() { return left; };
+    BinaryNode<itemType,KEY> * getParentPtr() { return parent; };
+    BinaryNode<itemType,KEY> * getRightChildPtr() { return right; };
+    BinaryNode<itemType,KEY> * getLeftChildPtr() { return left; };
 
 	  void setItem(itemType newItem) { item = newItem; }
+    void setKey(KEY akey) {key = akey;}
 	  itemType getItem(){ return item; }
-
+    KEY getKey(){return key;}
+    
 private:
     itemType item;
-    BinaryNode<itemType> * left;
-    BinaryNode<itemType> * right;
-    BinaryNode<itemType> * parent;
+    KEY key;
+    BinaryNode<itemType,KEY> * left;
+    BinaryNode<itemType,KEY> * right;
+    BinaryNode<itemType,KEY> * parent;
 };
 
 #endif
