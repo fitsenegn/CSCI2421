@@ -5,7 +5,7 @@
 #include <sstream>
 
 
-std::string stripPunctuation(std::string temp);
+#include "inputCheckers.h"
 
 
 //---------------------------ACTOR_ACTRESS------------------------------------------

@@ -18,7 +18,7 @@ int Actress_Actor_Search(BinaryNodeTree<Actor_Actress,std::string>* People){
 
         if(People->findItem(searching) != nullptr){
           std::vector<Actor_Actress> test = People->findAllMatches(searching);
-
+          std::cout << test.size();
           Actor_Actress Person = People->findItem(searching)->getItem();
 
           std::cout << Person.print();

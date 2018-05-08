@@ -281,17 +281,16 @@ void BinaryNodeTree<itemType,KEY>::findAllBinaryNode(KEY target, BinaryNode<item
 template <typename itemType, typename KEY>
 std::vector<itemType> BinaryNodeTree<itemType,KEY>::getVector() {
   std::vector<itemType> collectionList;
-  getVector(searchable, root, collectionList);
+  getVector(root, collectionList);
   return collectionList;
 }
 
 // Find a node
 template <typename itemType, typename KEY>
-void BinaryNodeTree<itemType>::getVector(BinaryNode<itemType> *node, std::vector<itemType>& list) {
-
+void BinaryNodeTree<itemType,KEY>::getVector(BinaryNode<itemType,KEY> *node, std::vector<itemType>& list) {
     if (node != nullptr) {
       getVector(node->getLeftChildPtr(), list);
-      list.push_back(node);
+      list.push_back(node->getItem());
       getVector(node->getRightChildPtr(), list);
     }
 }

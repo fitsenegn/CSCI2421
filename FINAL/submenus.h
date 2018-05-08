@@ -10,6 +10,7 @@ void optionBanner();
 void importBanner();
 int Actress_Actor(BinaryNodeTree<Actor_Actress,std::string>*);
 int Film_menu(BinaryNodeTree<Picture,std::string>*);
+int Film_menu_sorts(BinaryNodeTree<Picture,std::string>* Pictures);
 void duelPrint();
 int options();
 int importExport(BinaryNodeTree<Picture,std::string>*, BinaryNodeTree<Actor_Actress,std::string>*);

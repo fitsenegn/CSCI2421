@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 #include "dataContainers.h"
-
+#include "inputCheckers.h"
 
 //Binary Tree Node
 template <typename itemType, typename KEY>
@@ -23,7 +23,7 @@ public:
     void setKey(KEY akey) {key = akey;}
 	  itemType getItem(){ return item; }
     KEY getKey(){return key;}
-    
+
 private:
     itemType item;
     KEY key;

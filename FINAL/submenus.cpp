@@ -80,7 +80,7 @@ int Actress_Actor(BinaryNodeTree<Actor_Actress,std::string>* People){
     case '1':{
           Actor_Actress newPerson;
           newPerson.userInput();
-          People->addBinaryNode(newPerson.getName(), newPerson);
+          People->addBinaryNode(newPerson.getComp(), newPerson);
           return -1;
       break;}
     case '2':
@@ -124,16 +124,20 @@ int Film_menu(BinaryNodeTree<Picture,std::string>* Pictures){
   std::cin >> user;
   switch(user){
     case '1':{
+        Picture newFilm;
+        newFilm.userInput();
+        Pictures->addBinaryNode(newFilm.getComp(), newFilm);
           return -1;
       break;}
     case '2':{
       Film_Search(Pictures);
           return -1;
       break;
-    }case '3':
+    }case '3':{
+      while(Film_menu_sorts(Pictures) == -1){ }
           return -1;
       break;
-    case '4':{
+    }case '4':{
           std::string file;
           std::cout << "\nPlease specify your file\n";
           std::cin.ignore();
@@ -180,6 +184,120 @@ int options(){
 }
 
 
+int Film_menu_sorts(BinaryNodeTree<Picture,std::string>* Pictures){
+  std::vector<Picture> allFilms = Pictures->getVector();
+ char user;
+  system("clear");
+  PictureBanner();
+  std::cout << std::endl;
+  std::cout << "Sort by...\n";
+  std::cout << "1) Name\n"
+            << "2) Year\n"
+            << "3) Nominations\n"
+            << "4) Ratings\n"
+            << "5) Duration\n"
+            << "6) Genre1\n"
+            << "7) Genre2\n"
+            << "8) Release\n"
+            << "9) MetaCritic\n";
+  std::cout << "  > ";
+  std::cin >> user;
+  switch(user){
+    case '1':{
+          Pictures->printInorder(consoleFormat, std::cout);
+          cin.ignore();
+          cin.ignore();
+          return 0;
+      break;}
+    case '2':{
+          BinaryNodeTree<Picture,int>* intFilms = new BinaryNodeTree<Picture,int>;
+          for(int i = 0; i < allFilms.size(); i++){
+            intFilms->addBinaryNode(allFilms[i].getYear(),allFilms[i]);
+          }
+          intFilms->printInorder(consoleFormat, std::cout);
+          cin.ignore();
+          cin.ignore();
+          return 0;
+      break;
+    }case '3':{
+          BinaryNodeTree<Picture,int>* intFilms = new BinaryNodeTree<Picture,int>;
+          for(int i = 0; i < allFilms.size(); i++){
+            intFilms->addBinaryNode(allFilms[i].getNom(),allFilms[i]);
+          }
+          intFilms->printInorder(consoleFormat, std::cout);
+          cin.ignore();
+          cin.ignore();
+          return 0;
+      break;
+    }case '4':{
+          BinaryNodeTree<Picture,double>* doubleFilms = new BinaryNodeTree<Picture,double>;
+          for(int i = 0; i < allFilms.size(); i++){
+            doubleFilms->addBinaryNode(allFilms[i].getRating(),allFilms[i]);
+          }
+          doubleFilms->printInorder(consoleFormat, std::cout);
+          cin.ignore();
+          cin.ignore();
+          return 0;
+      break;
+    }case '5':{
+          BinaryNodeTree<Picture,int>* intFilms = new BinaryNodeTree<Picture,int>;
+          for(int i = 0; i < allFilms.size(); i++){
+            intFilms->addBinaryNode(allFilms[i].getDuration(),allFilms[i]);
+          }
+          intFilms->printInorder(consoleFormat, std::cout);
+          cin.ignore();
+          cin.ignore();
+          return 0;
+      break;
+    }case '6':{
+          BinaryNodeTree<Picture,std::string>* stringFilms = new BinaryNodeTree<Picture,std::string>;
+          for(int i = 0; i < allFilms.size(); i++){
+            stringFilms->addBinaryNode(stripPunctuation(allFilms[i].getGenre1()),allFilms[i]);
+          }
+          stringFilms->printInorder(consoleFormat, std::cout);
+          cin.ignore();
+          cin.ignore();
+          return 0;
+      break;
+    }case '7':{
+          BinaryNodeTree<Picture,std::string>* stringFilms = new BinaryNodeTree<Picture,std::string>;
+          for(int i = 0; i < allFilms.size(); i++){
+              stringFilms->addBinaryNode(stripPunctuation(allFilms[i].getGenre2()),allFilms[i]);
+          }
+          stringFilms->printInorder(consoleFormat, std::cout);
+          cin.ignore();
+          cin.ignore();
+          return 0;
+      break;
+    }case '8':{
+          BinaryNodeTree<Picture,std::string>* stringFilms = new BinaryNodeTree<Picture,std::string>;
+          for(int i = 0; i < allFilms.size(); i++){
+            stringFilms->addBinaryNode(stripPunctuation(allFilms[i].getRelease()),allFilms[i]);
+          }
+          stringFilms->printInorder(consoleFormat, std::cout);
+          cin.ignore();
+          cin.ignore();
+          return 0;
+      break;
+    }case '9':{
+          BinaryNodeTree<Picture,int>* intFilms = new BinaryNodeTree<Picture,int>;
+          for(int i = 0; i < allFilms.size(); i++){
+            intFilms->addBinaryNode(allFilms[i].getMetacritic(),allFilms[i]);
+          }
+          intFilms->printInorder(consoleFormat, std::cout);
+          cin.ignore();
+          cin.ignore();
+          return 0;
+      break;
+    }default:
+      std::cout<<"invalid input\n";
+    }
+
+  return -1;
+}
+
+
+
 
 int importExport(BinaryNodeTree<Picture,std::string>* Pictures, BinaryNodeTree<Actor_Actress,std::string>* People){
    char user;
@@ -222,7 +340,7 @@ int importExport(BinaryNodeTree<Picture,std::string>* Pictures, BinaryNodeTree<A
 
 void test(){ //Test crap here
 
-  BinaryNodeTree<Actor_Actress,std::string>* person;
+  BinaryNodeTree<Actor_Actress,std::string>* person = new  BinaryNodeTree<Actor_Actress,std::string>;
 
   readInPeople("actor-actress.csv", person);
 

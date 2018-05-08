@@ -78,7 +78,7 @@ exception_status readInPeople(std::string file, BinaryNodeTree<Actor_Actress,std
         tempContainer.key = count;
       Actor_Actress newPerson(tempContainer);
 
-      PersonTree->addBinaryNode(newPerson.getName(), newPerson);
+      PersonTree->addBinaryNode(newPerson.getComp(), newPerson);
 
       infile >> std::ws;
 
@@ -92,6 +92,7 @@ exception_status readInPeople(std::string file, BinaryNodeTree<Actor_Actress,std
 
   return error;
 }
+
 
 exception_status readOutPeople(std::string file, BinaryNodeTree<Actor_Actress,std::string>* peopleOut){
   exception_status error;
@@ -208,7 +209,7 @@ exception_status readInPictures(std::string file, BinaryNodeTree<Picture,std::st
       tempContainer.key = count;
 
       Picture newFilm(tempContainer);
-      Picturetree->addBinaryNode(newFilm.getName(), newFilm);
+      Picturetree->addBinaryNode(newFilm.getComp(), newFilm);
       // cout << newFilm.print() << endl << endl;
       infile >> std::ws; //strip upcoming whitespace
 
@@ -222,6 +223,7 @@ exception_status readInPictures(std::string file, BinaryNodeTree<Picture,std::st
 
   return error;
 }
+
 
 exception_status readOutPictures(std::string file, BinaryNodeTree<Picture,std::string>* filmOut){
   exception_status error;
